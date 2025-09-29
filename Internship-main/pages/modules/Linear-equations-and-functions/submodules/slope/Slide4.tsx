@@ -14,8 +14,8 @@ export default function SlopeSlide4() {
     
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col overflow-y-auto">
-        <h2 className="text-3xl font-bold text-center mb-4">Special Slopes: Horizontal & Vertical Lines</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 mb-6">Let's explore the two special types of lines. We will use "Rise over Run" to see why their slopes are unique.</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-4">Special Slopes: Horizontal & Vertical Lines</h2>
+        */} <p className="text-center text-slate-600 dark:text-slate-300 mb-6">Let's explore the two special types of lines. We will use "Rise over Run" to see why their slopes are unique.</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
           {/* Left Column: Horizontal Lines */}

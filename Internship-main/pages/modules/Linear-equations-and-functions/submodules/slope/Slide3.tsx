@@ -14,8 +14,8 @@ export default function SlopeSlide3() {
     
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col overflow-y-auto">
-        <h2 className="text-3xl font-bold text-center mb-4">The Slope Formula: Finding Slope Without a Graph</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 mb-6">
+       {/*  <h2 className="text-3xl font-bold text-center mb-4">The Slope Formula: Finding Slope Without a Graph</h2>
+         */}<p className="text-center text-slate-600 dark:text-slate-300 mb-6">
             When you don't have a graph to count, the Slope Formula lets you calculate the exact slope using just the coordinates of two points.
         </p>
         

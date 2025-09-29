@@ -12,13 +12,13 @@ import IntroSlopeInterceptAssessment from './Slide5';
 export const introToSlopeInterceptSlides: Slide[] = [
   {
     type: 'interactive',
-    title: 'The y = mx + b Formula',
+    title: 'The Slope-Intercept Formula',
     component: IntroSlopeInterceptSlide1,
     id: 'what-is-y-mx-b'
   },
   {
     type: 'interactive',
-    title: 'Understanding Slope (m)',
+    title: 'Understanding Slope (m): The Engine of the Line',
     component: IntroSlopeInterceptSlide2,
     id: 'understanding-m'
   },

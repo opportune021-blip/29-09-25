@@ -14,8 +14,8 @@ export default function SlopeSlide2_CompleteGuide() {
     
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col overflow-y-auto">
-        <h2 className="text-3xl font-bold text-center mb-4">A Complete Guide to Finding Slope from a Graph</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 mb-6">
+       {/*  <h2 className="text-3xl font-bold text-center mb-4">A Complete Guide to Finding Slope from a Graph</h2>
+        */} <p className="text-center text-slate-600 dark:text-slate-300 mb-6">
             Let's master the "Rise over Run" method. It's a simple counting skill that works for any straight line.
         </p>
         

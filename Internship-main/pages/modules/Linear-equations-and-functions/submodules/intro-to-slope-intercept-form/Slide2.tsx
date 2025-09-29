@@ -13,48 +13,67 @@ export default function IntroSlopeInterceptSlide2() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col">
-        <h2 className="text-3xl font-bold text-center mb-6">Understanding Slope (m)</h2>
-        
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">Understanding Slope (m): The Engine of the Line</h2>
+         */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
           
-          {/* Left Column: What is 'm'? */}
+          {/* Left Column: The "Personality" of Slope */}
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
-            <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">The 'm' is for 'Move'</h3>
-            <p>The slope, <InlineMath>{'m'}</InlineMath>, tells you the **steepness** and **direction** of the line. It's the "rise over run".</p>
+            <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">The 'Personality' of m</h3>
+            <p className="mb-4">In <InlineMath>{'y = mx + b'}</InlineMath>, the slope <InlineMath>{'m'}</InlineMath> tells you the line's story: its direction and steepness.</p>
             
-            <div className="mt-4 space-y-4">
-                <div className="p-3 bg-green-50 dark:bg-green-900/30 rounded-lg">
-                    {/* FIX: Replaced > with &gt; */}
-                    <h4 className="font-bold text-green-700 dark:text-green-300">Positive Slope (m &gt; 0)</h4>
-                    <p className="text-sm">The line goes **UPHILL** from left to right. An equation like <InlineMath>{'y = 2x + 1'}</InlineMath> means for every 1 step right, you go 2 steps up.</p>
+            <h4 className="font-bold mt-2">Part 1: The Sign (Direction)</h4>
+            <div className="mt-2 space-y-3">
+                <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                    <h5 className="font-bold text-blue-700 dark:text-blue-300">Positive Slope (Uphill 📈)</h5>
+                    <p className="text-sm">When <InlineMath>{'m'}</InlineMath> is positive, the line goes **UPHILL**. Think of earning money—for every day that passes, your savings go up.</p>
                 </div>
-                <div className="p-3 bg-red-50 dark:bg-red-900/30 rounded-lg">
-                    {/* FIX: Replaced < with &lt; */}
-                    <h4 className="font-bold text-red-700 dark:text-red-300">Negative Slope (m &lt; 0)</h4>
-                    <p className="text-sm">The line goes **DOWNHILL** from left to right. An equation like <InlineMath>{'y = -3x + 4'}</InlineMath> means for every 1 step right, you go 3 steps down.</p>
+                <div className="p-3 bg-slate-100 dark:bg-slate-700/50 rounded-lg">
+                    <h5 className="font-bold">Negative Slope (Downhill 📉)</h5>
+                    <p className="text-sm">When <InlineMath>{'m'}</InlineMath> is negative, the line goes **DOWNHILL**. Think of a phone's battery—for every hour you use it, the percentage goes down.</p>
                 </div>
-                 <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg">
-                    <h4 className="font-bold">Key Idea</h4>
-                    <p className="text-sm">A bigger number for <InlineMath>{'m'}</InlineMath> (like 5 or -5) means a steeper line. A smaller number (like 1/2) means a flatter line.</p>
-                </div>
+            </div>
+
+            <h4 className="font-bold mt-6">Part 2: The Size (Steepness)</h4>
+            <div className="mt-2 text-sm space-y-2">
+                <p>➡️ <strong className="text-blue-600 dark:text-blue-400">Large <InlineMath>{'m'}</InlineMath></strong> (like 5 or -4): The line is **very steep**, like climbing a mountain. The "rise" is bigger than the "run".</p>
+                <p>➡️ <strong className="text-blue-600 dark:text-blue-400">Small <InlineMath>{'m'}</InlineMath></strong> (a fraction like <InlineMath>{'\\frac{1}{3}'}</InlineMath>): The line is **very gentle**, like a wheelchair ramp. The "run" is bigger than the "rise".</p>
             </div>
           </div>
 
-          {/* Right Column: Visuals */}
+          {/* Right Column: Slope in the Real World */}
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col space-y-4">
-            <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">Slope in Action</h3>
-            <div>
-                <p><strong>Positive Slope Example:</strong> <InlineMath>{'y = 2x - 3'}</InlineMath></p>
-                <div className="flex-grow bg-slate-100 dark:bg-slate-900/50 mt-2 rounded-lg flex items-center justify-center p-4 border border-slate-300 dark:border-slate-600 h-32">
-                    <p className="text-slate-500">[Graph of an uphill line, with a triangle showing "run 1, rise 2"]</p>
-                </div>
+            <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-1">The Most Important Idea: 'm' as a Rate of Change</h3>
+            <p className="text-sm">In the real world, slope is a **rate**. It's the "per" number that tells you how much one thing changes compared to another.</p>
+            
+            <div className="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-md">
+                <p className="font-semibold">Example: Auto-Rickshaw Fare</p>
+                <p className="text-sm">In our formula <InlineMath>{'y = 15x + 23'}</InlineMath>, the slope <InlineMath>{'m=15'}</InlineMath>. This is the rate of **₹15 per kilometer**.</p>
             </div>
-             <div>
-                <p><strong>Negative Slope Example:</strong> <InlineMath>{'y = -x + 4'}</InlineMath></p>
-                <div className="flex-grow bg-slate-100 dark:bg-slate-900/50 mt-2 rounded-lg flex items-center justify-center p-4 border border-slate-300 dark:border-slate-600 h-32">
-                    <p className="text-slate-500">[Graph of a downhill line, with a triangle showing "run 1, rise -1"]</p>
-                </div>
+
+            <div className="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-md">
+                <p className="font-semibold">Example: Leaking Water Tank</p>
+                <p className="text-sm">For <InlineMath>{'y = -5x + 100'}</InlineMath>, the slope <InlineMath>{'m=-5'}</InlineMath>. This is the rate of losing **5 litres per hour**.</p>
             </div>
+            
+            <h4 className="font-bold pt-4">Quick Summary</h4>
+            <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr className="bg-slate-100 dark:bg-slate-900">
+                            <th className="p-2 border border-slate-300 dark:border-slate-600">If `m` is...</th>
+                            <th className="p-2 border border-slate-300 dark:border-slate-600">The line is...</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td className="p-2 border border-slate-300 dark:border-slate-600">Positive</td><td className="p-2 border border-slate-300 dark:border-slate-600">Going **uphill** (increasing)</td></tr>
+                        <tr><td className="p-2 border border-slate-300 dark:border-slate-600">Negative</td><td className="p-2 border border-slate-300 dark:border-slate-600">Going **downhill** (decreasing)</td></tr>
+                        <tr><td className="p-2 border border-slate-300 dark:border-slate-600">A Large Number</td><td className="p-2 border border-slate-300 dark:border-slate-600">Very **steep**</td></tr>
+                        <tr><td className="p-2 border border-slate-300 dark:border-slate-600">A Small Fraction</td><td className="p-2 border border-slate-300 dark:border-slate-600">Very **gentle / shallow**</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
           </div>
         </div>
       </div>

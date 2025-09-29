@@ -19,7 +19,6 @@ export const slopeSlides: Slide[] = [
   {
     type: 'interactive',
     title: 'Finding Slope from a Graph',
-    content: 'How to visually count the rise (vertical change) and run (horizontal change) between two points on a line.',
     component: SlopeSlide2,
     id: 'finding-slope-from-graph'
   },
