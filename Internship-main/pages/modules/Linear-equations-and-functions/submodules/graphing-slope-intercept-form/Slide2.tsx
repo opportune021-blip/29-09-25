@@ -13,8 +13,8 @@ export default function GraphingSlopeInterceptSlide2() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col overflow-y-auto">
-        <h2 className="text-3xl font-bold text-center mb-4">Mastering Slope-Intercept Form: Practice & Special Cases</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 -mt-2 mb-8">Let's practice to become graphing experts and learn about special types of lines.</p>
+        {/* <h2 className="text-3xl font-bold text-center mb-4">Mastering Slope-Intercept Form: Practice & Special Cases</h2>
+         */}<p className="text-center text-slate-600 dark:text-slate-300 -mt-2 mb-8">Let's practice to become graphing experts and learn about special types of lines.</p>
         
         {/* --- Two Column Layout --- */}
         <div className="flex flex-col md:flex-row gap-8 flex-grow">

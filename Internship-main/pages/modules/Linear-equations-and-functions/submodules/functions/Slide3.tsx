@@ -12,43 +12,60 @@ export default function FunctionsSlide3() {
     };
 
     const slideContent = (
-      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col">
-        <h2 className="text-3xl font-bold text-center mb-6">Function Notation: f(x)</h2>
+      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
+        <h2 className="text-3xl font-bold text-center mb-6">Understanding Function Notation: What is f(x)?</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
-          {/* Left Column: The Notation */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col space-y-4">
-            <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">A New Way to Write 'y'</h3>
-            <p>In algebra, we use **function notation** to be more specific. Instead of writing:</p>
-            <p className="text-center text-xl p-3 bg-slate-100 dark:bg-slate-700 rounded-md"><InlineMath>{'y = 2x + 3'}</InlineMath></p>
-            <p>We now write:</p>
-            <p className="text-center text-xl p-3 bg-blue-100 dark:bg-blue-900/50 rounded-md font-bold"><InlineMath>{'f(x) = 2x + 3'}</InlineMath></p>
-            <div className="bg-blue-50 dark:bg-blue-900/30 p-3 rounded-md">
-              <p><strong>How to read it:</strong> "<InlineMath>{'f(x)'}</InlineMath>" is read as "f of x".</p>
-              <p className="mt-2 text-sm">Think of <InlineMath>{'f(x)'}</InlineMath> as just a fancier, more descriptive name for <InlineMath>{'y'}</InlineMath>. The '<InlineMath>{'f'}</InlineMath>' is the name of the function "machine", and the '<InlineMath>{'(x)'}</InlineMath>' tells us the input variable.</p>
+          {/* Left Column: The Theory */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
+            <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-4">Why Not Just Use 'y'?</h3>
+            <p className="mb-4">While 'y' is correct, function notation <InlineMath>{'f(x)'}</InlineMath> is a more powerful and descriptive way to write our rules.</p>
+            
+            <div className="space-y-3">
+              <p>The notation <InlineMath>{'f(x) = 2x + 1'}</InlineMath> is read as "**f of x** equals 2x plus 1."</p>
+              
+              <div className="p-3 bg-slate-50 dark:bg-slate-900/30 rounded-lg border border-slate-200 dark:border-slate-600">
+                <ul className="list-disc pl-5 space-y-2">
+                    <li>The <InlineMath>{'f'}</InlineMath> is the **name** of the function.</li>
+                    <li>The <InlineMath>{'(x)'}</InlineMath> tells us the **input** variable.</li>
+                    <li>The whole expression <InlineMath>{'f(x)'}</InlineMath> represents the **output** (it's the new 'y'!).</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-lg mt-4">The Power of f(x)</h4>
+                <p>It gives clear instructions. "Find <InlineMath>{'f(2)'}</InlineMath>" is a complete command: "Use function 'f' and plug in an input of 2."</p>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Evaluating */}
+          {/* Right Column: Worked Examples */}
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
-            <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">How to Use f(x) Notation</h3>
-            <p className="italic">Problem: Given the function <InlineMath>{'f(x) = 5x - 4'}</InlineMath>, find the value of <InlineMath>{'f(3)'}</InlineMath>.</p>
-            <div className="mt-4 space-y-3 flex-grow flex flex-col justify-center">
-              <p><strong>Step 1:</strong> The notation <InlineMath>{'f(3)'}</InlineMath> means "find the output when the input is 3". We replace every <InlineMath>{'x'}</InlineMath> in the rule with the number 3.</p>
-              <div className="p-3 text-lg text-center bg-slate-100 dark:bg-slate-700 rounded-md">
-                <InlineMath>{'f(3) = 5(3) - 4'}</InlineMath>
+            <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-4">Worked Examples</h3>
+            <div className="space-y-4 overflow-y-auto pr-2">
+              
+              {/* Example 1 */}
+              <div className="p-3 bg-slate-50 dark:bg-slate-900/30 rounded-lg">
+                  <p className="font-semibold">Example 1: Given <InlineMath>{'f(x) = 4x - 10'}</InlineMath>, find <InlineMath>{'f(3)'}</InlineMath>.</p>
+                  <p className="mt-2 text-sm">This means replace every 'x' with '3'.</p>
+                  <p className="mt-2 text-center p-2 bg-white dark:bg-slate-700 rounded-md">
+                    <InlineMath>{'f(3) = 4(3) - 10'}</InlineMath> <br/>
+                    <InlineMath>{'f(3) = 12 - 10 = 2'}</InlineMath>
+                  </p>
+                  <p className="font-bold text-center mt-1">Answer: <InlineMath>{'f(3) = 2'}</InlineMath></p>
               </div>
-              <p><strong>Step 2:</strong> Simplify the expression.</p>
-              <div className="p-3 text-lg text-center bg-slate-100 dark:bg-slate-700 rounded-md">
-                <InlineMath>{'f(3) = 15 - 4'}</InlineMath>
-              </div>
-              <p><strong>Step 3:</strong> State the final answer.</p>
-              <div className="p-3 text-lg text-center bg-green-100 dark:bg-green-900/50 rounded-md font-bold">
-                <InlineMath>{'f(3) = 11'}</InlineMath>
+
+              {/* Example 2 */}
+              <div className="p-3 bg-slate-50 dark:bg-slate-900/30 rounded-lg">
+                  <p className="font-semibold">Example 2: An auto-rickshaw from Vashi to Seawoods costs <InlineMath>{'C(d) = 18d + 23'}</InlineMath>, where 'd' is distance in km. Find the cost for 4 km, <InlineMath>{'C(4)'}</InlineMath>.</p>
+                   <p className="mt-2 text-center p-2 bg-white dark:bg-slate-700 rounded-md">
+                    <InlineMath>{'C(4) = 18(4) + 23'}</InlineMath> <br/>
+                    <InlineMath>{'C(4) = 72 + 23 = 95'}</InlineMath>
+                  </p>
+                  <p className="font-bold text-center mt-1">Answer: The cost is ₹95.</p>
               </div>
             </div>
-             <p className="text-sm mt-4">This means when the input is 3, the output is 11. This corresponds to the point <InlineMath>{'(3, 11)'}</InlineMath> on a graph.</p>
           </div>
         </div>
       </div>

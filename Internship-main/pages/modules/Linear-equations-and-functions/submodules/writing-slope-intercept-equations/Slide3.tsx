@@ -5,42 +5,65 @@ import { InlineMath } from 'react-katex';
 
 export default function WritingSlopeInterceptSlide3() {
     const [localInteractions, setLocalInteractions] = useState<Record<string, InteractionResponse>>({});
-    const slideInteractions: Interaction[] = [{ id: 'calculating-m-from-graph', conceptId: 'calculating-m-from-graph', conceptName: 'Calculating the Slope from a Graph', type: 'learning' }];
+    const slideInteractions: Interaction[] = [{ id: 'equation-from-graph-vs-point', conceptId: 'equation-from-graph-vs-point', conceptName: 'Finding an Equation: Two Methods', type: 'learning' }];
 
     const handleInteractionComplete = (response: InteractionResponse) => {
         setLocalInteractions(prev => ({ ...prev, [response.interactionId]: response }));
     };
 
     const slideContent = (
-      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col">
-        <h2 className="text-3xl font-bold text-center mb-6">Step 2: Calculating the Slope (m)</h2>
+      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
+        <h2 className="text-3xl font-bold text-center mb-6">Finding the Equation: Two Common Methods</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
-          {/* Left Column: How-To */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col justify-center">
-            <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">Find 'm' (The Movement)</h3>
-            <ol className="list-decimal pl-5 space-y-3">
-                <li>First, find two points on the line that are perfectly on the corner of a grid square. This makes counting easy.</li>
-                <li>Starting from the point on the left, count how many units you have to go **UP or DOWN (Rise)**.</li>
-                <li>Then, count how many units you have to go **RIGHT (Run)** to get to the second point.</li>
-                <li>Finally, write the fraction for the slope:
-                    <div className="text-center text-lg mt-2 p-2 bg-slate-100 dark:bg-slate-700 rounded-md">
-                        <InlineMath>{'m = \\frac{\\text{Rise}}{\\text{Run}}'}</InlineMath>
-                    </div>
-                </li>
-            </ol>
+          {/* Left Column: From a Graph */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
+            <h3 className="text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-4">Method 1: From a Graph</h3>
+            <p className="mb-4">This is the "graph detective" method. You use the picture to find the clues.</p>
+            
+            <div className="space-y-3">
+              <p><strong>Step 1: Find 'b' (Y-Intercept):</strong> Look where the line crosses the y-axis.</p>
+              <p><strong>Step 2: Find 'm' (Slope):</strong> Pick two perfect points. Count the <InlineMath>{'\\frac{\\text{Rise}}{\\text{Run}}'}</InlineMath>.</p>
+              <p><strong>Step 3: Build the Equation:</strong> Combine 'm' and 'b' into <InlineMath>{'y = mx + b'}</InlineMath>.</p>
+            </div>
+
+            <hr className="my-4 dark:border-slate-600"/>
+
+            <h4 className="font-semibold text-lg mb-2">Example:</h4>
+            {/* Removed the img tag and its containing div */}
+            <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-md space-y-1">
+              <p className="font-semibold">Consider a line that crosses the y-axis at +3, and passes through (4, 0).</p>
+              <p><strong>Find 'b':</strong> The line crosses at +3. So, <InlineMath>{'b = 3'}</InlineMath>.</p>
+              <p><strong>Find 'm':</strong> From <InlineMath>{'(0, 3)'}</InlineMath> to <InlineMath>{'(4, 0)'}</InlineMath>, we go DOWN 3 (Rise = -3) and RIGHT 4 (Run = 4). So, <InlineMath>{'m = -\\frac{3}{4}'}</InlineMath>.</p>
+              <p className="font-bold">Equation: <InlineMath>{'y = -\\frac{3}{4}x + 3'}</InlineMath></p>
+            </div>
           </div>
 
-          {/* Right Column: Visual */}
+          {/* Right Column: From Slope and a Point */}
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
-            <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">Calculating 'Rise over Run'</h3>
-            <div className="flex-grow bg-slate-100 dark:bg-slate-900/50 my-4 rounded-lg flex items-center justify-center p-4 border border-slate-300 dark:border-slate-600">
-                <p className="text-slate-500">[Graph with a line passing through (0, 2) and (3, 4). A right-angled triangle is drawn between them, showing a Rise of 2 and a Run of 3.]</p>
+            <h3 className="text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-4">Method 2: From Slope & a Point</h3>
+            <p className="mb-4">This is a purely algebraic method. You are given 'm' and must find 'b'.</p>
+            
+            <div className="space-y-3">
+              <p><strong>Step 1: Start with <InlineMath>{'y = mx + b'}</InlineMath>.</strong> You will have values for 'm', 'x', and 'y'.</p>
+              <p><strong>Step 2: Substitute (Plug In):</strong> Put the slope in for 'm' and the point's coordinates in for 'x' and 'y'.</p>
+              <p><strong>Step 3: Solve for 'b':</strong> Use algebra to get 'b' by itself.</p>
+              <p><strong>Step 4: Build the Final Equation:</strong> Use the original 'm' and the 'b' you just found.</p>
             </div>
-            <p className="mt-4 p-3 bg-green-100 dark:bg-green-900/50 rounded-md text-center">
-                The Rise is +2 and the Run is +3. <br/> Therefore, the slope <InlineMath>{'m = \\frac{2}{3}'}</InlineMath>. We have the second part of our equation!
-            </p>
+            
+            <hr className="my-4 dark:border-slate-600"/>
+
+            <h4 className="font-semibold text-lg mb-2">Example:</h4>
+             <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-md">
+                <p className="font-semibold">Problem: Slope = 3, passes through point (2, 5).</p>
+                <ol className="list-decimal pl-5 mt-2 space-y-1">
+                  <li>Start with: <InlineMath>{'y = mx + b'}</InlineMath></li>
+                  <li>Substitute: <InlineMath>{'5 = (3)(2) + b'}</InlineMath></li>
+                  <li>Solve: <InlineMath>{'5 = 6 + b'}</InlineMath> <br/> <InlineMath>{'\\implies -1 = b'}</InlineMath>.</li>
+                  <li className="font-bold">Final Equation: <InlineMath>{'y = 3x - 1'}</InlineMath></li>
+                </ol>
+            </div>
           </div>
         </div>
       </div>
@@ -48,8 +71,8 @@ export default function WritingSlopeInterceptSlide3() {
 
     return (
         <SlideComponentWrapper 
-            slideId="calculating-m-from-graph" 
-            slideTitle="Step 2: Calculating the Slope from a Graph" 
+            slideId="equation-finding-methods" 
+            slideTitle="Finding an Equation: Two Methods" 
             moduleId="linear-equations-and-functions" 
             submoduleId="writing-slope-intercept-equations"
             interactions={localInteractions}

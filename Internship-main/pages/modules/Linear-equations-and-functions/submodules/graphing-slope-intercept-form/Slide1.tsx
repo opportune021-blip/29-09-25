@@ -14,8 +14,8 @@ export default function GraphingSlopeInterceptSlide1() {
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col overflow-y-auto">
         {/* --- Main Title and Subtitle --- */}
-        <h2 className="text-3xl font-bold text-center mb-4">Graphing Lines Made Easy: The Slope-Intercept Equation</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto">
+        {/* <h2 className="text-3xl font-bold text-center mb-4">Graphing Lines Made Easy: The Slope-Intercept Equation</h2>
+         */}<p className="text-center text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto">
             This is the "secret code" for drawing a perfect straight line on a graph. It's the most common way to write and graph linear equations.
         </p>
 

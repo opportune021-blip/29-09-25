@@ -12,13 +12,13 @@ import GraphingSlopeInterceptAssessment from './Slide5';
 export const graphingSlopeInterceptSlides: Slide[] = [
   {
     type: 'interactive',
-    title: 'The Two-Step Graphing Method',
+    title: 'Graphing Lines Made Easy: The Slope-Intercept Equation',
     component: GraphingSlopeInterceptSlide1,
     id: 'graphing-two-steps'
   },
   {
     type: 'interactive',
-    title: 'Step 1: Plotting the y-intercept (b)',
+    title: 'Mastering Slope-Intercept Form: Practice & Special Cases',
     component: GraphingSlopeInterceptSlide2,
     id: 'plotting-b'
   },
@@ -30,7 +30,7 @@ export const graphingSlopeInterceptSlides: Slide[] = [
   },
   {
     type: 'interactive',
-    title: 'Example: Graphing y = 2/3x - 1',
+    title: 'Full Example: Graphing a Line from Start to Finish',
     component: GraphingSlopeInterceptSlide4,
     id: 'graphing-example'
   },

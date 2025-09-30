@@ -12,40 +12,80 @@ export default function WritingSlopeInterceptSlide1() {
     };
 
     const slideContent = (
-      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col">
-        <h2 className="text-3xl font-bold text-center mb-6">Writing an Equation from a Graph</h2>
+      // Applied slate background theme to the main container
+      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
+        <h2 className="text-3xl font-bold text-center mb-6">Be a Graph Detective: Finding the Equation</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
-          {/* Left Column: The Goal */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
-            <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">From Picture to Formula</h3>
-            <p>So far, we've turned an equation into a graph. Now, let's do the reverse! If you have a picture of a line, you can find its unique equation.</p>
-            <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg flex-grow flex flex-col justify-center">
-                <p className="font-bold text-center">To write the equation <InlineMath>{'y = mx + b'}</InlineMath>, we need to find two things from the graph:</p>
-                <div className="mt-4 text-center space-y-2 text-lg">
-                    <p className="p-2 bg-green-100 dark:bg-green-900/50 rounded-md">✅ The y-intercept (<InlineMath>{'b'}</InlineMath>)</p>
-                    <p className="p-2 bg-green-100 dark:bg-green-900/50 rounded-md">✅ The slope (<InlineMath>{'m'}</InlineMath>)</p>
+          {/* Left Column: The Theory and Example Walkthrough */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col space-y-4">
+            <div>
+                <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">Your Mission</h3>
+                <p className="mt-2">When you see a line on a graph, your mission is to find its "secret code"—the equation <InlineMath>{'y = mx + b'}</InlineMath>. To do this, you need to find two clues:</p>
+                <ul className="list-disc pl-5 mt-2">
+                    <li><strong>Clue #1:</strong> The y-intercept (<InlineMath>{'b'}</InlineMath>)</li>
+                    <li><strong>Clue #2:</strong> The slope (<InlineMath>{'m'}</InlineMath>)</li>
+                </ul>
+            </div>
+            <hr className="dark:border-slate-600"/>
+            <div>
+                <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">The 3-Step Plan</h3>
+                <div className="space-y-3 mt-2">
+                    <p><strong>1. Find 'b':</strong> Look where the line crosses the vertical y-axis. This is your 'b'.</p>
+                    <p><strong>2. Find 'm':</strong> Pick two "perfect points" on the line (where it crosses grid corners). Count the <InlineMath>{'\\frac{\\text{Rise}}{\\text{Run}}'}</InlineMath> between them to get your 'm'.</p>
+                    <p><strong>3. Build the Equation:</strong> Put the 'm' and 'b' you found into the <InlineMath>{'y=mx+b'}</InlineMath> formula.</p>
+                </div>
+            </div>
+            <hr className="dark:border-slate-600"/>
+            <div>
+                <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">Example: Cracking the Code</h3>
+                <p className="mt-2">Let's solve the mystery for the animation on the right:</p>
+                <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-md mt-2 space-y-2">
+                    <p><strong>Finding 'b':</strong> The line crosses the y-axis at -2. So, <InlineMath>{'b = -2'}</InlineMath>.</p>
+                    <p><strong>Finding 'm':</strong> Using points <InlineMath>{'(0, -2)'}</InlineMath> and <InlineMath>{'(4, 1)'}</InlineMath>, we Rise 3 and Run 4. So, <InlineMath>{'m = \\frac{3}{4}'}</InlineMath>.</p>
+                    <p><strong>The Equation:</strong> With <InlineMath>{'m=\\frac{3}{4}'}</InlineMath> and <InlineMath>{'b=-2'}</InlineMath>, the final equation is <InlineMath>{'y = \\frac{3}{4}x - 2'}</InlineMath>.</p>
                 </div>
             </div>
           </div>
 
-          {/* Right Column: The Process */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col justify-center">
-            <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">Our Two-Step Mission</h3>
-            <div className="space-y-4">
-                <div className="p-3 border-l-4 border-blue-400">
-                    <h4 className="font-semibold">Step 1: Find 'b' (The Beginning)</h4>
-                    <p className="text-sm">Look at the y-axis and find the exact point where the line crosses it. This is your <InlineMath>{'b'}</InlineMath>.</p>
+          {/* Right Column: Simplified Animation Steps */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
+            <h3 className="text-xl font-semibold text-center text-blue-700 dark:text-blue-400 mb-4">Live Animation: Building the Equation</h3>
+            
+            <div className="flex-grow bg-slate-50 dark:bg-slate-700 rounded-lg p-6 flex flex-col justify-center space-y-6 border border-slate-200 dark:border-slate-600">
+              
+              {/* Animation Step 1 */}
+              <div className="flex items-center space-x-4">
+                <span className="text-4xl">📍</span>
+                <div>
+                  <h4 className="font-bold text-lg">Step 1: Find 'b'</h4>
+                  <p className="text-slate-700 dark:text-slate-300">We lock in our starting point at the y-intercept: <InlineMath>{'(0, -2)'}</InlineMath>.</p>
                 </div>
-                <div className="p-3 border-l-4 border-blue-400">
-                    <h4 className="font-semibold">Step 2: Find 'm' (The Movement)</h4>
-                    <p className="text-sm">Pick two clear points on the line and use "Rise over Run" to calculate the slope. This is your <InlineMath>{'m'}</InlineMath>.</p>
+              </div>
+
+              <hr className="dark:border-slate-500"/>
+
+              {/* Animation Step 2 */}
+              <div className="flex items-center space-x-4">
+                <span className="text-4xl">↗️</span>
+                <div>
+                  <h4 className="font-bold text-lg">Step 2: Find 'm'</h4>
+                  <p className="text-slate-700 dark:text-slate-300">We move <strong>UP 3</strong> and <strong>RIGHT 4</strong> to find the next point. Our slope is <InlineMath>{'m = \\frac{3}{4}'}</InlineMath>.</p>
                 </div>
-                <div className="p-3 border-l-4 border-green-500">
-                    <h4 className="font-semibold">Step 3: Build the Equation</h4>
-                    <p className="text-sm">Write your final answer by putting the <InlineMath>{'m'}</InlineMath> and <InlineMath>{'b'}</InlineMath> you found into the <InlineMath>{'y = mx + b'}</InlineMath> formula.</p>
+              </div>
+
+              <hr className="dark:border-slate-500"/>
+
+              {/* Animation Step 3 */}
+              <div className="flex items-center space-x-4">
+                <span className="text-4xl">✅</span>
+                <div>
+                  <h4 className="font-bold text-lg">Step 3: Build the Equation</h4>
+                  <p className="text-slate-700 dark:text-slate-300">We combine our clues to get the final answer: <InlineMath>{'y = \\frac{3}{4}x - 2'}</InlineMath>.</p>
                 </div>
+              </div>
+
             </div>
           </div>
         </div>

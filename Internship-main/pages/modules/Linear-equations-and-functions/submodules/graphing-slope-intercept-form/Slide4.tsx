@@ -12,9 +12,10 @@ export default function GraphingSlopeInterceptSlide4() {
     };
 
     const slideContent = (
-      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col overflow-y-auto">
-        <h2 className="text-3xl font-bold text-center mb-4">Full Example: Graphing a Line from Start to Finish</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 mb-4">Let's put all the steps together to graph the equation:</p>
+      // The background color for the whole slide is set here
+      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
+       {/*  <h2 className="text-3xl font-bold text-center mb-4">Full Example: Graphing a Line from Start to Finish</h2>
+         */}<p className="text-center text-slate-600 dark:text-slate-300 mb-4">Let's put all the steps together to graph the equation:</p>
         <div className="mb-8">
             <BlockMath>{'y = -\\frac{2}{3}x + 4'}</BlockMath>
         </div>
@@ -45,7 +46,7 @@ export default function GraphingSlopeInterceptSlide4() {
               <p className="mt-2">With two points plotted, the final step is to use a ruler to draw a straight line through them. Add arrows to each end to show the line continues forever.</p>
             </div>
 
-            <div className="text-center p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+            <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-300 dark:border-slate-700 shadow-md">
               <p className="font-semibold">Great job! You have successfully graphed the line.</p>
             </div>
 
