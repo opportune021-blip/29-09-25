@@ -12,83 +12,62 @@ export default function GraphingSlopeInterceptSlide1() {
     };
 
     const slideContent = (
-      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col overflow-y-auto">
-        {/* --- Main Title and Subtitle --- */}
-        {/* <h2 className="text-3xl font-bold text-center mb-4">Graphing Lines Made Easy: The Slope-Intercept Equation</h2>
-         */}<p className="text-center text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto">
-            This is the "secret code" for drawing a perfect straight line on a graph. It's the most common way to write and graph linear equations.
+      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900 overflow-y-auto">
+        <h2 className="text-3xl font-bold text-center mb-4">Graphing Lines Made Easy: The Slope-Intercept Equation</h2>
+        <p className="text-center text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto">
+            This is the "secret code" for drawing a perfect straight line on a graph using its equation.
         </p>
 
-        {/* --- Two-Column Layout Container --- */}
-        <div className="flex flex-col md:flex-row gap-8 flex-grow">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
 
-            {/* --- Left Column: The Concepts --- */}
-            <div className="md:w-1/2 flex flex-col gap-8">
-                
-                {/* The Magic Formula */}
-                <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md">
-                    <h3 className="text-2xl font-semibold text-center text-blue-700 dark:text-blue-400">The Magic Formula</h3>
-                    <p className="text-center text-4xl font-mono my-4 tracking-wider"><InlineMath>{'y = mx + b'}</InlineMath></p>
-                    <p className="text-center mb-4">Each part has a very specific job:</p>
-                    <ul className="list-disc list-inside space-y-2 text-left mx-auto max-w-md">
-                        <li><InlineMath>{'y'}</InlineMath> and <InlineMath>{'x'}</InlineMath> are the coordinates of any point on the line.</li>
-                        <li><InlineMath>{'m'}</InlineMath> is the <strong>slope</strong> of the line.</li>
-                        <li><InlineMath>{'b'}</InlineMath> is the <strong>y-intercept</strong> of the line.</li>
-                    </ul>
-                </div>
-
-                {/* Part 1: 'b' - The Y-Intercept */}
-                <div className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400">Part 1: 'b' - The Y-Intercept (Your Starting Point)</h3>
-                    <p className="mt-2">The y-intercept is where the line crosses the vertical y-axis. Think of it as your <strong>B</strong>eginning point.</p>
-                    <img src="https://i.imgur.com/G5iM8yq.png" alt="Y-intercept illustration" className="my-4 rounded-lg mx-auto shadow-sm" />
-                    <p className="font-semibold mt-4">Examples:</p>
-                    <ul className="list-disc list-inside mt-2 space-y-1">
-                        <li>In <InlineMath>{'y = 2x + 3'}</InlineMath>, the y-intercept is <strong>3</strong>. The starting point is <InlineMath>{'(0, 3)'}</InlineMath>.</li>
-                        <li>In <InlineMath>{'y = 5x - 1'}</InlineMath>, the y-intercept is <strong>-1</strong>. The starting point is <InlineMath>{'(0, -1)'}</InlineMath>.</li>
-                        <li>In <InlineMath>{'y = -\\frac{1}{2}x'}</InlineMath>, the y-intercept is <strong>0</strong>. The starting point is <InlineMath>{'(0, 0)'}</InlineMath>.</li>
-                    </ul>
+            {/* --- Left Column: The "How-To" Guide --- */}
+            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
+                <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-4">The Method</h3>
+                <div className="space-y-4">
+                    <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                        <h4 className="font-semibold">The Magic Formula</h4>
+                        <p className="text-center font-mono text-xl my-1"><InlineMath>{'y = mx + b'}</InlineMath></p>
+                        <ul className="list-disc pl-5 text-xs">
+                            <li><InlineMath>{'b'}</InlineMath> is the <strong>Y-Intercept</strong> (your starting point).</li>
+                            <li><InlineMath>{'m'}</InlineMath> is the <strong>Slope</strong> (your movement instructions, <InlineMath>{'\\frac{\\text{Rise}}{\\text{Run}}'}</InlineMath>).</li>
+                        </ul>
+                    </div>
+                     <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                        <h4 className="font-semibold">The 4 Graphing Steps</h4>
+                        <ol className="list-decimal pl-5 mt-2 text-sm space-y-1">
+                            <li><strong>Identify 'm' and 'b'</strong> from the equation.</li>
+                            <li><strong>Plot 'b'</strong> on the y-axis. This is your first point.</li>
+                            <li><strong>Use 'm'</strong> (Rise over Run) to move from your first point and plot a second point.</li>
+                            <li><strong>Draw the line</strong> connecting your two points.</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
 
-            {/* --- Right Column: The Application --- */}
-            <div className="md:w-1/2 flex flex-col gap-8">
-                
-                {/* Part 2: 'm' - The Slope */}
-                <div className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400">Part 2: 'm' - The Slope (The Directions)</h3>
-                    <p className="mt-2">The slope tells you how steep the line is. Think of it as your set of <strong>M</strong>ovement instructions, "Rise over Run":</p>
-                    <p className="text-center text-3xl font-mono my-4"><InlineMath>{'m = \\frac{\\text{Rise}}{\\text{Run}}'}</InlineMath></p>
-                    <ul className="list-disc list-inside mt-2 space-y-1">
-                        <li><strong>Rise:</strong> How many units you move UP (positive) or DOWN (negative).</li>
-                        <li><strong>Run:</strong> How many units you move to the RIGHT.</li>
-                    </ul>
-                    <img src="https://i.imgur.com/0uBv62l.png" alt="Slope illustration" className="my-4 rounded-lg mx-auto shadow-sm" />
+            {/* --- Right Column: Examples in Action --- */}
+            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
+                <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-4">Examples in Action</h3>
+                <div className="space-y-4 overflow-y-auto pr-2">
+                    <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                        <h4 className="font-bold">1. Positive Slope: <InlineMath>{'y = 2x + 1'}</InlineMath></h4>
+                        <p className="text-xs mt-1">Start at <InlineMath>{'b=1'}</InlineMath>. From (0, 1), use <InlineMath>{'m=\\frac{2}{1}'}</InlineMath> (Up 2, Right 1) to find the next point.</p>
+                    </div>
+                    <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                        <h4 className="font-bold">2. Negative Slope: <InlineMath>{'y = -\\frac{2}{3}x + 1'}</InlineMath></h4>
+                        <p className="text-xs mt-1">Start at <InlineMath>{'b=1'}</InlineMath>. From (0, 1), use <InlineMath>{'m=\\frac{-2}{3}'}</InlineMath> (Down 2, Right 3) to find the next point.</p>
+                    </div>
+                    <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                        <h4 className="font-bold">3. Special Cases</h4>
+                        <ul className="list-disc pl-5 text-xs">
+                            <li><strong>Horizontal Line (<InlineMath>{'y=4'}</InlineMath>):</strong> A flat line crossing the y-axis at 4. (Slope is 0).</li>
+                            <li><strong>Vertical Line (<InlineMath>{'x=-2'}</InlineMath>):</strong> A vertical line crossing the x-axis at -2. (Slope is undefined).</li>
+                        </ul>
+                    </div>
+                     <div className="p-3 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                        <h4 className="font-bold">4. Quick Check!</h4>
+                        <p className="text-xs mt-1">For <InlineMath>{'y=-x+5'}</InlineMath>: The starting point ('b') is 5. The movement ('m') is -1, so you go DOWN 1, RIGHT 1.</p>
+                    </div>
                 </div>
-
-                {/* Putting It All Together */}
-                <div className="bg-slate-100 dark:bg-slate-700 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold">How to Graph <InlineMath>{'y = 2x + 1'}</InlineMath></h3>
-                    <ol className="list-decimal list-inside space-y-4 mt-4">
-                        <li><strong>Find 'm' and 'b':</strong> Here, <InlineMath>{'m = 2'}</InlineMath> and <InlineMath>{'b = 1'}</InlineMath>.</li>
-                        <li><strong>Plot 'b':</strong> Plot your first point at <InlineMath>{'(0, 1)'}</InlineMath>.</li>
-                        <li><strong>Use 'm' to Move:</strong> Slope is <InlineMath>{'\\frac{2}{1}'}</InlineMath>. From <InlineMath>{'(0, 1)'}</InlineMath>, <strong>rise up 2</strong> and <strong>run right 1</strong> to find your second point at <InlineMath>{'(1, 3)'}</InlineMath>.</li>
-                        <li><strong>Draw the line:</strong> Connect the two points.</li>
-                    </ol>
-                    <img src="https://i.imgur.com/xI6wQk9.png" alt="Graphing y=2x+1" className="my-4 rounded-lg mx-auto shadow-sm" />
-                </div>
-
-                {/* Summary */}
-                <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border-2 border-blue-500 dark:border-blue-600 shadow-md">
-                    <h3 className="text-2xl font-semibold text-center">Summary</h3>
-                    <ul className="list-disc list-inside space-y-2 text-left mx-auto max-w-lg mt-4">
-                        <li>The equation is <InlineMath>{'y = mx + b'}</InlineMath>.</li>
-                        <li><InlineMath>{'b'}</InlineMath> is your <strong>y-intercept</strong> (your starting point).</li>
-                        <li><InlineMath>{'m'}</InlineMath> is your <strong>slope</strong> (your movement instructions).</li>
-                        <li><strong>Graphing Steps:</strong> Plot 'b', use 'm' to move, connect the dots!</li>
-                    </ul>
-                </div>
-
             </div>
         </div>
       </div>
