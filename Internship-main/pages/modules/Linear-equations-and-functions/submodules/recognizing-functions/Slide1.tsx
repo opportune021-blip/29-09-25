@@ -13,30 +13,30 @@ export default function RecognizingFunctionsSlide1() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-6">The Core Rule of a Function</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">The One Rule to Remember</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">The Core Rule of a Function</h2>
+        */} <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">The One Rule to Remember</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
           {/* Left Column: Understanding the Rule */}
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col space-y-4">
             <div className="p-4 bg-blue-100 dark:bg-blue-900/50 rounded-lg text-center">
-                <p className="font-bold text-lg">For a relationship to be a **function**, every **input** must have **exactly one output**.</p>
+                <p className="font-bold text-lg">For a relationship to be a function, every input must have exactly one output.</p>
             </div>
             <div>
                 <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">Analogy 1: The Vending Machine</h3>
                 <p className="text-sm mt-2">Think of a vending machine at a bus stand in Brahmapuri. You press a button code (input) and get a specific product (output).</p>
                 <ul className="list-disc pl-5 mt-2 text-xs">
-                    <li>**Why it's a function:** Pressing "B4" always gets you Parle-G. One input, one output.</li>
-                    <li>**What breaks the rule:** If "B4" sometimes gave you Parle-G and sometimes gave you chips, it would be "broken" and not a function.</li>
+                    <li>Why it's a function: Pressing "B4" always gets you Parle-G. One input, one output.</li>
+                    <li>What breaks the rule: If "B4" sometimes gave you Parle-G and sometimes gave you chips, it would be "broken" and not a function.</li>
                 </ul>
             </div>
              <div>
                 <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">Analogy 2: The Birthday Rule</h3>
                 <p className="text-sm mt-2">Think of a person as an input and their birthday as an output.</p>
                 <ul className="list-disc pl-5 mt-2 text-xs">
-                    <li>**Why it's a function:** Every person has only one birthday.</li>
-                    <li>**What's OK:** It's fine for multiple people (inputs) to share the same birthday (output). This is still a function.</li>
+                    <li>Why it's a function: Every person has only one birthday.</li>
+                    <li>What's OK: It's fine for multiple people (inputs) to share the same birthday (output). This is still a function.</li>
                 </ul>
             </div>
           </div>

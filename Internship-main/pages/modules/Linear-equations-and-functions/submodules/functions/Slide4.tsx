@@ -1,22 +1,20 @@
-import React, { useState } from 'react'; // FIX: Correctly imports both React and the useState hook.
+import React, { useState } from 'react';
 import { SlideComponentWrapper, TrackedInteraction, Interaction, InteractionResponse } from '../../../common-components/concept';
 import 'katex/dist/katex.min.css';
 import { InlineMath } from 'react-katex';
 
 export default function FunctionsSlide4() {
-    // FIX: Correctly declares 'localInteractions' and its update function, 'setLocalInteractions'.
     const [localInteractions, setLocalInteractions] = useState<Record<string, InteractionResponse>>({});
     const slideInteractions: Interaction[] = [{ id: 'vertical-line-test', conceptId: 'vertical-line-test', conceptName: 'The Vertical Line Test', type: 'learning' }];
 
     const handleInteractionComplete = (response: InteractionResponse) => {
-        // FIX: Now correctly uses the 'setLocalInteractions' function.
         setLocalInteractions(prev => ({ ...prev, [response.interactionId]: response }));
     };
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-4">The Vertical Line Test: An Easy Visual Trick</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 mb-8">This test quickly checks if a graph follows the Golden Rule of Functions: "One input, one output."</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-4">The Vertical Line Test: An Easy Visual Trick</h2>
+        */} <p className="text-center text-slate-600 dark:text-slate-300 mb-8">This test quickly checks if a graph follows the Golden Rule of Functions: "One input, one output."</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
@@ -42,28 +40,36 @@ export default function FunctionsSlide4() {
 
               <div className="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 rounded-lg p-3">
                 <h4 className="font-bold">The Rule in a Nutshell</h4>
-                <p className="text-sm mt-1">If your ruler EVER touches the graph in **more than one place at the same time**, it is **NOT** a function.</p>
+                <p className="text-sm mt-1">If your ruler EVER touches the graph in <strong>more than one place at the same time</strong>, it is <strong>NOT</strong> a function.</p>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Visual Examples */}
+          {/* Right Column: Descriptive Examples */}
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
-            <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-4">Visual Examples: Pass or Fail?</h3>
-            <div className="space-y-6 flex-grow flex flex-col justify-around">
+            <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-4">Descriptive Examples: Pass or Fail?</h3>
+            <div className="space-y-4 flex-grow flex flex-col">
               
-              {/* Passes the Test */}
-              <div>
-                <h4 className="text-lg font-semibold mb-2">✅ PASSES (IS a function)</h4>
-                <p className="text-sm mb-2">The vertical line only ever touches the graph at one single point.</p>
-                <img src="https://i.imgur.com/r6sW3lR.png" alt="Graphs of a line and a parabola passing the vertical line test" className="rounded-lg shadow-md border dark:border-slate-600"/>
+              <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                <h4 className="text-lg font-semibold">✅ PASSES (IS a function)</h4>
+                <ul className="list-disc pl-5 text-sm mt-2 space-y-1">
+                    <li><strong>A Straight, Slanted Line:</strong> As you slide your ruler across, it only ever touches the line at one single point.</li>
+                    <li><strong>A 'U'-shaped Parabola:</strong> Even though it's a curve, your vertical ruler only hits it once at any position.</li>
+                </ul>
               </div>
 
-              {/* Fails the Test */}
-              <div>
-                <h4 className="text-lg font-semibold mb-2">❌ FAILS (NOT a function)</h4>
-                <p className="text-sm mb-2">The vertical line can cross the graph in two places at once.</p>
-                <img src="https://i.imgur.com/2Y5F5k9.png" alt="Graphs of a circle and a sideways parabola failing the vertical line test" className="rounded-lg shadow-md border dark:border-slate-600"/>
+              <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                <h4 className="text-lg font-semibold">❌ FAILS (NOT a function)</h4>
+                <ul className="list-disc pl-5 text-sm mt-2 space-y-1">
+                    <li><strong>A Circle:</strong> When you slide your ruler over the middle of a circle, it touches both the top and the bottom at the same time.</li>
+                    <li><strong>A Sideways 'C'-shape:</strong> Your vertical ruler will hit the curve in two places at once.</li>
+                </ul>
+              </div>
+
+              <div className="mt-auto p-3 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                <h4 className="font-semibold text-center">Mental Challenge</h4>
+                <p className="text-xs text-center mt-1">Imagine the capital letter 'S' drawn on a graph. Would it pass or fail? What about the letter 'V'?</p>
+                <p className="text-xs text-center mt-1"><em>Answer: 'S' would fail. 'V' would pass!</em></p>
               </div>
 
             </div>

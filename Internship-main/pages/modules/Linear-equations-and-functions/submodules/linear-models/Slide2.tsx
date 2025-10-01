@@ -15,8 +15,8 @@ export default function LinearModelsSlide2() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900 overflow-y-auto">
-        <h2 className="text-3xl font-bold text-center mb-4">Scatter Plots and Trends: Finding Patterns in Messy Data</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 mb-8">Let's learn how to find patterns in real-world data that isn't perfectly linear.</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-4">Scatter Plots and Trends: Finding Patterns in Messy Data</h2>
+         */}<p className="text-center text-slate-600 dark:text-slate-300 mb-8">Let's learn how to find patterns in real-world data that isn't perfectly linear.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           

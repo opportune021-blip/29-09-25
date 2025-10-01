@@ -12,8 +12,8 @@ export default function LinearAndNonlinearFunctionsSlide1() {
     };
 
     const slideContent = (
-      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-6">What Makes a Function Linear? The Constant Rate Check</h2>
+      <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">{/* 
+        <h2 className="text-3xl font-bold text-center mb-6">What Makes a Function Linear? The Constant Rate Check</h2> */}
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
@@ -21,7 +21,7 @@ export default function LinearAndNonlinearFunctionsSlide1() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col space-y-4">
             <div>
                 <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">The One Big Rule</h3>
-                <p className="mt-2">A function is **linear** if it has a **constant rate of change**. This means its slope (`m`) never changes. Think of it like a car on the Palm Beach Road with cruise control set—its speed is constant.</p>
+                <p className="mt-2">A function is linear if it has a constant rate of change. This means its slope (`m`) never changes. Think of it like a car on the Palm Beach Road with cruise control set—its speed is constant.</p>
             </div>
 
             <hr className="dark:border-slate-600"/>
@@ -49,7 +49,7 @@ export default function LinearAndNonlinearFunctionsSlide1() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col space-y-4">
             <div>
                 <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">3. Checking From a Graph</h3>
-                <p className="mt-2">This is the easiest check! A function is linear if its graph is a **single, perfectly straight line**.</p>
+                <p className="mt-2">This is the easiest check! A function is linear if its graph is a single, perfectly straight line.</p>
                 <div className="grid grid-cols-2 gap-2 text-sm mt-2">
                     <div className="p-2 bg-slate-50 dark:bg-slate-700 rounded-lg">
                         <p className="font-bold">✅ Linear</p>

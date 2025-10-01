@@ -13,8 +13,8 @@ export default function LinearAndNonlinearFunctionsSlide3() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900 overflow-y-auto">
-        <h2 className="text-3xl font-bold text-center mb-6">Identifying from an Equation</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">Look for patterns in the equation's variables to know its story.</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">Identifying from an Equation</h2>
+         */}<p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">Look for patterns in the equation's variables to know its story.</p>
         
         {/* --- Top Section: Rules & Examples --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -66,12 +66,12 @@ export default function LinearAndNonlinearFunctionsSlide3() {
                 {/* Linear Test */}
                 <div className="p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
                     <h4 className="font-bold text-center">Testing: <InlineMath>{'y = 3x + 2'}</InlineMath></h4>
-                    <p className="text-xs text-center mt-2">For every +1 change in 'x', 'y' **always** changes by +3. The rate is **constant**!</p>
+                    <p className="text-xs text-center mt-2">For every +1 change in 'x', 'y' always changes by +3. The rate is constant!</p>
                 </div>
                 {/* Nonlinear Test */}
                  <div className="p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
                     <h4 className="font-bold text-center">Testing: <InlineMath>{'y = x^2 - 4'}</InlineMath></h4>
-                    <p className="text-xs text-center mt-2">For every +1 change in 'x', 'y' changes by a **different amount** (+1, then +3, then +5...). The rate is **NOT constant**!</p>
+                    <p className="text-xs text-center mt-2">For every +1 change in 'x', 'y' changes by a different amount (+1, then +3, then +5...). The rate is NOT constant!</p>
                 </div>
             </div>
         </div>

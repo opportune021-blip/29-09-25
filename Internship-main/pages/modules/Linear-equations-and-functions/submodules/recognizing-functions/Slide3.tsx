@@ -19,10 +19,10 @@ export default function RecognizingFunctionsSlide3() {
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md mb-8">
             <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">Your 4-Step Thought Process</h3>
             <ol className="list-decimal pl-5 mt-2 space-y-1 text-sm">
-                <li><strong>Focus</strong> only on the **`x`-coordinates** (the first number in each pair).</li>
+                <li><strong>Focus</strong> only on the `x`-coordinates (the first number in each pair).</li>
                 <li><strong>Scan</strong> the list of `x`-values for any repeated numbers.</li>
-                <li><strong>If an `x`-value is repeated</strong>, check if it's paired with **different** `y`-values. If so, it is **NOT a function**.</li>
-                <li><strong>If there are no repeated `x`-values</strong> (or if a repeated `x` has the same `y`), it **IS a function**.</li>
+                <li><strong>If an `x`-value is repeated</strong>, check if it's paired with different `y`-values. If so, it is NOT a function.</li>
+                <li><strong>If there are no repeated `x`-values</strong> (or if a repeated `x` has the same `y`), it IS a function.</li>
             </ol>
         </div>
 
@@ -59,7 +59,7 @@ export default function RecognizingFunctionsSlide3() {
                  <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">The "Tricky Case"</h3>
                  <p className="text-sm mt-2">What if the y-values are repeated? Look at this set:</p>
                  <p className="font-mono text-center my-2 p-2 bg-slate-100 dark:bg-slate-700 rounded-md"><InlineMath>{'\\{(-2, 4), (1, 1), (2, 4)\\}'}</InlineMath></p>
-                 <p className="text-sm">The output '4' is repeated, but that's okay! The inputs (-2, 1, 2) are all unique. This **IS** a function.</p>
+                 <p className="text-sm">The output '4' is repeated, but that's okay! The inputs (-2, 1, 2) are all unique. This IS a function.</p>
             </div>
         </div>
       </div>

@@ -13,8 +13,8 @@ export default function ComparingLinearFunctionsSlide3() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-6">Comparing Y-Intercepts: Who Got the Head Start?</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">While the slope tells you who is faster, the y-intercept ('b') tells you who started with more.</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">Comparing Y-Intercepts: Who Got the Head Start?</h2>
+        */} <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">While the slope tells you who is faster, the y-intercept ('b') tells you who started with more.</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
@@ -36,7 +36,7 @@ export default function ComparingLinearFunctionsSlide3() {
                 <h4 className="font-bold">Slope vs. Y-Intercept</h4>
                 <p className="text-sm mt-1">Don't confuse the two! They tell different parts of the story.</p>
                 <ul className="list-disc pl-5 mt-1 text-xs">
-                    <li><strong>Slope (m):</strong> The rate of change (faster, steeper, charge *per* item).</li>
+                    <li><strong>Slope (m):</strong> The rate of change (faster, steeper, charge per item).</li>
                     <li><strong>Y-Intercept (b):</strong> The starting value (initial fee, head start).</li>
                 </ul>
               </div>

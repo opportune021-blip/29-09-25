@@ -13,8 +13,8 @@ export default function ConstructingLinearModelsSlide4() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-6">Finding the Initial Value (b)</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">The y-intercept ('b') is the story's starting point or one-time fee.</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">Finding the Initial Value (b)</h2>
+         */}<p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">The y-intercept ('b') is the story's starting point or one-time fee.</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
@@ -51,13 +51,13 @@ export default function ConstructingLinearModelsSlide4() {
               
               <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
                   <h4 className="font-semibold">Spotting 'b'</h4>
-                  <p className="text-xs italic mt-1">"A gym membership costs **₹1000 to sign up**, then ₹500 per month." ➡️ <InlineMath>{'b=1000'}</InlineMath></p>
-                  <p className="text-xs italic mt-1">"A plant is **15 cm tall** and grows 2 cm each week." ➡️ <InlineMath>{'b=15'}</InlineMath></p>
+                  <p className="text-xs italic mt-1">"A gym membership costs ₹1000 to sign up, then ₹500 per month." ➡️ <InlineMath>{'b=1000'}</InlineMath></p>
+                  <p className="text-xs italic mt-1">"A plant is 15 cm tall and grows 2 cm each week." ➡️ <InlineMath>{'b=15'}</InlineMath></p>
               </div>
 
               <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
                   <h4 className="font-semibold">Calculating 'b'</h4>
-                  <p className="text-sm mt-1">"It's Wednesday lunchtime. A cab in Navi Mumbai costs **₹18 per km (m)**. A **4 km (x)** trip costs a total of **₹97 (y)**. What was the starting fee?"</p>
+                  <p className="text-sm mt-1">"It's Wednesday lunchtime. A cab in Navi Mumbai costs ₹18 per km (m). A 4 km (x) trip costs a total of ₹97 (y). What was the starting fee?"</p>
                   <p className="text-center p-1 mt-1 bg-white dark:bg-slate-600 rounded-md text-xs">
                     <InlineMath>{'y = mx + b'}</InlineMath><br/>
                     <InlineMath>{'97 = 18(4) + b'}</InlineMath><br/>
@@ -68,7 +68,7 @@ export default function ConstructingLinearModelsSlide4() {
 
               <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
                   <h4 className="font-semibold">Special Case: Zero Y-Intercept</h4>
-                  <p className="text-sm mt-1">"You are buying mangoes at a Vashi stall for **₹80 per kg**, with no extra fees."</p>
+                  <p className="text-sm mt-1">"You are buying mangoes at a Vashi stall for ₹80 per kg, with no extra fees."</p>
                   <p className="text-sm mt-1">Since there is no starting fee, <InlineMath>{'b = 0'}</InlineMath>. The equation is <InlineMath>{'y = 80x'}</InlineMath>.</p>
               </div>
 

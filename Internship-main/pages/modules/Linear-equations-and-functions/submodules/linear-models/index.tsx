@@ -12,25 +12,25 @@ import LinearModelsAssessment from './Slide5';
 export const linearModelsSlides: Slide[] = [
   {
     type: 'interactive',
-    title: 'What are Linear Models?',
+    title: 'What are Linear Models? Math in the Real World!',
     component: LinearModelsSlide1,
     id: 'what-are-linear-models'
   },
   {
     type: 'interactive',
-    title: 'Scatter Plots and Trends',
+    title: 'Scatter Plots and Trends: Finding Patterns in Messy Data',
     component: LinearModelsSlide2,
     id: 'scatter-plots-and-trends'
   },
   {
     type: 'interactive',
-    title: 'The Line of Best Fit',
+    title: 'The Line of Best Fit: Making Predictions from Messy Data',
     component: LinearModelsSlide3,
     id: 'line-of-best-fit'
   },
   {
     type: 'interactive',
-    title: 'Making Predictions',
+    title: 'Making Predictions: The Power of Linear Models',
     component: LinearModelsSlide4,
     id: 'making-predictions'
   },

@@ -13,8 +13,8 @@ export default function ComparingLinearFunctionsSlide2() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-6">Comparing Slopes: Who is Faster or Steeper?</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">By comparing the slope ('m'), you can quickly see which function is changing faster.</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">Comparing Slopes: Who is Faster or Steeper?</h2>
+       */}  <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">By comparing the slope ('m'), you can quickly see which function is changing faster.</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
@@ -32,7 +32,7 @@ export default function ComparingLinearFunctionsSlide2() {
 
               <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
                   <h4 className="font-semibold text-lg">2. Look at the Number for SPEED</h4>
-                  <p className="mt-1 text-sm">A **bigger number** (ignoring the sign) means a **faster** change and a **steeper** line.</p>
+                  <p className="mt-1 text-sm">A bigger number (ignoring the sign) means a faster change and a steeper line.</p>
               </div>
             </div>
             {/* Visual Graphs for Examples */}

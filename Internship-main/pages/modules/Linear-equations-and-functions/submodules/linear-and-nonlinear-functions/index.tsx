@@ -12,7 +12,7 @@ import LinearAndNonlinearFunctionsAssessment from './Slide5';
 export const linearAndNonlinearFunctionsSlides: Slide[] = [
   {
     type: 'interactive',
-    title: 'What Makes a Function Linear?',
+    title: 'What Makes a Function Linear? The Constant Rate Check',
     component: LinearAndNonlinearFunctionsSlide1,
     id: 'what-is-linear'
   },

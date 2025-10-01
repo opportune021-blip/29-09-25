@@ -12,25 +12,25 @@ import WritingSlopeInterceptAssessment from './Slide5';
 export const writingSlopeInterceptSlides: Slide[] = [
   {
     type: 'interactive',
-    title: 'Writing an Equation from a Graph',
+    title: 'Be a Graph Detective: Finding the Equation',
     component: WritingSlopeInterceptSlide1,
     id: 'equation-from-graph'
   },
   {
     type: 'interactive',
-    title: 'Step 1: Finding the y-intercept from a Graph',
+    title: 'Finding the Equation with the Y-Intercept and Another Point',
     component: WritingSlopeInterceptSlide2,
     id: 'finding-b-from-graph'
   },
   {
     type: 'interactive',
-    title: 'Step 2: Calculating the Slope from a Graph',
+    title: 'Finding the Equation: Two Common Methods',
     component: WritingSlopeInterceptSlide3,
     id: 'calculating-m-from-graph'
   },
   {
     type: 'interactive',
-    title: 'Writing an Equation from Slope and a Point',
+    title: 'Advanced Methods: Finding the Equation',
     component: WritingSlopeInterceptSlide4,
     id: 'equation-from-point-slope'
   },

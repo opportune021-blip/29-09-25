@@ -13,8 +13,8 @@ export default function ComparingLinearFunctionsSlide1() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-6">Functions in Different Forms</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">A single function is like one story that can be told in many different ways. Let's look at the story of an auto-rickshaw ride.</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">Functions in Different Forms</h2>
+        */} <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">A single function is like one story that can be told in many different ways. Let's look at the story of an auto-rickshaw ride.</p>
         
         <div className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-4">
 

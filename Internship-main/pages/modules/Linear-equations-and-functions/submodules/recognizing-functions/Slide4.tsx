@@ -19,10 +19,10 @@ export default function RecognizingFunctionsSlide4() {
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md mb-8">
             <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">How to Check a Mapping Diagram in 4 Steps</h3>
             <ol className="list-decimal pl-5 mt-2 space-y-1 text-sm">
-                <li>Look at the **Domain** (or Inputs) on the left.</li>
+                <li>Look at the Domain (or Inputs) on the left.</li>
                 <li>Go through each input one by one.</li>
-                <li>Count the number of arrows coming **out** of that single input.</li>
-                <li>If **every** input has **exactly one arrow** coming out, it's a **function**. If **any** input has two or more, it is **not a function**.</li>
+                <li>Count the number of arrows coming out of that single input.</li>
+                <li>If every input has exactly one arrow coming out, it's a function. If any input has two or more, it is not a function.</li>
             </ol>
         </div>
         

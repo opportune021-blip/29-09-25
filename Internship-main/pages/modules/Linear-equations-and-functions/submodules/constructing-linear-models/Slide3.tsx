@@ -13,8 +13,8 @@ export default function ConstructingLinearModelsSlide3() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-6">Finding the Rate of Change (m)</h2>
-        
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">Finding the Rate of Change (m)</h2>
+        */} 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
           {/* Left Column: How to find 'm' */}
@@ -43,29 +43,35 @@ export default function ConstructingLinearModelsSlide3() {
               </div>
             </div>
           </div>
+{/* Right Column: Spotting the Slope Examples */}
+<div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
+  <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-4">Spotting the Slope in a Story</h3>
+  <div className="space-y-3 overflow-y-auto pr-2">
+    <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-md">
+      <p className="text-sm italic">"A car rental company charges ₹500 plus <strong>₹8 per kilometer</strong>."</p>
+      <p className="text-right font-bold"><InlineMath>{'m = 8'}</InlineMath></p>
+    </div>
+    <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-md">
+      <p className="text-sm italic">"Rohan reads <strong>20 pages every hour</strong>."</p>
+      <p className="text-right font-bold"><InlineMath>{'m = 20'}</InlineMath></p>
+    </div>
+    <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-md">
+      <p className="text-sm italic">"A phone's battery <strong>loses 2% for each video</strong> watched."</p>
+      <p className="text-right font-bold">
+        <InlineMath>{'m = -2'}</InlineMath> (it's decreasing!)
+      </p>
+    </div>
+    <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-md">
+      <p className="text-sm italic">
+        "You pay a flat entry fee of ₹200 for an all-you-can-eat buffet. The price doesn't change no matter how many plates you eat."
+      </p>
+      <p className="text-right font-bold">
+        <InlineMath>{'m = 0'}</InlineMath> (Zero Slope)
+      </p>
+    </div>
+  </div>
+</div>
 
-          {/* Right Column: Spotting the Slope Examples */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">
-            <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-4">Spotting the Slope in a Story</h3>
-            <div className="space-y-3 overflow-y-auto pr-2">
-              <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-md">
-                  <p className="text-sm italic">"A car rental company charges ₹500 plus **₹8 per kilometer**."</p>
-                  <p className="text-right font-bold"><InlineMath>{'m = 8'}</InlineMath></p>
-              </div>
-              <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-md">
-                  <p className="text-sm italic">"Rohan reads **20 pages every hour**."</p>
-                  <p className="text-right font-bold"><InlineMath>{'m = 20'}</InlineMath></p>
-              </div>
-               <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-md">
-                  <p className="text-sm italic">"A phone's battery **loses 2% for each video** watched."</p>
-                  <p className="text-right font-bold"><InlineMath>{'m = -2'}</InlineMath> (it's decreasing!)</p>
-              </div>
-              <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-md">
-                  <p className="text-sm italic">"You pay a flat entry fee of ₹200 for an all-you-can-eat buffet. The price doesn't change no matter how many plates you eat."</p>
-                  <p className="text-right font-bold"><InlineMath>{'m = 0'}</InlineMath> (Zero Slope)</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     );

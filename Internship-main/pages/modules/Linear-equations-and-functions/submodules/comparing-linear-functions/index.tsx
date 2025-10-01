@@ -30,7 +30,7 @@ export const comparingLinearFunctionsSlides: Slide[] = [
   },
   {
     type: 'interactive',
-    title: 'Real-World Comparisons',
+    title: 'Real-World Comparison: Which Taxi is Cheaper?',
     component: ComparingLinearFunctionsSlide4,
     id: 'real-world-comparisons'
   },

@@ -13,8 +13,8 @@ export default function LinearModelsSlide1() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-4">What are Linear Models? Math in the Real World!</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 mb-8">A linear model is when we use a straight-line equation to describe and predict real-world situations.</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-4">What are Linear Models? Math in the Real World!</h2>
+        */} <p className="text-center text-slate-600 dark:text-slate-300 mb-8">A linear model is when we use a straight-line equation to describe and predict real-world situations.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           

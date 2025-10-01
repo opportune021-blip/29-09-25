@@ -13,8 +13,8 @@ export default function ComparingLinearFunctionsSlide4() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-6">Real-World Comparison: Which Taxi is Cheaper?</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">It's 5:50 PM in Navi Mumbai. You need to book a taxi for a 10 km trip. Let's find the best deal!</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">Real-World Comparison: Which Taxi is Cheaper?</h2>
+        */} <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">It's 5:50 PM in Navi Mumbai. You need to book a taxi for a 10 km trip. Let's find the best deal!</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
@@ -74,8 +74,8 @@ export default function ComparingLinearFunctionsSlide4() {
                     <InlineMath>{'x \\approx 1.67 \\text{ km}'}</InlineMath>
                 </div>
                 <ul className="text-xs list-disc pl-5">
-                    <li>For trips **SHORTER** than 1.67 km, **Company A** is cheaper.</li>
-                    <li>For trips **LONGER** than 1.67 km, **Company B** is cheaper.</li>
+                    <li>For trips SHORTER than 1.67 km, Company A is cheaper.</li>
+                    <li>For trips LONGER than 1.67 km, Company B is cheaper.</li>
                 </ul>
             </div>
           </div>

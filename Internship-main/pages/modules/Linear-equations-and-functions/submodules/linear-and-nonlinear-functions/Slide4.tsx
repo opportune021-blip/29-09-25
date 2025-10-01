@@ -13,8 +13,8 @@ export default function LinearAndNonlinearFunctionsSlide4() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900 overflow-y-auto">
-        <h2 className="text-3xl font-bold text-center mb-6">Identifying from a Table</h2>
-        
+        {/* <h2 className="text-3xl font-bold text-center mb-6">Identifying from a Table</h2>
+         */}
         {/* The How-To Guide */}
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md mb-8">
             <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">The 4-Step Method for Checking a Table</h3>
@@ -22,7 +22,7 @@ export default function LinearAndNonlinearFunctionsSlide4() {
                 <li><strong>Check the `x` values:</strong> Ensure the inputs change by a constant amount in each step (e.g., always +1, or +2).</li>
                 <li><strong>Check the `y` values:</strong> Calculate the difference between each consecutive `y` value.</li>
                 <li><strong>Calculate the Rate of Change:</strong> For each step, calculate the rate: <InlineMath>{'\\frac{\\text{Change in y}}{\\text{Change in x}}'}</InlineMath>.</li>
-                <li><strong>Compare:</strong> If the rate is the **same** for every step, it's **linear**. If it's **different**, it's **nonlinear**.</li>
+                <li><strong>Compare:</strong> If the rate is the same for every step, it's linear. If it's different, it's nonlinear.</li>
             </ol>
         </div>
         
@@ -68,7 +68,7 @@ export default function LinearAndNonlinearFunctionsSlide4() {
         {/* Tricky Case Section */}
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md mt-8">
             <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">Watch Out! A Tricky Case</h3>
-            <p className="text-sm mt-2">Sometimes the 'x' values don't change by a constant amount. You must always check the full ratio! In the table below, even though the changes in x and y jump around, the rate of change is **always 3**. This is a **linear function**.</p>
+            <p className="text-sm mt-2">Sometimes the 'x' values don't change by a constant amount. You must always check the full ratio! In the table below, even though the changes in x and y jump around, the rate of change is always 3. This is a linear function.</p>
         </div>
 
       </div>

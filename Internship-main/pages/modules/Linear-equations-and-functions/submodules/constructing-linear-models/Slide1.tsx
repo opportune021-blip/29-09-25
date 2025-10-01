@@ -13,8 +13,8 @@ export default function ConstructingLinearModelsSlide1() {
 
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl font-bold text-center mb-6">Turning Stories into Equations</h2>
-        <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">The skill is to read a story and pull out the mathematical pieces to build <InlineMath>{'y = mx + b'}</InlineMath>.</p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">Turning Stories into Equations</h2>
+        */} <p className="text-center text-slate-600 dark:text-slate-300 -mt-4 mb-6">The skill is to read a story and pull out the mathematical pieces to build <InlineMath>{'y = mx + b'}</InlineMath>.</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
           
@@ -52,10 +52,15 @@ export default function ConstructingLinearModelsSlide1() {
             <div className="space-y-4 overflow-y-auto pr-2">
               
               <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                  <h4 className="font-semibold">1. Adding Numbers to the Story</h4>
-                  <p className="text-sm mt-1">Let's say the shop charges a **₹300 service fee (b)** and **₹500 per hour (m)**.</p>
-                  <p className="font-bold mt-2 text-center bg-blue-100 dark:bg-blue-900/50 rounded-md p-2">Equation: <InlineMath>{'y = 500x + 300'}</InlineMath></p>
-              </div>
+  <h4 className="font-semibold">1. Adding Numbers to the Story</h4>
+  <p className="text-sm mt-1">
+    Let's say the shop charges a <strong>₹300 service fee (b)</strong> and <strong>₹500 per hour (m)</strong>.
+  </p>
+  <p className="font-bold mt-2 text-center bg-blue-100 dark:bg-blue-900/50 rounded-md p-2">
+    Equation: <InlineMath>{'y = 500x + 300'}</InlineMath>
+  </p>
+</div>
+
 
               <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
                   <h4 className="font-semibold">2. Making a Prediction</h4>
@@ -70,12 +75,16 @@ export default function ConstructingLinearModelsSlide1() {
                   <p className="text-center mt-1"><InlineMath>{'1800 = 500x + 300 \\implies 1500 = 500x \\implies x=3'}</InlineMath></p>
                   <p className="text-sm mt-1"><strong>Answer:</strong> The repair took 3 hours.</p>
               </div>
+<div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+  <h4 className="font-semibold">4. Another Example: Food Delivery</h4>
+  <p className="text-sm mt-1">
+    A delivery app charges a <strong>₹40 delivery fee (b)</strong> plus <strong>₹10 per km (m)</strong>.
+  </p>
+  <p className="font-bold mt-2 text-center bg-blue-100 dark:bg-blue-900/50 rounded-md p-2">
+    Equation: <InlineMath>{'y = 10x + 40'}</InlineMath>
+  </p>
+</div>
 
-              <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                  <h4 className="font-semibold">4. Another Example: Food Delivery</h4>
-                  <p className="text-sm mt-1">A delivery app charges a **₹40 delivery fee (b)** plus **₹10 per km (m)**.</p>
-                   <p className="font-bold mt-2 text-center bg-blue-100 dark:bg-blue-900/50 rounded-md p-2">Equation: <InlineMath>{'y = 10x + 40'}</InlineMath></p>
-              </div>
 
             </div>
           </div>
