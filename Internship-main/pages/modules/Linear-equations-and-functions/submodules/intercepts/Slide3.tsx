@@ -14,8 +14,8 @@ export default function InterceptsSlide3() {
     
     const slideContent = (
       <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col">
-        <h2 className="text-3xl font-bold text-center mb-6">Finding Intercepts from an Equation</h2>
-        <p className="text-center text-lg mb-4">Equation: <InlineMath>{'2x + 3y = 12'}</InlineMath></p>
+       {/*  <h2 className="text-3xl font-bold text-center mb-6">Finding Intercepts from an Equation</h2>
+        */} <p className="text-center text-lg mb-4">Equation: <InlineMath>{'2x + 3y = 12'}</InlineMath></p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
           {/* Left Column: Finding Y-Intercept */}

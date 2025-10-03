@@ -58,6 +58,7 @@ export default function IntroToCoordinatePlaneSlide1() {
             </div>
           </div>
         </div>
+        
       </div>
     );
 

@@ -35,10 +35,12 @@ export default function SlopeSlide1_Introduction() {
             <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-3">How Do We Measure Slope?</h3>
             <p className="text-sm">We use a formula called "Rise over Run."</p>
             <ul className="list-disc pl-5 my-2 text-xs space-y-1">
-                <li><strong>Rise:</strong> How much the line goes **UP** (+) or **DOWN** (-).</li>
-                <li><strong>Run:</strong> How much the line goes to the **RIGHT**.</li>
+                <li><strong>Rise:</strong> How much the line goes <strong>UP</strong> (+) or <strong>DOWN</strong> (-).</li>
+                <li><strong>Run:</strong> How much the line goes to the <strong>RIGHT</strong>.</li>
             </ul>
-             <p className="text-center font-bold text-lg p-2 bg-slate-100 dark:bg-slate-700 rounded-md"><InlineMath>{'m = \\frac{\\text{Rise}}{\\text{Run}}'}</InlineMath></p>
+            <p className="text-center font-bold text-lg p-2 bg-slate-100 dark:bg-slate-700 rounded-md">
+              <InlineMath>{'m = \\frac{\\text{Rise}}{\\text{Run}}'}</InlineMath>
+            </p>
           </div>
 
           {/* Right Column: The "Types" and "Connection" */}
@@ -71,7 +73,7 @@ export default function SlopeSlide1_Introduction() {
 
             <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-3">Where Does Slope Fit In?</h3>
             <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-sm">
-                <p>Remember the equation <InlineMath>{'y = mx + b'}</InlineMath>? The **'m'** in that equation is the **slope**! It's the number that tells you the line's steepness and direction.</p>
+                <p>Remember the equation <InlineMath>{'y = mx + b'}</InlineMath>? The <strong>'m'</strong> in that equation is the <strong>slope</strong>! It's the number that tells you the line's steepness and direction.</p>
                 <p className="mt-2 text-xs italic">For example, in <InlineMath>{'y = 3x + 5'}</InlineMath>, the slope is <InlineMath>{'m = 3'}</InlineMath>, which means it's a fairly steep, uphill line.</p>
             </div>
           </div>
