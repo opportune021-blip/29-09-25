@@ -13,8 +13,8 @@ export default function GraphingSlopeInterceptSlide3() {
 
     const slideContent = (
         <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900">
-            <h2 className="text-3xl font-bold text-center mb-6">Step 2: Following the Slope Treasure Map</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
+         {/*    <h2 className="text-3xl font-bold text-center mb-6">Step 2: Following the Slope Treasure Map</h2>
+          */}   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
                 
                 {/* Left Column: How-To */}
                 <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md flex flex-col">

@@ -18,7 +18,7 @@ export const functionsSlides: Slide[] = [
   },
   {
     type: 'interactive',
-    title: 'Inputs and Outputs',
+    title: 'Worked Example: Evaluating Functions',
     component: FunctionsSlide2,
     id: 'inputs-and-outputs'
   },

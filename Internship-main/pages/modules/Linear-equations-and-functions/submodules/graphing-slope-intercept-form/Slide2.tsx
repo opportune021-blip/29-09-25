@@ -13,8 +13,8 @@ export default function GraphingSlopeInterceptSlide2() {
 
     const slideContent = (
         <div className="p-4 md:p-8 text-slate-900 dark:text-slate-100 h-full flex flex-col bg-slate-100 dark:bg-slate-900 overflow-y-auto">
-            <h2 className="text-3xl font-bold text-center mb-4">Mastering Slope-Intercept Form: Practice & Special Cases</h2>
-            <p className="text-center text-slate-600 dark:text-slate-300 -mt-2 mb-6">Let's practice to become graphing experts and learn about special types of lines.</p>
+           {/*  <h2 className="text-3xl font-bold text-center mb-4">Mastering Slope-Intercept Form: Practice & Special Cases</h2>
+            */} <p className="text-center text-slate-600 dark:text-slate-300 -mt-2 mb-6">Let's practice to become graphing experts and learn about special types of lines.</p>
             
             <blockquote className="mb-8 p-4 bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-400 rounded-lg">
                 <p className="font-semibold text-blue-800 dark:text-blue-300">The Big Picture: Why is <InlineMath>{'y = mx + b'}</InlineMath> so useful?</p>
