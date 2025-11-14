@@ -52,6 +52,8 @@ const getModules = async () => {
     'grade-2-math-geometry',
     'Linear-equations-and-functions',
     ' Solving-equations-with-one-unknown',
+    'Adaptations',
+    'Energy and Matter in Biological Systems',
     'grade-2-math-operations'
   ];
 
