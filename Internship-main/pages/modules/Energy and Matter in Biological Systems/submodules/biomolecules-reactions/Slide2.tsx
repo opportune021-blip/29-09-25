@@ -163,8 +163,8 @@ export default function BiomoleculesSlide2() {
             <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">From Simple to Complex</h3>
             <div className="flex justify-center">
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Polysaccharide_structure_of_starch%2C_glycogen%2C_cellulose.jpg"
-                alt="Diagram showing monosaccharides forming polysaccharides like starch, glycogen, and cellulose"
+                src="https://medlifemastery.com/wp-content/uploads/2023/01/Carbohydrate-Structure-on-the-MCAT.jpg"
+                alt="Diagram showing monosaccharides forming polysaccharides"
                 className="max-w-full h-auto rounded-lg shadow-md bg-white p-2"
                 style={{ width: '100%', maxWidth: '500px', height: 'auto' }}
               />
@@ -204,6 +204,7 @@ export default function BiomoleculesSlide2() {
                   {questions[currentQuestionIndex].options.map((option, idx) => {
                     const disabled = showFeedback;
                     const selected = selectedAnswer === option;
+                    {/* THIS IS THE CORRECTED LINE */}
                     const correct = option === questions[currentQuestionIndex].correctAnswer;
                     const className = `w-full p-3 rounded-lg text-left transition-all border-2 ${
                       selected

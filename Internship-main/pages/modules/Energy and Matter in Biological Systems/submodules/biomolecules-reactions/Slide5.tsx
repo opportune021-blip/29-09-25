@@ -120,13 +120,12 @@ export default function BiomoleculesSlide5() {
             <p className="text-lg leading-relaxed">
               Lipids (fats, oils, waxes) are a diverse group of molecules made mostly of **Carbon and Hydrogen (CHO)**. Unlike other biomolecules, they are not defined by a single monomer.
             </p>
-            <ul className="mt-4 space-y-2 text-lg">
-              <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
+            {/* UPDATED LIST BELOW */}
+            <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
+              <li>
                 <span><strong>Key Property:</strong> They are **nonpolar** and **hydrophobic**, meaning they do not dissolve in water.</span>
               </li>
-              <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
+              <li>
                 <span><strong>Building Blocks:</strong> Many lipids (like triglycerides) are made from a **glycerol** molecule and **fatty acid chains**.</span>
               </li>
             </ul>
@@ -154,17 +153,18 @@ export default function BiomoleculesSlide5() {
         {/* Right Column - Image and Quiz */}
         <div className="space-y-6">
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">Structure of a Triglyceride</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">Types of Lipids</h3>
             <div className="flex justify-center">
+              {/* UPDATED IMAGE SRC AND ALT */}
               <img 
-                src="httpsS://upload.wikimedia.org/wikipedia/commons/e/e1/Triglyceride_Structural_Formula.png"
-                alt="Diagram showing the structure of a triglyceride (fat)"
+                src="https://bio.libretexts.org/@api/deki/files/34892/StructClassLipidsFA_Isoprenoids.svg?revision=1&size=bestfit&height=535"
+                alt="Diagram showing different types of lipids including fatty acids and steroids"
                 className="max-w-full h-auto rounded-lg shadow-md bg-white p-2"
                 style={{ width: '100%', maxWidth: '450px', height: 'auto' }}
               />
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-4 text-center">
-              A common fat (triglyceride) is formed from one glycerol molecule and three fatty acid chains.
+              Lipids are a diverse group, including fatty acids, triglycerides (fats), phospholipids, and steroids.
             </p>
           </div>
 
@@ -204,7 +204,7 @@ export default function BiomoleculesSlide5() {
                         ? showFeedback
                           ? correct
                             ? 'border-green-500 bg-green-50 dark:bg-green-900/30'
-                            : 'border-red-500 bg-red-50 dark:bg-red-900/3D'
+                            : 'border-red-500 bg-red-50 dark:bg-red-900/30'
                           : 'border-blue-500 bg-blue-50 dark:bg-blue-900/30'
                         : 'border-slate-300 dark:border-slate-600 hover:border-blue-300'
                     } ${disabled ? 'cursor-default' : 'cursor-pointer'}`;

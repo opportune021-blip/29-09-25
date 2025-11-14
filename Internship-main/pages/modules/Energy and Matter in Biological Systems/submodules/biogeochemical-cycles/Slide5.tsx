@@ -73,7 +73,7 @@ export default function BiogeochemicalCyclesSlide5() {
           </p>
         </motion.div>
         
-        {/* Image */}
+        {/* Image - Eutrophication */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -82,7 +82,13 @@ export default function BiogeochemicalCyclesSlide5() {
         >
           <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">Eutrophication (Algal Bloom)</h3>
           <div className="flex justify-center">
-            
+            {/* --- Image Added Here --- */}
+            <img
+              src="https://s3-us-west-2.amazonaws.com/courses-images/wp-content/uploads/sites/3960/2019/01/14192128/Picture-1.png"
+              alt="A diagram illustrating eutrophication or an algal bloom"
+              className="rounded-xl shadow-lg w-full h-auto max-w-2xl"
+            />
+            {/* ------------------------ */}
           </div>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-4 text-center">
             Fertilizer runoff leads to algal blooms, which choke off oxygen for aquatic life.

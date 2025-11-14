@@ -44,51 +44,54 @@ export default function BiogeochemicalCyclesSlide4() {
           </p>
         </motion.div>
 
-        {/* Section 2: Key Steps */}
+        {/* --- MODIFIED SECTION: Left/Right Format --- */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg"
+          // This parent div now controls the L/R layout
+          className="flex flex-col md:flex-row gap-8" 
         >
-          <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">The Key Steps of the Cycle</h2>
-          <ul className="mt-4 space-y-3 text-lg">
-            <li className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-              <span className="font-bold">1. Nitrogen Fixation:</span> Special bacteria (some living in plant root nodules) convert N₂ gas from the air into usable **ammonia (NH₃)**.
-            </li>
-            <li className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-              <span className="font-bold">2. Nitrification:</span> Other bacteria convert ammonia (NH₃) into **nitrites (NO₂⁻)** and then into **nitrates (NO₃⁻)**.
-            </li>
-            <li className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-              <span className="font-bold">3. Assimilation:</span> This is how it enters the food chain. **Plants absorb nitrates (NO₃⁻)** from the soil to make proteins and DNA. Animals get nitrogen by eating plants.
-            </li>
-            <li className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-              <span className="font-bold">4. Ammonification:</span> When organisms die or produce waste, **decomposers (bacteria and fungi)** break them down, returning the nitrogen to the soil as **ammonia (NH₃)**.
-            </li>
-            <li className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-              <span className="font-bold">5. Denitrification:</span> Finally, denitrifying bacteria convert nitrates (NO₃⁻) in the soil back into **N₂ gas**, which returns to the atmosphere, completing the cycle.
-            </li>
-          </ul>
-        </motion.div>
-        
-        {/* Image - Nitrogen Cycle */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg"
-        >
-          <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">The Nitrogen Cycle Diagram</h3>
-          <div className="flex justify-center">
-            
-
-[Image of the nitrogen cycle diagram]
-
+          
+          {/* Left Column (Text) */}
+          <div className="w-full md:w-1/2 bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
+            <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">The Key Steps of the Cycle</h2>
+            <ul className="mt-4 space-y-3 text-lg">
+              <li className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                <span className="font-bold">1. Nitrogen Fixation:</span> Special bacteria (some living in plant root nodules) convert N₂ gas from the air into usable **ammonia (NH₃)**.
+              </li>
+              <li className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                <span className="font-bold">2. Nitrification:</span> Other bacteria convert ammonia (NH₃) into **nitrites (NO₂⁻)** and then into **nitrates (NO₃⁻)**.
+              </li>
+              <li className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                <span className="font-bold">3. Assimilation:</span> This is how it enters the food chain. **Plants absorb nitrates (NO₃⁻)** from the soil to make proteins and DNA. Animals get nitrogen by eating plants.
+              </li>
+              <li className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                <span className="font-bold">4. Ammonification:</span> When organisms die or produce waste, **decomposers (bacteria and fungi)** break them down, returning the nitrogen to the soil as **ammonia (NH₃)**.
+              </li>
+              <li className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                <span className="font-bold">5. Denitrification:</span> Finally, denitrifying bacteria convert nitrates (NO₃⁻) in the soil back into **N₂ gas**, which returns to the atmosphere, completing the cycle.
+              </li>
+            </ul>
           </div>
-          <p className="text-sm text-slate-600 dark:text-slate-400 mt-4 text-center">
-            Notice how bacteria are involved in every major step of the cycle, moving nitrogen between the air, soil, and living things.
-          </p>
+          
+          {/* Right Column (Image) */}
+          <div className="w-full md:w-1/2 bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg flex flex-col justify-center">
+            <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">The Nitrogen Cycle Diagram</h3>
+            <div className="flex justify-center">
+              <img
+                src="https://www.studyacs.com/database/files/Garden/Nitrogen%20Cycle%20www.acs.edu.au%20.jpg"
+                alt="A diagram illustrating the steps of the Nitrogen Cycle"
+                className="rounded-xl shadow-lg w-full h-auto" // Removed max-w-2xl to let it fit the column
+              />
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-400 mt-4 text-center">
+              Notice how bacteria are involved in every major step of the cycle, moving nitrogen between the air, soil, and living things.
+            </p>
+          </div>
+
         </motion.div>
+        {/* --- END OF MODIFIED SECTION --- */}
 
       </div>
     </div>

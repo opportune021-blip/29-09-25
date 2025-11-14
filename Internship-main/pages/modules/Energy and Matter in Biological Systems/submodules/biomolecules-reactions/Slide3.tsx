@@ -120,17 +120,15 @@ export default function BiomoleculesSlide3() {
             <p className="text-lg leading-relaxed">
               Proteins are the most diverse and functional biomolecules. They are made of **Carbon, Hydrogen, Oxygen, and Nitrogen (CHON)**. Their shape is critical to their function.
             </p>
-            <ul className="mt-4 space-y-2 text-lg">
-              <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
+            {/* UPDATED LIST BELOW */}
+            <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
+              <li>
                 <span><strong>Monomer:</strong> The building block is an **Amino Acid**. There are 20 different types.</span>
               </li>
-              <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
+              <li>
                 <span><strong>Bond:</strong> Amino acids are linked by **Peptide Bonds**.</span>
               </li>
-               <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
+               <li>
                 <span><strong>Polymer:</strong> A long chain of amino acids is a **Polypeptide**, which folds into a 3D protein.</span>
               </li>
             </ul>
@@ -161,7 +159,7 @@ export default function BiomoleculesSlide3() {
             <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">From Amino Acid to Protein</h3>
             <div className="flex justify-center">
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Peptide_bond_formation.png"
+                src="https://cdn.kastatic.org/ka-perseus-images/9351c8d3fe1b633cdcf31c62c0a9f034956dcfc4.png"
                 alt="Diagram showing peptide bond formation between two amino acids"
                 className="max-w-full h-auto rounded-lg shadow-md bg-white p-2"
                 style={{ width: '100%', maxWidth: '500px', height: 'auto' }}

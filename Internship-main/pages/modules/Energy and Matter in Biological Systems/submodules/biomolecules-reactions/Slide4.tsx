@@ -120,17 +120,15 @@ export default function BiomoleculesSlide4() {
             <p className="text-lg leading-relaxed">
               Nucleic acids are the information molecules of the cell. They are made of **Carbon, Hydrogen, Oxygen, Nitrogen, and Phosphorus (CHONP)**.
             </p>
-            <ul className="mt-4 space-y-2 text-lg">
-              <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
+            {/* UPDATED LIST BELOW */}
+            <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
+              <li>
                 <span><strong>Monomer:</strong> The building block is a **Nucleotide**.</span>
               </li>
-              <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
+              <li>
                 <span>Each nucleotide has 3 parts: a **sugar**, a **phosphate group**, and a **nitrogenous base** (A, T, C, G, or U).</span>
               </li>
-               <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
+               <li>
                 <span><strong>Polymer:</strong> A **Polynucleotide** chain (e.g., DNA, RNA).</span>
               </li>
             </ul>
@@ -157,17 +155,18 @@ export default function BiomoleculesSlide4() {
         {/* Right Column - Image and Quiz */}
         <div className="space-y-6">
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">Structure of a Nucleotide</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">Structure of Nucleic Acids</h3>
             <div className="flex justify-center">
+              {/* UPDATED IMAGE SRC AND ALT */}
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Nucleotide_General_Structure.png"
-                alt="Diagram showing the three parts of a nucleotide"
+                src="https://sciencenotes.org/wp-content/uploads/2023/02/Nucleic-Acids.png"
+                alt="Diagram of nucleic acids including DNA, RNA, and a nucleotide"
                 className="max-w-full h-auto rounded-lg shadow-md bg-white p-2"
                 style={{ width: '100%', maxWidth: '400px', height: 'auto' }}
               />
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-4 text-center">
-              All nucleotides share this basic structure: a phosphate group, a 5-carbon sugar, and a nitrogenous base.
+              Nucleic acids (like DNA and RNA) are polymers made of nucleotide monomers.
             </p>
           </div>
 

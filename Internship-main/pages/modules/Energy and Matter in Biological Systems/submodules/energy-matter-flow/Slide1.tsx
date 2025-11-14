@@ -1,84 +1,269 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Interaction, InteractionResponse } from '../../../common-components/concept';
 import SlideComponentWrapper from '../../../common-components/SlideComponentWrapper';
 import { useThemeContext } from '@/lib/ThemeContext';
 
-// This is a "video" slide.
-// The main content is the video itself, supplemented by key concepts.
-
 export default function EnergyFlowSlide1() {
+  const [localInteractions, setLocalInteractions] = useState<Record<string, InteractionResponse>>({});
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState<string>('');
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [questionsAnswered, setQuestionsAnswered] = useState<boolean[]>([false, false]);
+  const [score, setScore] = useState(0);
+  const [isQuizComplete, setIsQuizComplete] = useState(false);
   const { isDarkMode } = useThemeContext();
   
-  // No interactive quiz state needed for a video slide
-  const localInteractions: Record<string, InteractionResponse> = {};
+  const slideInteractions: Interaction[] = [
+    {
+      id: 'energy-flow-quiz',
+      conceptId: 'energy-matter-flow',
+      conceptName: 'Energy & Matter Flow Quiz',
+      type: 'judging',
+      description: 'Testing understanding of energy flow vs. matter cycling'
+    }
+  ];
+
+  interface QuizQuestion {
+    id: string;
+    question: string;
+    options: string[];
+    correctAnswer: string;
+    explanation: string;
+  }
+
+  const questions: QuizQuestion[] = [
+    {
+      id: 'flow-vs-cycle-question',
+      question: 'What is the key difference between how energy and matter move in an ecosystem?',
+      options: [
+        'Energy is recycled, while matter flows in one direction',
+        'Energy flows in one direction, while matter is recycled',
+        'Both energy and matter are recycled',
+        'Both energy and matter flow in one direction'
+      ],
+      correctAnswer: 'Energy flows in one direction, while matter is recycled',
+      explanation: 'Correct! Energy enters from the sun and is lost as heat, so it flows. Matter (like carbon and nitrogen) is continuously reused and recycled by decomposers.'
+    },
+    {
+      id: 'decomposer-role-question',
+      question: 'What is the primary role of decomposers (like bacteria and fungi) in an ecosystem?',
+      options: [
+        'To create new energy for the ecosystem',
+        'To be the main food source for producers',
+        'To break down organic material and recycle nutrients',
+        'To convert sunlight into glucose'
+      ],
+      correctAnswer: 'To break down organic material and recycle nutrients',
+      explanation: 'Correct! Decomposers are essential for returning nutrients from dead organisms back to the soil, where producers can use them.'
+    }
+  ];
+  
+  const handleInteractionComplete = (response: InteractionResponse) => {
+    setLocalInteractions(prev => ({
+      ...prev,
+      [response.interactionId]: response
+    }));
+  };
+
+  const handleQuizAnswer = (answerText: string) => {
+    if (showFeedback || isQuizComplete) return;
+
+    setSelectedAnswer(answerText);
+    setShowFeedback(true);
+
+    const current = questions[currentQuestionIndex];
+    const isCorrect = answerText === current.correctAnswer;
+    if (isCorrect) {
+      setScore(prev => prev + 1);
+    }
+
+    handleInteractionComplete({
+      interactionId: `energy-flow-quiz-q${currentQuestionIndex + 1}-${current.id}-${Date.now()}`,
+      value: answerText,
+      isCorrect,
+      timestamp: Date.now(),
+      conceptId: 'energy-matter-flow',
+      conceptName: 'Energy & Matter Flow Quiz',
+      conceptDescription: `Answer to question ${currentQuestionIndex + 1}`,
+      question: {
+        type: 'mcq',
+        question: current.question,
+        options: current.options
+      }
+    });
+  };
+
+  const handleNextQuestion = () => {
+    const newAnswered = [...questionsAnswered];
+    newAnswered[currentQuestionIndex] = true;
+    setQuestionsAnswered(newAnswered);
+
+    setSelectedAnswer('');
+    setShowFeedback(false);
+
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(prev => prev + 1);
+    } else {
+      setIsQuizComplete(true);
+    }
+  };
+
 
   const slideContent = (
     <div className="w-full min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto p-8 space-y-8">
+      {/* Changed to 2-column grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto p-8">
         
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-4">
-            Video: Flow of Energy and Matter
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300">
-            Watch the video to see how energy and matter move through an ecosystem.
-          </p>
-        </motion.div>
-
-        {/* Video Player and Key Concepts Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          {/* Video Player (Placeholder) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="md:col-span-2 bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg"
-          >
-            <h2 className="text-2xl font-bold mb-4 text-slate-700 dark:text-slate-200">
-              Ecosystem Energy Flow
-            </h2>
-            {/* VIDEO PLAYER COMPONENT */}
-            <div className="w-full aspect-video bg-slate-300 dark:bg-slate-700 rounded-lg flex items-center justify-center">
-              <span className="text-slate-500 dark:text-slate-400">(Video Player Placeholder)</span>
-            </div>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 text-center">
-              Video: An overview of food chains, trophic levels, and nutrient cycles.
+        {/* Left Column: Article Content */}
+        <div className="space-y-6">
+          {/* Header */}
+          <div>
+            <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-4">
+              Flow of Energy & Matter
+            </h1>
+            <p className="text-xl text-slate-600 dark:text-slate-300">
+              In an ecosystem, energy and matter move in different ways. Energy *flows*, while matter *cycles*.
             </p>
-          </motion.div>
+          </div>
 
-          {/* Key Concepts (from your module summary) */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="md:col-span-1 bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg"
-          >
-            <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Learning Goals</h2>
-            <p className="text-lg leading-relaxed mb-4">
-              By the end of this submodule, you will be able to:
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
+            <h2 className="text-2xl font-bold mb-3 text-emerald-600 dark:text-emerald-400">How Energy Moves</h2>
+            <p className="text-lg leading-relaxed">
+              Energy moves through an ecosystem when one organism eats another. We can analyze this flow by looking at:
             </p>
-            <ul className="space-y-3 text-lg">
-              <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
-                <span>Analyze how energy moves through **food chains, food webs, and trophic pyramids**.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
-                <span>Explain why energy is **lost at each level**.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="font-bold text-emerald-500 mr-2">✓</span>
-                <span>Describe how matter cycles, focusing on the role of **decomposers** in recycling nutrients.</span>
-              </li>
+            <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
+              <li><strong>Food Chains & Food Webs:</strong> Simple (chain) or complex (web) diagrams showing feeding relationships.</li>
+              <li><strong>Trophic Pyramids:</strong> Models that show how energy is lost at each level. Only about 10% of energy moves from one level to the next.</li>
             </ul>
-          </motion.div>
+          </div>
+
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
+            <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">How Matter Cycles</h2>
+            <p className="text-lg leading-relaxed">
+              Unlike energy, matter (like carbon, nitrogen, and water) is not lost. It is continuously recycled.
+            </p>
+            <p className="text-lg leading-relaxed mt-4">
+              The most important role in this process belongs to **decomposers** (like bacteria and fungi). They break down dead organic material and wastes, returning raw nutrients to the soil and atmosphere for producers to use again.
+            </p>
+          </div>
+        </div>
+
+        {/* Right Column: Image & Quiz */}
+        <div className="space-y-8">
+          {/* Image Card */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
+            <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">Energy Flow in an Ecosystem</h3>
+            <div className="flex justify-center">
+              <img 
+                src="https://dr282zn36sxxg.cloudfront.net/datastreams/f-d%3Ae07b6c46e087d4018c0f70e3e56ca53c2ff1b668b27a2d9bfb32ead6%2BIMAGE_THUMB_POSTCARD_TINY%2BIMAGE_THUMB_POSTCARD_TINY.1"
+                alt="Diagram showing energy flow from sun to producers to consumers"
+                className="max-w-full h-auto rounded-lg shadow-md bg-white p-2"
+                style={{ width: '100%', height: 'auto' }}
+              />
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-400 mt-4 text-center">
+              Energy flows one way: from the sun, to producers (plants), to consumers (animals), and is lost as heat at each step.
+            </p>
+          </div>
+
+          {/* NEW QUIZ SECTION */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400">Knowledge Check</h3>
+              <div className="text-lg text-slate-600 dark:text-slate-400">
+                Question {currentQuestionIndex + 1} of {questions.length}
+              </div>
+            </div>
+
+            <div className="flex space-x-2 mb-6">
+              {questions.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-2 flex-1 rounded ${
+                    index === currentQuestionIndex
+                      ? 'bg-blue-500'
+                      : questionsAnswered[index]
+                      ? 'bg-green-500'
+                      : 'bg-slate-300 dark:bg-slate-600'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {!isQuizComplete ? (
+              <>
+                <div className="text-lg mb-4">{questions[currentQuestionIndex].question}</div>
+                <div className="space-y-3">
+                  {questions[currentQuestionIndex].options.map((option, idx) => {
+                    const disabled = showFeedback;
+                    const selected = selectedAnswer === option;
+                    const correct = option === questions[currentQuestionIndex].correctAnswer;
+                    const className = `w-full p-3 rounded-lg text-left transition-all border-2 ${
+                      selected
+                        ? showFeedback
+                          ? correct
+                            ? 'border-green-500 bg-green-50 dark:bg-green-900/30'
+                            : 'border-red-500 bg-red-50 dark:bg-red-900/30'
+                          : 'border-blue-500 bg-blue-50 dark:bg-blue-900/30'
+                        : 'border-slate-300 dark:border-slate-600 hover:border-blue-300'
+                    } ${disabled ? 'cursor-default' : 'cursor-pointer'}`;
+
+                    return (
+                      <motion.button
+                        key={idx}
+                        onClick={() => handleQuizAnswer(option)}
+                        disabled={disabled}
+                        className={className}
+                        whileHover={!disabled ? { scale: 1.02 } : {}}
+                        whileTap={!disabled ? { scale: 0.98 } : {}}
+                      >
+                        {option}
+                      </motion.button>
+                    );
+                  })}
+                </div>
+
+                <AnimatePresence>
+                  {showFeedback && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className={`mt-4 p-4 rounded-lg ${
+                        selectedAnswer === questions[currentQuestionIndex].correctAnswer
+                          ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700'
+                          : 'bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700'
+                      }`}
+                    >
+                      <div className="text-lg text-slate-600 dark:text-slate-400 mb-4">
+                        {questions[currentQuestionIndex].explanation}
+                      </div>
+                      <motion.button
+                        onClick={handleNextQuestion}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Complete Quiz'}
+                      </motion.button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </>
+            ) : (
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-8">
+                <div className="text-3xl mb-4">🎉</div>
+                <div className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">Quiz Complete!</div>
+                <div className="text-lg text-slate-600 dark:text-slate-400">
+                  You scored {score} out of {questions.length}
+                </div>
+                <div className="text-lg text-slate-600 dark:text-slate-400 mt-2">
+                  {score === questions.length ? 'Perfect! You understand the flow.' : 'Great job! 👏'}
+                </div>
+              </motion.div>
+            )}
+          </div>
         </div>
 
       </div>
@@ -87,11 +272,11 @@ export default function EnergyFlowSlide1() {
 
   return (
     <SlideComponentWrapper 
-      slideId="flow-of-energy-and-matter"
+      slideId="energy-flow-intro" // Renamed ID
       slideTitle="Flow of energy and matter through ecosystems"
       moduleId="olympiad-bio-energy-matter"
       submoduleId="energy-matter-flow"
-      interactions={localInteractions} // Pass empty object for now
+      interactions={localInteractions}
     >
       {slideContent}
     </SlideComponentWrapper>

@@ -144,7 +144,7 @@ export default function BiomoleculesSlide1() {
             <div className="mt-4 p-4 rounded-lg bg-slate-100 dark:bg-slate-700 space-y-3">
               <p className="text-lg flex items-start">
                 <span className="font-bold text-blue-500 mr-2">✓</span>
-                 <span>A water molecule (H₂O) is **added** to the bond.</span>
+                <span>A water molecule (H₂O) is **added** to the bond.</span>
               </p>
               <p className="text-lg flex items-start">
                 <span className="font-bold text-blue-500 mr-2">✓</span>
@@ -152,7 +152,7 @@ export default function BiomoleculesSlide1() {
               </p>
               <p className="text-lg flex items-start">
                 <span className="font-bold text-blue-500 mr-2">✓</span>
-                 <span>This process releases energy (it is catabolic).</span>
+                <span>This process releases energy (it is catabolic).</span>
               </p>
             </div>
           </div>
@@ -164,7 +164,7 @@ export default function BiomoleculesSlide1() {
             <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">Dehydration Synthesis vs. Hydrolysis</h3>
             <div className="flex justify-center">
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Dehydration_synthesis_and_hydrolysis.png"
+                src="https://conductscience.com/wp-content/uploads/2021/07/Biomolecules-923x1024.png"
                 alt="Diagram showing dehydration synthesis and hydrolysis"
                 className="max-w-full h-auto rounded-lg shadow-md bg-white p-2"
                 style={{ width: '100%', maxWidth: '500px', height: 'auto' }}
