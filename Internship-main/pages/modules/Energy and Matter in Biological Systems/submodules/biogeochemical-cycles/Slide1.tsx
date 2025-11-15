@@ -130,7 +130,7 @@ export default function BiogeochemicalCyclesSlide1() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-emerald-600 dark:text-emerald-400">Key Concepts: Cycling Matter</h2>
             <p className="text-lg leading-relaxed">
-              This submodule focuses on how key elements, like **carbon and nitrogen**, move through the environment. Unlike energy, which flows in one direction, matter is recycled.
+              This submodule focuses on how key elements, like carbon and nitrogen, move through the environment. Unlike energy, which flows in one direction, matter is recycled.
             </p>
             <p className="text-lg leading-relaxed mt-4">
               We will investigate how these elements cycle between Earth's four main "spheres":
@@ -146,7 +146,7 @@ export default function BiogeochemicalCyclesSlide1() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">Human Impact</h2>
             <p className="text-lg leading-relaxed">
-              A critical part of this topic is understanding how **human activities**, such as burning fossil fuels and using fertilizers, disrupt these natural, balanced cycles and what the consequences are for our ecosystems.
+              A critical part of this topic is understanding how human activities, such as burning fossil fuels and using fertilizers, disrupt these natural, balanced cycles and what the consequences are for our ecosystems.
             </p>
           </div>
         </div>

@@ -118,18 +118,18 @@ export default function BiomoleculesSlide4() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">What are Nucleic Acids? 🧬</h2>
             <p className="text-lg leading-relaxed">
-              Nucleic acids are the information molecules of the cell. They are made of **Carbon, Hydrogen, Oxygen, Nitrogen, and Phosphorus (CHONP)**.
+              Nucleic acids are the information molecules of the cell. They are made of Carbon, Hydrogen, Oxygen, Nitrogen, and Phosphorus (CHONP).
             </p>
             {/* UPDATED LIST BELOW */}
             <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
               <li>
-                <span><strong>Monomer:</strong> The building block is a **Nucleotide**.</span>
+                <span><strong>Monomer:</strong> The building block is a Nucleotide.</span>
               </li>
               <li>
-                <span>Each nucleotide has 3 parts: a **sugar**, a **phosphate group**, and a **nitrogenous base** (A, T, C, G, or U).</span>
+                <span>Each nucleotide has 3 parts: a sugar, a phosphate group, and a nitrogenous base (A, T, C, G, or U).</span>
               </li>
                <li>
-                <span><strong>Polymer:</strong> A **Polynucleotide** chain (e.g., DNA, RNA).</span>
+                <span><strong>Polymer:</strong> A Polynucleotide chain (e.g., DNA, RNA).</span>
               </li>
             </ul>
           </div>
@@ -145,7 +145,7 @@ export default function BiomoleculesSlide4() {
                 <ul className="list-disc list-inside ml-4">
                   <li><strong>DNA (Deoxyribonucleic Acid):</strong> The permanent "master blueprint" that stores genetic information. It is double-stranded (a double helix).</li>
                   <li><strong>RNA (Ribonucleic Acid):</strong> A temporary "working copy" used to build proteins based on the DNA instructions. It is typically single-stranded.</li>
-                  <li><strong>ATP (Adenosine Triphosphate):</strong> A modified nucleotide used as the main **energy currency** of the cell.</li>
+                  <li><strong>ATP (Adenosine Triphosphate):</strong> A modified nucleotide used as the main energy currency of the cell.</li>
                 </ul>
               </p>
             </div>

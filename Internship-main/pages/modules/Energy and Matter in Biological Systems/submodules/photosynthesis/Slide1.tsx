@@ -129,20 +129,20 @@ export default function PhotosynthesisSlide1() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-emerald-600 dark:text-emerald-400">What is Photosynthesis?</h2>
             <p className="text-lg leading-relaxed">
-              Photosynthesis is the process used by **autotrophs** (organisms that make their own food, like plants and algae) to convert light energy into chemical energy, stored in the bonds of glucose (a sugar).
+              Photosynthesis is the process used by autotrophs (organisms that make their own food, like plants and algae) to convert light energy into chemical energy, stored in the bonds of glucose (a sugar).
             </p>
             <p className="text-lg leading-relaxed mt-4">
-              This "food" (glucose) is the foundation of almost every food chain on the planet. Organisms that cannot make their own food (like humans) are called **heterotrophs** and must eat autotrophs or other heterotrophs to get energy.
+              This "food" (glucose) is the foundation of almost every food chain on the planet. Organisms that cannot make their own food (like humans) are called heterotrophs and must eat autotrophs or other heterotrophs to get energy.
             </p>
           </div>
 
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">Where Does It Happen?</h2>
             <p className="text-lg leading-relaxed">
-              The entire process takes place inside a specialized organelle called the **chloroplast**, which is found in plant and algal cells.
+              The entire process takes place inside a specialized organelle called the chloroplast, which is found in plant and algal cells.
             </p>
             <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
-              <li>Chloroplasts contain a green pigment called **chlorophyll**.</li>
+              <li>Chloroplasts contain a green pigment called chlorophyll.</li>
               <li>It is this pigment's job to absorb the sunlight (light energy) that powers the entire reaction.</li>
               <li>This is why plants are green—chlorophyll reflects green light and absorbs red and blue light.</li>
             </ul>

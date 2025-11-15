@@ -118,20 +118,20 @@ export default function BiomoleculesSlide2() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">What are Carbohydrates? 🍞</h2>
             <p className="text-lg leading-relaxed">
-              Carbohydrates are one of the four main types of biomolecules. Their name, "carbo-hydrate," literally means "carbon-water" as they are composed of **Carbon, Hydrogen, and Oxygen** (often in a 1:2:1 ratio).
+              Carbohydrates are one of the four main types of biomolecules. Their name, "carbo-hydrate," literally means "carbon-water" as they are composed of Carbon, Hydrogen, and Oxygen (often in a 1:2:1 ratio).
             </p>
             <ul className="mt-4 space-y-2 text-lg">
               <li className="flex items-start">
                 <span className="font-bold text-emerald-500 mr-2">✓</span>
-                <span><strong>Monomer:</strong> The building block is a **Monosaccharide** (e.g., Glucose, Fructose).</span>
+                <span><strong>Monomer:</strong> The building block is a Monosaccharide (e.g., Glucose, Fructose).</span>
               </li>
               <li className="flex items-start">
                 <span className="font-bold text-emerald-500 mr-2">✓</span>
-                <span><strong>Polymer:</strong> Monomers join to form a **Polysaccharide** (e.g., Starch, Glycogen, Cellulose).</span>
+                <span><strong>Polymer:</strong> Monomers join to form a Polysaccharide (e.g., Starch, Glycogen, Cellulose).</span>
               </li>
                <li className="flex items-start">
                 <span className="font-bold text-emerald-500 mr-2">✓</span>
-                <span><strong>Main Function:</strong> To provide **short-term, quick-access energy** for cellular work.</span>
+                <span><strong>Main Function:</strong> To provide short-term, quick-access energy for cellular work.</span>
               </li>
             </ul>
           </div>

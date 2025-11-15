@@ -118,7 +118,7 @@ export default function BiomoleculesSlide1() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Building Polymers: Dehydration Synthesis</h2>
             <p className="text-lg leading-relaxed">
-              Large biological molecules (polymers) are built by linking smaller units (monomers). This process is called **Dehydration Synthesis** or a **Condensation Reaction**.
+              Large biological molecules (polymers) are built by linking smaller units (monomers). This process is called Dehydration Synthesis or a Condensation Reaction.
             </p>
             <ul className="mt-4 space-y-2 text-lg">
               <li className="flex items-start">
@@ -127,7 +127,7 @@ export default function BiomoleculesSlide1() {
               </li>
               <li className="flex items-start">
                 <span className="font-bold text-emerald-500 mr-2">✓</span>
-                <span>A water molecule (H₂O) is **removed** in the process.</span>
+                <span>A water molecule (H₂O) is removed in the process.</span>
               </li>
                <li className="flex items-start">
                 <span className="font-bold text-emerald-500 mr-2">✓</span>
@@ -139,12 +139,12 @@ export default function BiomoleculesSlide1() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Breaking Polymers: Hydrolysis</h3>
             <p className="text-lg leading-relaxed">
-              To break down polymers (like in digestion), the cell uses **Hydrolysis**. This is the reverse of dehydration synthesis.
+              To break down polymers (like in digestion), the cell uses Hydrolysis. This is the reverse of dehydration synthesis.
             </p>
             <div className="mt-4 p-4 rounded-lg bg-slate-100 dark:bg-slate-700 space-y-3">
               <p className="text-lg flex items-start">
                 <span className="font-bold text-blue-500 mr-2">✓</span>
-                <span>A water molecule (H₂O) is **added** to the bond.</span>
+                <span>A water molecule (H₂O) is added to the bond.</span>
               </p>
               <p className="text-lg flex items-start">
                 <span className="font-bold text-blue-500 mr-2">✓</span>

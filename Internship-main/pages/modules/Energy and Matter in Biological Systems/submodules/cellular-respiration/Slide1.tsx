@@ -130,17 +130,17 @@ export default function CellularRespirationSlide1() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-emerald-600 dark:text-emerald-400">What is Cellular Respiration?</h2>
             <p className="text-lg leading-relaxed">
-              If photosynthesis is the process of *making* food (glucose), cellular respiration is the process of *breaking down* that food to release its stored chemical energy.
+              If photosynthesis is the process of making food (glucose), cellular respiration is the process of breaking down that food to release its stored chemical energy.
             </p>
             <p className="text-lg leading-relaxed mt-4">
-              This process trace how cells break down glucose to produce **ATP** (the cell's energy currency), carbon dioxide, and water.
+              This process trace how cells break down glucose to produce ATP (the cell's energy currency), carbon dioxide, and water.
             </p>
           </div>
 
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">The Overall Equation</h2>
             <p className="text-lg leading-relaxed">
-              The most common and efficient type is **aerobic respiration**, which uses oxygen. Notice that it's the exact reverse of photosynthesis!
+              The most common and efficient type is aerobic respiration, which uses oxygen. Notice that it's the exact reverse of photosynthesis!
             </p>
             <div className="text-center p-4 my-4 bg-slate-100 dark:bg-slate-700 rounded-lg">
               <p className="text-xl md:text-2xl font-mono text-slate-800 dark:text-slate-100">
@@ -151,7 +151,7 @@ export default function CellularRespirationSlide1() {
               </p>
             </div>
             <p className="text-lg leading-relaxed">
-              There is also **anaerobic respiration** (including fermentation), which does *not* use oxygen. Organisms use these different pathways to release energy under different conditions.
+              There is also anaerobic respiration (including fermentation), which does not use oxygen. Organisms use these different pathways to release energy under different conditions.
             </p>
           </div>
         </div>

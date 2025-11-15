@@ -35,17 +35,17 @@ export default function BiomoleculesSlide8() {
                 The food we eat (e.g., a sandwich) is a collection of complex biomolecules (polymers).
               </p>
               <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
-                <li>The bread and vegetables provide **carbohydrates** (starch, cellulose).</li>
-                <li>The meat or cheese provides **proteins** and **lipids**.</li>
-                <li>The cells of the plants and animals provide **nucleic acids**.</li>
+                <li>The bread and vegetables provide carbohydrates (starch, cellulose).</li>
+                <li>The meat or cheese provides proteins and lipids.</li>
+                <li>The cells of the plants and animals provide nucleic acids.</li>
               </ul>
               <p className="text-lg leading-relaxed mt-4">
-                During **digestion**, catabolic reactions (hydrolysis) break these large polymers back down into their simple monomers:
+                During digestion, catabolic reactions (hydrolysis) break these large polymers back down into their simple monomers:
               </p>
               <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
-                <li>Starch → **Monosaccharides** (like glucose)</li>
-                <li>Proteins → **Amino Acids**</li>
-                <li>Fats → **Glycerol & Fatty Acids**</li>
+                <li>Starch → Monosaccharides (like glucose)</li>
+                <li>Proteins → Amino Acids</li>
+                <li>Fats → Glycerol & Fatty Acids</li>
               </ul>
             </div>
 
@@ -56,7 +56,7 @@ export default function BiomoleculesSlide8() {
               </p>
               <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
                 <li><strong>Building Blocks (Anabolism):</strong> The amino acids are used to build your specific proteins. The nucleotides build your DNA.</li>
-                <li><strong>Fuel (Catabolism):</strong> Monomers, especially **glucose**, are broken down in a process called **Cellular Respiration**. This process releases the chemical energy stored in their bonds.</li>
+                <li><strong>Fuel (Catabolism):</strong> Monomers, especially glucose, are broken down in a process called Cellular Respiration. This process releases the chemical energy stored in their bonds.</li>
               </ul>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function BiomoleculesSlide8() {
               The energy released from breaking down glucose isn't used directly. It's too much, too fast.
             </p>
             <p className="text-xl leading-relaxed font-semibold p-4 bg-slate-100 dark:bg-slate-700 rounded-lg">
-              Instead, the energy from glucose is captured and stored in small, usable packets called **ATP (Adenosine Triphosphate)**.
+              Instead, the energy from glucose is captured and stored in small, usable packets called ATP (Adenosine Triphosphate).
             </p>
             <p className="text-lg leading-relaxed mt-4">
               ATP is the universal, rechargeable battery of the cell. It powers every process, from building proteins to moving muscles.
@@ -109,7 +109,7 @@ export default function BiomoleculesSlide8() {
               </li>
               <li className="p-4 rounded-lg bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-700">
                 <span className="font-bold text-lg text-orange-700 dark:text-orange-300">UP NEXT: Cellular Respiration</span>
-                <p className="text-lg text-slate-700 dark:text-slate-200">How do *all* cells (plant and animal) break down that glucose to capture its energy and recharge their ATP batteries?</p>
+                <p className="text-lg text-slate-700 dark:text-slate-200">How do all cells (plant and animal) break down that glucose to capture its energy and recharge their ATP batteries?</p>
               </li>
             </ul>
           </div>

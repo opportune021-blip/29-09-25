@@ -22,7 +22,7 @@ export default function BiomoleculesSlide7() {
               Biomolecules & Metabolism
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300">
-              The sum of all chemical reactions in an organism is called **metabolism**.
+              The sum of all chemical reactions in an organism is called metabolism.
             </p>
           </div>
 
@@ -30,12 +30,12 @@ export default function BiomoleculesSlide7() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-emerald-600 dark:text-emerald-400">1. Anabolism: Building Up</h2>
             <p className="text-lg leading-relaxed">
-              **Anabolic reactions** build complex molecules from simpler ones. This process requires energy.
+              Anabolic reactions build complex molecules from simpler ones. This process requires energy.
             </p>
             <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
               <li><strong>Key Process:</strong> Dehydration Synthesis.</li>
               <li><strong>Example:</strong> Joining amino acids to build a protein (muscle growth).</li>
-              <li><strong>Energy:</strong> It is **endergonic** (consumes energy).</li>
+              <li><strong>Energy:</strong> It is endergonic (consumes energy).</li>
               <li><strong>Analogy:</strong> Building a complex Lego model from individual bricks.</li>
             </ul>
           </div>
@@ -44,12 +44,12 @@ export default function BiomoleculesSlide7() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-red-600 dark:text-red-400">2. Catabolism: Breaking Down</h2>
             <p className="text-lg leading-relaxed">
-              **Catabolic reactions** break down complex molecules into simpler ones. This process releases energy.
+              Catabolic reactions break down complex molecules into simpler ones. This process releases energy.
             </p>
             <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
               <li><strong>Key Process:</strong> Hydrolysis.</li>
               <li><strong>Example:</strong> Breaking down a starch (polysaccharide) into glucose (monosaccharide).</li>
-              <li><strong>Energy:</strong> It is **exergonic** (releases energy).</li>
+              <li><strong>Energy:</strong> It is exergonic (releases energy).</li>
               <li><strong>Analogy:</strong> Breaking a Lego model apart into its individual bricks.</li>
             </ul>
           </div>
@@ -82,12 +82,12 @@ export default function BiomoleculesSlide7() {
               These metabolic reactions would happen far too slowly on their own to support life. They need a helper.
             </p>
             <p className="text-xl leading-relaxed font-semibold p-4 bg-slate-100 dark:bg-slate-700 rounded-lg">
-              **Enzymes** are (almost always) proteins that act as biological **catalysts**. They dramatically speed up chemical reactions without being consumed in the process.
+              Enzymes are (almost always) proteins that act as biological catalysts. They dramatically speed up chemical reactions without being consumed in the process.
             </p>
             <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
-              <li>Enzymes are highly **specific**; each enzyme typically works on only one molecule (its **substrate**).</li>
-              <li>They work by lowering the **activation energy**—the "startup cost" needed to get a reaction going.</li>
-              <li>The substrate fits into a specific part of the enzyme called the **active site**.</li>
+              <li>Enzymes are highly specific; each enzyme typically works on only one molecule (its substrate).</li>
+              <li>They work by lowering the activation energy the "startup cost" needed to get a reaction going.</li>
+              <li>The substrate fits into a specific part of the enzyme called the active site.</li>
               <li>Every major metabolic process, like photosynthesis and cellular respiration, is controlled by a series of enzymes.</li>
             </ul>
           </div>
@@ -97,7 +97,7 @@ export default function BiomoleculesSlide7() {
             <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">How Enzymes Work: Lock and Key</h3>
             <div className="flex justify-center">
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Induced_fit_diagram.png"
+                src="https://cdn.kastatic.org/ka-content-images/0246b11cf6817ed99ab8549412b35cec6057cc8f.png"
                 alt="Diagram showing enzyme action (induced fit model)"
                 className="max-w-full h-auto rounded-lg shadow-md bg-white p-2"
                 style={{ width: '100%', maxWidth: '600px', height: 'auto' }}

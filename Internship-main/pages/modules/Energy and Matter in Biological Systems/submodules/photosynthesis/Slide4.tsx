@@ -131,15 +131,15 @@ export default function PhotosynthesisSlide4() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-emerald-600 dark:text-emerald-400">The Planet's "Producers"</h2>
             <p className="text-lg leading-relaxed">
-              Organisms that perform photosynthesis, like plants, are called **autotrophs** or **producers**. They are the only organisms that can create their own food (glucose) from inorganic sources.
+              Organisms that perform photosynthesis, like plants, are called autotrophs or producers. They are the only organisms that can create their own food (glucose) from inorganic sources.
             </p>
             <p className="text-lg leading-relaxed mt-4">
-              All other organisms, including humans, are **heterotrophs** or **consumers**. We must get our energy by eating other organisms.
+              All other organisms, including humans, are heterotrophs or consumers. We must get our energy by eating other organisms.
             </p>
             <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
               <li>A cow (herbivore) eats grass, getting energy that the grass made through photosynthesis.</li>
               <li>A human (omnivore) eats a salad (producer) or a steak (consumer that ate a producer).</li>
-              <li>This flow of energy, which begins with photosynthesis, is the basis for all **food webs**.</li>
+              <li>This flow of energy, which begins with photosynthesis, is the basis for all food webs.</li>
             </ul>
           </div>
 
@@ -151,10 +151,10 @@ export default function PhotosynthesisSlide4() {
             </p>
             <ul className="mt-4 space-y-3 text-lg">
               <li className="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg">
-                <span className="font-bold text-lg">1. Oxygen Production:</span> The **oxygen (O₂)** released as a byproduct is essential for **aerobic respiration**—the process most living things, including us, use to get energy from food.
+                <span className="font-bold text-lg">1. Oxygen Production:</span> The oxygen (O₂) released as a byproduct is essential for aerobic respiration the process most living things, including us, use to get energy from food.
               </li>
               <li className="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg">
-                <span className="font-bold text-lg">2. Carbon Sequestration:</span> By taking **carbon dioxide (CO₂)** out of the atmosphere, photosynthesis helps regulate the climate. CO₂ is a greenhouse gas, and plants act as a massive "carbon sink."
+                <span className="font-bold text-lg">2. Carbon Sequestration:</span> By taking carbon dioxide (CO₂) out of the atmosphere, photosynthesis helps regulate the climate. CO₂ is a greenhouse gas, and plants act as a massive "carbon sink."
               </li>
             </ul>
           </div>

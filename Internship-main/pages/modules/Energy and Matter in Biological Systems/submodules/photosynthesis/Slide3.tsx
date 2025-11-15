@@ -139,7 +139,7 @@ export default function PhotosynthesisSlide3() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">The Overall Equation</h2>
             <p className="text-lg leading-relaxed">
-              We can describe the entire process with one chemical equation. This is an **endothermic** process, meaning it stores energy in the bonds of the products.
+              We can describe the entire process with one chemical equation. This is an endothermic process, meaning it stores energy in the bonds of the products.
             </p>
             <div className="text-center p-4 my-4 bg-slate-100 dark:bg-slate-700 rounded-lg">
               <p className="text-xl md:text-2xl font-mono text-slate-800 dark:text-slate-100">
@@ -163,7 +163,7 @@ export default function PhotosynthesisSlide3() {
               In plants, photosynthesis takes place in chloroplasts
             </h2>
             <p className="text-lg leading-relaxed mb-4">
-              In most plants, photosynthesis occurs in the leaves, specifically in cells of the middle layer of leaf tissue called **mesophyll cells**. Each mesophyll cell contains **chloroplasts**, which are specialized organelles that carry out photosynthesis.
+              In most plants, photosynthesis occurs in the leaves, specifically in cells of the middle layer of leaf tissue called mesophyll cells. Each mesophyll cell contains chloroplasts, which are specialized organelles that carry out photosynthesis.
             </p>
             <div className="flex justify-center mt-4">
               <img 
@@ -181,7 +181,7 @@ export default function PhotosynthesisSlide3() {
               Inside the Chloroplast
             </h3>
             <p className="text-lg leading-relaxed mb-4">
-              Within each chloroplast are disc-like structures called **thylakoids**, which are organized into stacks known as **grana** (singular: granum). The membrane of each thylakoid contains green-colored pigment molecules called **chlorophylls** that absorb light. The fluid-filled space around the grana is called the **stroma**. Different chemical reactions happen in the different parts of the chloroplast.
+              Within each chloroplast are disc-like structures called thylakoids, which are organized into stacks known as grana (singular: granum). The membrane of each thylakoid contains green-colored pigment molecules called chlorophylls that absorb light. The fluid-filled space around the grana is called the stroma. Different chemical reactions happen in the different parts of the chloroplast.
             </p>
             <div className="flex justify-center mt-4">
               <img 

@@ -118,18 +118,18 @@ export default function BiomoleculesSlide3() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">What are Proteins? 🥩</h2>
             <p className="text-lg leading-relaxed">
-              Proteins are the most diverse and functional biomolecules. They are made of **Carbon, Hydrogen, Oxygen, and Nitrogen (CHON)**. Their shape is critical to their function.
+              Proteins are the most diverse and functional biomolecules. They are made of Carbon, Hydrogen, Oxygen, and Nitrogen (CHON). Their shape is critical to their function.
             </p>
             {/* UPDATED LIST BELOW */}
             <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
               <li>
-                <span><strong>Monomer:</strong> The building block is an **Amino Acid**. There are 20 different types.</span>
+                <span><strong>Monomer:</strong> The building block is an Amino Acid. There are 20 different types.</span>
               </li>
               <li>
-                <span><strong>Bond:</strong> Amino acids are linked by **Peptide Bonds**.</span>
+                <span><strong>Bond:</strong> Amino acids are linked by Peptide Bonds.</span>
               </li>
                <li>
-                <span><strong>Polymer:</strong> A long chain of amino acids is a **Polypeptide**, which folds into a 3D protein.</span>
+                <span><strong>Polymer:</strong> A long chain of amino acids is a Polypeptide, which folds into a 3D protein.</span>
               </li>
             </ul>
           </div>

@@ -125,29 +125,29 @@ export default function CellularRespirationSlide3() {
               The term cellular respiration typically refers to the process used by organisms to break down food molecules (glucose) for energy in the presence of oxygen. However, organisms can perform cellular respiration aerobically (with oxygen) or anaerobically (without oxygen).
             </p>
             <p className="text-lg leading-relaxed mt-4">
-              There are two processes that allow organisms to release energy from food without the use of oxygen: **anaerobic respiration** and **fermentation**.
+              There are two processes that allow organisms to release energy from food without the use of oxygen: anaerobic respiration and fermentation.
             </p>
           </div>
 
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-emerald-600 dark:text-emerald-400">Anaerobic Respiration</h2>
             <p className="text-lg leading-relaxed">
-              In aerobic cellular respiration, organisms use oxygen at the end of the electron transport chain. However, in **anaerobic respiration**, organisms use a different inorganic molecule (such as sulfate) at the end of the electron transport chain. Many bacteria and archaea use anaerobic respiration.
+              In aerobic cellular respiration, organisms use oxygen at the end of the electron transport chain. However, in anaerobic respiration, organisms use a different inorganic molecule (such as sulfate) at the end of the electron transport chain. Many bacteria and archaea use anaerobic respiration.
             </p>
             <p className="text-lg leading-relaxed mt-4">
-              For example, **methanogens** are microorganisms that perform anaerobic respiration and often occur in wetland ecosystems. Some methanogens also occur in the stomachs of ruminants (like cows and sheep). Here, these microorganisms help to break down complex carbohydrates (such as cellulose) in the plant-based diets of ruminants. Methanogens produce methane through anaerobic respiration, which is exhaled by ruminants.
+              For example, methanogens are microorganisms that perform anaerobic respiration and often occur in wetland ecosystems. Some methanogens also occur in the stomachs of ruminants (like cows and sheep). Here, these microorganisms help to break down complex carbohydrates (such as cellulose) in the plant-based diets of ruminants. Methanogens produce methane through anaerobic respiration, which is exhaled by ruminants.
             </p>
           </div>
 
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">Fermentation</h2>
             <p className="text-lg leading-relaxed">
-              In the absence of oxygen, some organisms will use only glycolysis and the anaerobic process of **fermentation** to release energy from their food.
+              In the absence of oxygen, some organisms will use only glycolysis and the anaerobic process of fermentation to release energy from their food.
             </p>
             
             <h3 className="text-xl font-semibold mt-4 text-emerald-500">Alcohol Fermentation</h3>
             <p className="text-lg leading-relaxed">
-              Alcohol fermentation occurs when an organism breaks down carbohydrates to release energy and produces **ethanol** (alcohol) and carbon dioxide. This type of fermentation is used by yeasts (microscopic fungi) and some bacteria.
+              Alcohol fermentation occurs when an organism breaks down carbohydrates to release energy and produces ethanol (alcohol) and carbon dioxide. This type of fermentation is used by yeasts (microscopic fungi) and some bacteria.
             </p>
             <p className="text-lg leading-relaxed mt-2">
               For example, the carbon dioxide bubbles made by baker's yeast during alcohol fermentation help bread to rise. During baking, the ethanol produced by the baker's yeast evaporates into the air.
@@ -155,7 +155,7 @@ export default function CellularRespirationSlide3() {
 
             <h3 className="text-xl font-semibold mt-4 text-emerald-500">Lactic Acid Fermentation</h3>
             <p className="text-lg leading-relaxed">
-              Lactic acid fermentation occurs when an organism breaks down carbohydrates to release energy and produces a compound called **lactate**. This type of fermentation is used by certain fungi and some bacteria. Many foods—including yogurt, cheese, and kimchi—are made through lactic acid fermentation, which gives them a sour flavor.
+              Lactic acid fermentation occurs when an organism breaks down carbohydrates to release energy and produces a compound called lactate. This type of fermentation is used by certain fungi and some bacteria. Many foods—including yogurt, cheese, and kimchi—are made through lactic acid fermentation, which gives them a sour flavor.
             </p>
             <p className="text-lg leading-relaxed mt-2">
               Lactic acid fermentation can also happen in animals when oxygen is limited. During intense physical movement, muscle cells may use lactic acid fermentation to quickly release energy.

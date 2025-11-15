@@ -130,7 +130,7 @@ export default function EnergyFlowSlide3() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-emerald-600 dark:text-emerald-400">Trophic Levels</h2>
             <p className="text-lg leading-relaxed">
-              A **trophic level** is the position an organism occupies in a food chain.
+              A trophic level is the position an organism occupies in a food chain.
             </p>
             <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
               <li><strong>Level 1: Producers</strong> (e.g., plants)</li>
@@ -143,17 +143,17 @@ export default function EnergyFlowSlide3() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">Energy Pyramids & The 10% Rule</h2>
             <p className="text-lg leading-relaxed">
-              Energy pyramids show why energy, biomass, and population numbers *decrease* as you move up the pyramid.
+              Energy pyramids show why energy, biomass, and population numbers decrease as you move up the pyramid.
             </p>
             <p className="text-lg leading-relaxed mt-4">
-              Only about **10%** of the energy from one level is transferred to the next. The other 90% is lost, mostly as metabolic heat.
+              Only about 10% of the energy from one level is transferred to the next. The other 90% is lost, mostly as metabolic heat.
             </p>
           </div>
           
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">Trophic Cascade</h2>
             <p className="text-lg leading-relaxed">
-              A **trophic cascade** is what happens when changes at a top trophic level (like removing a top predator) drastically affect the populations of the levels below it.
+              A trophic cascade is what happens when changes at a top trophic level (like removing a top predator) drastically affect the populations of the levels below it.
             </p>
             <p className="text-lg leading-relaxed mt-4">
               For example, removing wolves might lead to a surge in deer, which would then eat too many plants, devastating the producer level.

@@ -118,15 +118,15 @@ export default function BiomoleculesSlide5() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">What are Lipids? 🥑</h2>
             <p className="text-lg leading-relaxed">
-              Lipids (fats, oils, waxes) are a diverse group of molecules made mostly of **Carbon and Hydrogen (CHO)**. Unlike other biomolecules, they are not defined by a single monomer.
+              Lipids (fats, oils, waxes) are a diverse group of molecules made mostly of Carbon and Hydrogen (CHO). Unlike other biomolecules, they are not defined by a single monomer.
             </p>
             {/* UPDATED LIST BELOW */}
             <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
               <li>
-                <span><strong>Key Property:</strong> They are **nonpolar** and **hydrophobic**, meaning they do not dissolve in water.</span>
+                <span><strong>Key Property:</strong> They are nonpolar and hydrophobic, meaning they do not dissolve in water.</span>
               </li>
               <li>
-                <span><strong>Building Blocks:</strong> Many lipids (like triglycerides) are made from a **glycerol** molecule and **fatty acid chains**.</span>
+                <span><strong>Building Blocks:</strong> Many lipids (like triglycerides) are made from a glycerol molecule and fatty acid chains.</span>
               </li>
             </ul>
           </div>
@@ -142,7 +142,7 @@ export default function BiomoleculesSlide5() {
                 <ul className="list-disc list-inside ml-4">
                   <li><strong>Long-Term Energy Storage:</strong> Fats (triglycerides) store more energy per gram than carbs.</li>
                   <li><strong>Insulation:</strong> A layer of fat keeps the body warm.</li>
-                  <li><strong>Cell Membranes:</strong> **Phospholipids** form the barrier of every cell.</li>
+                  <li><strong>Cell Membranes:</strong> Phospholipids form the barrier of every cell.</li>
                   <li><strong>Hormones:</strong> Steroids (like testosterone) are lipids that act as chemical messengers.</li>
                 </ul>
               </p>

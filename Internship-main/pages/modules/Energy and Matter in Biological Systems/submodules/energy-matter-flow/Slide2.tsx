@@ -140,7 +140,7 @@ export default function EnergyFlowSlide2() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">Food Chains and Trophic Levels</h2>
             <p className="text-lg leading-relaxed">
-              A **food chain** shows a single, linear path of energy transfer. The position an organism holds is its **trophic level**.
+              A food chain shows a single, linear path of energy transfer. The position an organism holds is its trophic level.
             </p>
             <ul className="mt-4 space-y-2 text-lg list-disc list-inside">
               <li><strong>Level 1: Producers</strong> (e.g., plants)</li>
@@ -153,7 +153,7 @@ export default function EnergyFlowSlide2() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">Food Webs</h2>
             <p className="text-lg leading-relaxed">
-              In most ecosystems, the flow is more complicated than a simple chain. A **food web** is a network of interconnected food chains.
+              In most ecosystems, the flow is more complicated than a simple chain. A food web is a network of interconnected food chains.
             </p>
             <p className="text-lg leading-relaxed mt-4">
               It shows that many organisms feed on multiple trophic levels (e.g., a seabird might eat both primary and secondary consumers).
@@ -163,10 +163,10 @@ export default function EnergyFlowSlide2() {
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-bold mb-3 text-blue-600 dark:text-blue-400">Decomposers & Matter Cycling</h2>
             <p className="text-lg leading-relaxed">
-              **Decomposers** (like fungi and bacteria) chemically break down dead organic matter.
+              Decomposers (like fungi and bacteria) chemically break down dead organic matter.
             </p>
             <p className="text-lg leading-relaxed mt-4">
-              This is not energy flow; this is **matter recycling**. Decomposers return nutrients to the soil and air, where producers can use them again. Without decomposers, nutrients would be locked in dead organisms.
+              This is not energy flow; this is matter recycling. Decomposers return nutrients to the soil and air, where producers can use them again. Without decomposers, nutrients would be locked in dead organisms.
             </p>
           </div>
         </div>

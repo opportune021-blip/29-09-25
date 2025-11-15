@@ -123,7 +123,7 @@ export default function EnergyFlowSlide1() {
               Flow of Energy & Matter
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300">
-              In an ecosystem, energy and matter move in different ways. Energy *flows*, while matter *cycles*.
+              In an ecosystem, energy and matter move in different ways. Energy flows, while matter cycles.
             </p>
           </div>
 
@@ -144,7 +144,7 @@ export default function EnergyFlowSlide1() {
               Unlike energy, matter (like carbon, nitrogen, and water) is not lost. It is continuously recycled.
             </p>
             <p className="text-lg leading-relaxed mt-4">
-              The most important role in this process belongs to **decomposers** (like bacteria and fungi). They break down dead organic material and wastes, returning raw nutrients to the soil and atmosphere for producers to use again.
+              The most important role in this process belongs to decomposers (like bacteria and fungi). They break down dead organic material and wastes, returning raw nutrients to the soil and atmosphere for producers to use again.
             </p>
           </div>
         </div>
