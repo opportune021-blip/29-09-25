@@ -120,7 +120,7 @@ export default function BiogeochemicalCyclesSlide1() {
           {/* Header */}
           <div>
             <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-4">
-              The Carbon Cycle 🔄
+              The Carbon Cycle 
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300">
               Learn how carbon, the building block of life, moves through Earth's natural systems.

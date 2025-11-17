@@ -116,7 +116,7 @@ export default function BiomoleculesSlide2() {
         {/* Left Column - Content */}
         <div className="space-y-6">
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
-            <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">What are Carbohydrates? 🍞</h2>
+            <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">What are Carbohydrates? </h2>
             <p className="text-lg leading-relaxed">
               Carbohydrates are one of the four main types of biomolecules. Their name, "carbo-hydrate," literally means "carbon-water" as they are composed of Carbon, Hydrogen, and Oxygen (often in a 1:2:1 ratio).
             </p>

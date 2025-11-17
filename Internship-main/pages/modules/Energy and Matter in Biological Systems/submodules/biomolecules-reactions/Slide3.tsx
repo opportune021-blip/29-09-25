@@ -116,7 +116,7 @@ export default function BiomoleculesSlide3() {
         {/* Left Column - Content */}
         <div className="space-y-6">
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
-            <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">What are Proteins? 🥩</h2>
+            <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">What are Proteins? </h2>
             <p className="text-lg leading-relaxed">
               Proteins are the most diverse and functional biomolecules. They are made of Carbon, Hydrogen, Oxygen, and Nitrogen (CHON). Their shape is critical to their function.
             </p>

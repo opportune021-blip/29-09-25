@@ -120,7 +120,7 @@ export default function BiogeochemicalCyclesSlide2() {
           {/* Header */}
           <div>
             <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-4">
-              Article: The Carbon Cycle 🔄
+              Article: The Carbon Cycle 
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300">
               Carbon is the backbone of all biomolecules. The carbon cycle shows how this element moves between the living and non-living world.

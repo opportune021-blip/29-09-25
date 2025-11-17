@@ -120,7 +120,7 @@ export default function PhotosynthesisSlide4() {
           {/* Header */}
           <div>
             <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-4">
-              Photosynthesis and the Environment 🌍
+              Photosynthesis and the Environment 
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300">
               This single process is the foundation for nearly all ecosystems on Earth.

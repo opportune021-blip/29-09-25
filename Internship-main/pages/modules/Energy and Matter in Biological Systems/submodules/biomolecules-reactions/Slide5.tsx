@@ -116,7 +116,7 @@ export default function BiomoleculesSlide5() {
         {/* Left Column - Content */}
         <div className="space-y-6">
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
-            <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">What are Lipids? 🥑</h2>
+            <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">What are Lipids? </h2>
             <p className="text-lg leading-relaxed">
               Lipids (fats, oils, waxes) are a diverse group of molecules made mostly of Carbon and Hydrogen (CHO). Unlike other biomolecules, they are not defined by a single monomer.
             </p>
