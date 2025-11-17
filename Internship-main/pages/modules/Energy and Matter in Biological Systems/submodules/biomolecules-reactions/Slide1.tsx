@@ -164,7 +164,7 @@ export default function BiomoleculesSlide1() {
             <h3 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400 text-center">Dehydration Synthesis vs. Hydrolysis</h3>
             <div className="flex justify-center">
               <img 
-                src="https://conductscience.com/wp-content/uploads/2021/07/Biomolecules-923x1024.png"
+                src="https://nachrichten.idw-online.de/image/267588/screen"
                 alt="Diagram showing dehydration synthesis and hydrolysis"
                 className="max-w-full h-auto rounded-lg shadow-md bg-white p-2"
                 style={{ width: '100%', maxWidth: '500px', height: 'auto' }}

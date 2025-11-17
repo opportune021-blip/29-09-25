@@ -112,7 +112,7 @@ export default function PhotosynthesisSlide2() {
   const slideContent = (
     <div className="w-full min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
       {/* Changed to 2-column grid and wider max-width */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto p-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto p-8">
         
         {/* Left Column: Detailed Content */}
         <div className="space-y-6">

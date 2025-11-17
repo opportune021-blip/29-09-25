@@ -113,7 +113,7 @@ export default function BiogeochemicalCyclesSlide1() {
   const slideContent = (
     <div className="w-full min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
       {/* Changed to 2-column grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto p-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto p-8">
         
         {/* Left Column: Article Content */}
         <div className="space-y-6">
