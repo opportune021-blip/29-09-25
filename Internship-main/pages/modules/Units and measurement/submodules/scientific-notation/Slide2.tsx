@@ -59,13 +59,13 @@ export default function ScientificNotationExamplesSlide() {
   };
   
   const slideInteractions: Interaction[] = [
-    { 
+   /*  { 
       id: 'sci-notation-general', 
       conceptId: 'scientific-notation-mixed', 
       conceptName: 'Scientific Notation Practice', 
       type: 'practice', 
       description: 'Reviewing examples of both large and small numbers in scientific notation.' 
-    }
+    } */
   ];
 
   const currentExample = examples[currentIndex];

@@ -3,9 +3,9 @@ import { Slide } from '../common-components/concept';
 
 // Imports for the Submodule content
 // Note: Ensure these files exist in your 'submodules' folder or comment them out until created
-import { physicalQuantitiesSlides } from './submodules/01-physical-quantities';
-import { scientificNotationSlides } from './submodules/02-scientific-notation';
-import { significantFiguresSlides } from './submodules/03-significant-figures';
+import { physicalQuantitiesSlides } from './submodules/physical-quantities';
+import { scientificNotationSlides } from './submodules/scientific-notation';
+import { significantFiguresSlides } from './submodules/significant-figures';
 
 // Define the interface for a submodule
 export interface Submodule {

@@ -20,13 +20,13 @@ export default function NotationExampleSmallSlide() {
   };
   
   const slideInteractions: Interaction[] = [
-    { 
+   /*  { 
       id: 'sci-notation-small', 
       conceptId: 'scientific-notation-negative', 
       conceptName: 'Scientific Notation (Small Numbers)', 
       type: 'practice', 
       description: 'Practice converting a small decimal number to scientific notation.' 
-    }
+    } */
   ];
 
   // Visual Logic
@@ -88,7 +88,7 @@ export default function NotationExampleSmallSlide() {
             <div className="p-4 rounded-lg border-2 border-dashed border-slate-300 dark:border-slate-600 text-center">
                 <p className="text-sm text-slate-500 mb-2">Goal: Convert to Standard Form</p>
                 <BlockMath>{`a \\times 10^b`}</BlockMath>
-                <p className="text-sm">Where <InlineMath>1 \le a < 10</InlineMath></p>
+                <p className="text-sm">Where <InlineMath>1 \le a  10</InlineMath></p>
             </div>
           </div>
         </div>
