@@ -54,6 +54,7 @@ const getModules = async () => {
     ' Solving-equations-with-one-unknown',
     'Adaptations',
     'Energy and Matter in Biological Systems',
+    'Units and measurement',
     'grade-2-math-operations'
   ];
 
