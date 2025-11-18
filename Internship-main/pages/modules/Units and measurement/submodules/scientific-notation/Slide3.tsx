@@ -17,13 +17,13 @@ export default function ScientificNotationReviewSlide() {
   };
   
   const slideInteractions: Interaction[] = [
-  /*   { 
+    { 
       id: 'sci-notation-quiz', 
       conceptId: 'scientific-notation-quiz', 
       conceptName: 'Scientific Notation Quiz', 
-      type: 'quiz', 
+      type: 'learning', 
       description: 'Quick check on scientific notation rules.' 
-    } */
+    } 
   ];
 
   const questions = [

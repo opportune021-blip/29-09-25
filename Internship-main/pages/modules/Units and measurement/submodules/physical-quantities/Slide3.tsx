@@ -37,7 +37,9 @@ export default function AngularMeasure2Slide() {
         
         {/* Left Panel: Theory */}
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md h-full flex flex-col justify-center">
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6">The Solid Angle ($\Omega$) 🧊</h2>
+<h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6">
+  The Solid Angle (Ω) 🧊
+</h2>
           
           <div className="space-y-6 text-lg text-slate-600 dark:text-slate-400">
             <p>

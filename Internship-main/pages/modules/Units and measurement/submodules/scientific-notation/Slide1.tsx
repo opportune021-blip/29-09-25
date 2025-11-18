@@ -9,8 +9,6 @@ export default function NotationExampleSmallSlide() {
   const [localInteractions, setLocalInteractions] = useState<Record<string, InteractionResponse>>({});
   
   // State: Current position of the decimal point (0 = start)
-  // The number is 0.0000000003457
-  // We need to move it 10 places right to get 3.457
   const [decimalMoves, setDecimalMoves] = useState(0);
   const targetMoves = 10;
   const isComplete = decimalMoves === targetMoves;
@@ -20,26 +18,22 @@ export default function NotationExampleSmallSlide() {
   };
   
   const slideInteractions: Interaction[] = [
-   /*  { 
+    { 
       id: 'sci-notation-small', 
       conceptId: 'scientific-notation-negative', 
       conceptName: 'Scientific Notation (Small Numbers)', 
-      type: 'practice', 
+      type: 'learning', // FIX 1: Changed 'practice' to 'learning' to match defined types
       description: 'Practice converting a small decimal number to scientific notation.' 
-    } */
+    }
   ];
 
   // Visual Logic
-  // The string parts of the number: "0." then "000000000" (9 zeros) then "3457"
   const zeros = "000000000";
   const digits = "3457";
   
   // Construct the visual number based on decimal moves
   const renderNumber = () => {
-    const fullString = "0" + zeros + digits; // "00000000003457" (length 14)
-    // Original decimal is after index 0.
-    // Current decimal should be visually inserted after index (0 + decimalMoves)
-    
+    const fullString = "0" + zeros + digits; 
     const beforeDecimal = fullString.slice(0, 1 + decimalMoves);
     const afterDecimal = fullString.slice(1 + decimalMoves);
 
@@ -88,7 +82,8 @@ export default function NotationExampleSmallSlide() {
             <div className="p-4 rounded-lg border-2 border-dashed border-slate-300 dark:border-slate-600 text-center">
                 <p className="text-sm text-slate-500 mb-2">Goal: Convert to Standard Form</p>
                 <BlockMath>{`a \\times 10^b`}</BlockMath>
-                <p className="text-sm">Where <InlineMath>1 \le a  10</InlineMath></p>
+                {/* FIX 2: Used math prop to avoid JSX parsing error with '<' symbol */}
+                <p className="text-sm">Where <InlineMath math="1 \le a < 10" /></p>
             </div>
           </div>
         </div>
