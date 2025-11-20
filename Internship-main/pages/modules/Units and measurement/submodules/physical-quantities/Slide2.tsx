@@ -72,18 +72,33 @@ export default function AngularMeasure1Slide() {
     }
   ];
 
-  // Helper to describe the SVG arc path
-  const getSectorPath = (x: number, y: number, r: number, aDeg: number) => {
-    const aRad = (aDeg * Math.PI) / 180;
-    const x1 = x + r * Math.cos(0); 
-    const y1 = y - r * Math.sin(0);
-    const x2 = x + r * Math.cos(-aRad); 
-    const y2 = y - r * Math.sin(-aRad);
-    const largeArcFlag = aDeg > 180 ? 1 : 0;
-    return `M ${x} ${y} L ${x1} ${y1} A ${r} ${r} 0 ${largeArcFlag} 0 ${x2} ${y2} Z`;
+  // Helper to generate consistent SVG paths for both the Sector and the Arc
+  const getArcData = (cx: number, cy: number, r: number, deg: number) => {
+    const rad = (deg * Math.PI) / 180;
+    
+    // Calculate End Point
+    // In SVG, Y is positive downwards. 
+    // We use standard cos/sin which rotates Clockwise on screen.
+    const xEnd = cx + r * Math.cos(rad); 
+    const yEnd = cy + r * Math.sin(rad); 
+
+    // Flags
+    const largeArc = deg > 180 ? 1 : 0;
+    const sweep = 1; // Clockwise
+
+    // Generate the Arc Curve Command
+    const arcPath = `M ${cx + r} ${cy} A ${r} ${r} 0 ${largeArc} ${sweep} ${xEnd} ${yEnd}`;
+    
+    // Generate the Sector Path (closes back to center)
+    const sectorPath = `${arcPath} L ${cx} ${cy} Z`;
+
+    return { arcPath, sectorPath };
   };
 
   const currentQuestion = quizQuestions[currentQIndex];
+
+  // Calculate paths for current state
+  const { arcPath, sectorPath } = getArcData(150, 150, radius, angleDeg);
 
   // --- QUIZ LOGIC HANDLERS ---
   const handleOptionClick = (index: number) => {
@@ -199,7 +214,7 @@ export default function AngularMeasure1Slide() {
 
                                 {/* The Sector */}
                                 <motion.path 
-                                    d={getSectorPath(150, 150, radius, angleDeg)}
+                                    d={sectorPath}
                                     fill="rgba(59, 130, 246, 0.2)"
                                     stroke="#3b82f6"
                                     strokeWidth="2"
@@ -209,8 +224,8 @@ export default function AngularMeasure1Slide() {
                                 <text x={150 + radius/2} y="165" fill="currentColor" className="text-xs text-slate-500 font-mono">r</text>
                                 
                                 {/* Arc Length Highlight */}
-                                <path 
-                                    d={`M ${150 + radius * Math.cos(0)} ${150 - radius * Math.sin(0)} A ${radius} ${radius} 0 ${angleDeg > 180 ? 1 : 0} 0 ${150 + radius * Math.cos(-angleDeg * Math.PI / 180)} ${150 - radius * Math.sin(-angleDeg * Math.PI / 180)}`}
+                                <motion.path 
+                                    d={arcPath}
                                     fill="none"
                                     stroke="#ef4444" 
                                     strokeWidth="4"
