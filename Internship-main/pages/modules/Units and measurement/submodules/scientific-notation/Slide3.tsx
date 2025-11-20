@@ -63,12 +63,12 @@ export default function ScientificNotationReviewSlide() {
   };
 
   const slideContent = (
-    <div className="min-h-screen p-4 sm:p-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+<div className="w-full p-4 sm:p-8">
+        <div className=" mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         
         {/* Left Panel: Summary Cheat Sheet */}
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md">
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6">Cheat Sheet 📝</h2>
+          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6">Cheat Sheet </h2>
           
           <div className="space-y-6 text-lg text-slate-600 dark:text-slate-400">
             
