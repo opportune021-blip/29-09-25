@@ -55,6 +55,7 @@ const getModules = async () => {
     'Adaptations',
     'Energy and Matter in Biological Systems',
     'Units and measurement',
+    'Motion in a straight line',
     'grade-2-math-operations'
   ];
 
