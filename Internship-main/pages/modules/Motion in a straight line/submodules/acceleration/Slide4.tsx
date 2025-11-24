@@ -67,9 +67,6 @@ const ATGraphSimulator = () => {
       const deltaTime = (timestamp - lastTimeRef.current) / 1000; // seconds
       
       setProgress(prev => {
-        // Calculate how much % of the total duration has passed
-        // We want the animation to take exactly 'timeInput' seconds? 
-        // That might be too slow for a UI. Let's scale it so max 10s takes 2s real time.
         const realTimeDuration = 2.0; 
         const step = (deltaTime / realTimeDuration) * 100;
         const newProgress = prev + step;
@@ -101,62 +98,138 @@ const ATGraphSimulator = () => {
   };
 
   // --- SVG CALCS ---
-  // Viewbox 0 0 100 100
-  // Max Accel = 5, Max Time = 10
-  const rectHeight = (accelInput / 5) * 80; // leave some padding
-  const rectWidth = (timeInput / 10) * 90;
+  // Adjusted Viewbox to 0 0 140 120 to fit Graph, Tank, and Track
+  
+  // Graph Dimensions
+  const graphWidth = 90;
+  const graphHeight = 80;
+  
+  // Scales
+  const rectHeight = (accelInput / 5) * graphHeight; 
+  const rectWidth = (timeInput / 10) * graphWidth;
   
   // Animated width based on progress
   const animatedWidth = (rectWidth * progress) / 100;
   
   // Current velocity based on progress
   const currentVelDisplay = (finalVelocity * progress) / 100;
+  
+  // PHYSICS CALCULATION FOR CAR:
+  // Distance is proportional to t^2. 
+  // If progress is linear time (t), position is progress^2.
+  // We normalize this so the car travels the full track length by the end.
+  const particlePos = Math.pow(progress / 100, 2) * graphWidth;
 
   return (
     <div className="flex flex-col items-center w-full h-full">
       
-      {/* 1. The Graph */}
-      <div className="w-full bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-4 mb-4 shadow-sm relative h-64 flex flex-col">
+      {/* 1. The Graph Container */}
+      <div className="w-full bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-4 mb-4 shadow-sm relative flex flex-col min-h-[300px]">
         <div className="flex justify-between items-start mb-2">
              <h4 className="text-xs font-bold text-slate-400 uppercase">Acceleration vs Time</h4>
              <div className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded text-xs font-mono">
-                Area = <InlineMath math="\Delta v" /> = {currentVelDisplay.toFixed(1)} m/s
+               Area = <InlineMath math="\Delta v" /> = {currentVelDisplay.toFixed(1)} m/s
              </div>
         </div>
 
-        <div className="relative flex-grow w-full pl-8 pb-8">
-           {/* Axis Labels */}
-           <div className="absolute -left-8 top-1/2 -rotate-90 text-xs text-slate-500 font-bold w-20 text-center">Acceleration</div>
-           <div className="absolute bottom-0 left-1/2 text-xs text-slate-500 font-bold">Time</div>
-
-           <svg className="w-full h-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
-              {/* Grid */}
-              <line x1="0" y1="0" x2="0" y2="100" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1" />
-              <line x1="0" y1="100" x2="100" y2="100" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1" />
-
-              {/* The Rectangle Area (Outline - The Goal) */}
-              <rect 
-                x="0" 
-                y={100 - rectHeight} 
-                width={rectWidth} 
-                height={rectHeight} 
-                className="fill-none stroke-slate-300 stroke-dashed" 
-                strokeWidth="1"
-              />
-
-              {/* The Animated Fill Area */}
-              <rect 
-                x="0" 
-                y={100 - rectHeight} 
-                width={animatedWidth} 
-                height={rectHeight} 
-                className="fill-purple-500/50 stroke-purple-500" 
-                strokeWidth="1"
-              />
+        <div className="relative flex-grow w-full pb-2">
+           {/* SVG Container */}
+           <svg className="w-full h-full overflow-visible" viewBox="0 0 130 120" preserveAspectRatio="xMidYMid meet">
               
-              {/* Labels on Graph */}
-              <text x="-5" y={100 - rectHeight + 5} className="text-[8px] fill-slate-500 text-right" textAnchor="end">{accelInput}</text>
-              <text x={rectWidth} y="110" className="text-[8px] fill-slate-500" textAnchor="middle">{timeInput}s</text>
+              {/* --- GROUP 1: The Graph (Top Left) --- */}
+              <g transform="translate(10, 5)">
+                  {/* Grid/Axes */}
+                  <line x1="0" y1="0" x2="0" y2={graphHeight} className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1" />
+                  <line x1="0" y1={graphHeight} x2={graphWidth + 10} y2={graphHeight} className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1" />
+                  
+                  {/* Axis Labels */}
+                  <text x="-5" y={graphHeight/2} className="text-[6px] fill-slate-400 -rotate-90" textAnchor="middle">Accel (a)</text>
+                  <text x={graphWidth/2} y={graphHeight + 12} className="text-[6px] fill-slate-400" textAnchor="middle">Time (t)</text>
+
+                  {/* The Target Area (Dashed Outline) */}
+                  <rect 
+                    x="0" 
+                    y={graphHeight - rectHeight} 
+                    width={rectWidth} 
+                    height={rectHeight} 
+                    className="fill-none stroke-slate-300 stroke-dashed" 
+                    strokeWidth="0.5"
+                  />
+
+                  {/* The Animated Fill Area */}
+                  <rect 
+                    x="0" 
+                    y={graphHeight - rectHeight} 
+                    width={animatedWidth} 
+                    height={rectHeight} 
+                    className="fill-purple-500/40" 
+                  />
+
+                  {/* The "Scanner" Line - Visualizes integration happening */}
+                  <line 
+                    x1={animatedWidth} y1={graphHeight - rectHeight} 
+                    x2={animatedWidth} y2={graphHeight} 
+                    className="stroke-purple-600"
+                    strokeWidth="1.5"
+                    style={{ opacity: isPlaying || progress > 0 ? 1 : 0 }}
+                  />
+
+                  {/* Labels */}
+                  <text x="-3" y={graphHeight - rectHeight + 2} className="text-[6px] fill-slate-500 text-right" textAnchor="end">{accelInput}</text>
+                  <text x={rectWidth} y={graphHeight + 6} className="text-[6px] fill-slate-500" textAnchor="middle">{timeInput}s</text>
+              </g>
+
+              {/* --- GROUP 2: Velocity Tank (Right Side) --- */}
+              <g transform="translate(115, 5)">
+                  {/* Label */}
+                  <text x="5" y="-2" className="text-[5px] fill-slate-500 font-bold" textAnchor="middle">VELOCITY</text>
+                  
+                  {/* Tank Background */}
+                  <rect x="0" y="0" width="10" height={graphHeight} rx="2" className="fill-slate-100 dark:fill-slate-800 stroke-slate-300 dark:stroke-slate-600" strokeWidth="0.5" />
+                  
+                  {/* Liquid Fill */}
+                  <rect 
+                    x="0" 
+                    y={graphHeight - (graphHeight * (progress/100))} 
+                    width="10" 
+                    height={graphHeight * (progress/100)} 
+                    rx="2" 
+                    className="fill-purple-500" 
+                  />
+                  
+                  {/* Tick Marks */}
+                  <line x1="0" y1={graphHeight/2} x2="10" y2={graphHeight/2} className="stroke-slate-400/50" strokeWidth="0.5" />
+              </g>
+
+              {/* --- GROUP 3: Physical Motion Track (Bottom) --- */}
+              <g transform="translate(10, 105)">
+                  <text x="0" y="-5" className="text-[6px] fill-slate-500 font-bold">PHYSICAL MOTION (Accelerating)</text>
+                  
+                  {/* Track Line */}
+                  <line x1="0" y1="5" x2={graphWidth} y2="5" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1" />
+                  
+                  {/* Ticks */}
+                  <line x1="0" y1="2" x2="0" y2="8" className="stroke-slate-300" strokeWidth="1" />
+                  <line x1={graphWidth} y1="2" x2={graphWidth} y2="8" className="stroke-slate-300" strokeWidth="1" />
+                  
+                  {/* The Car / Particle */}
+                  <circle 
+                    cx={particlePos} 
+                    cy="5" 
+                    r="4" 
+                    className="fill-orange-500 stroke-white dark:stroke-slate-900" 
+                    strokeWidth="1.5"
+                  />
+                  
+                  {/* Speed lines behind car when moving */}
+                  {isPlaying && (
+                    <g opacity={0.6}>
+                        <line x1={particlePos - 6} y1="3" x2={particlePos - 10} y2="3" className="stroke-orange-400" strokeWidth="0.5" />
+                        <line x1={particlePos - 6} y1="7" x2={particlePos - 10} y2="7" className="stroke-orange-400" strokeWidth="0.5" />
+                    </g>
+                  )}
+              </g>
+
            </svg>
         </div>
       </div>
@@ -200,7 +273,7 @@ const ATGraphSimulator = () => {
             disabled={isPlaying}
             className={`w-full py-3 rounded-lg font-bold text-white transition-all flex items-center justify-center gap-2 ${isPlaying ? 'bg-slate-400 cursor-not-allowed' : 'bg-purple-600 hover:bg-purple-500 shadow-lg hover:shadow-purple-500/30'}`}
         >
-            {isPlaying ? 'Calculating Area...' : '▶️ Integrate (Calculate Area)'}
+            {isPlaying ? 'Integrating...' : '▶️ Integrate (Calculate Area)'}
         </button>
       </div>
     </div>
@@ -272,8 +345,7 @@ export default function Slide4() {
         {/* Left Panel: Theory */}
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md h-full flex flex-col">
           <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-4">Acceleration vs. Time Graphs 
-
-[Image of acceleration time graph]
+ 
 </h2>
           
           <div className="space-y-6 text-slate-600 dark:text-slate-400">

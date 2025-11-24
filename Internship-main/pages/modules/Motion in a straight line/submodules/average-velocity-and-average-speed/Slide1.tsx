@@ -255,7 +255,7 @@ export default function Slide1() {
                 <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
                     <h4 className="font-bold text-slate-800 dark:text-slate-100 mb-1">Vectors 
 
-[Image of vectors]
+
 </h4>
                     <p className="text-sm mb-2">Quantities with <strong>magnitude AND direction</strong>.</p>
                     <ul className="text-sm list-disc ml-4">

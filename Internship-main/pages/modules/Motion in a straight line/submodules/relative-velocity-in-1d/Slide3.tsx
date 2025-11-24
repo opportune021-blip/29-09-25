@@ -293,7 +293,7 @@ export default function Slide3() {
         
         {/* Left Panel: Theory */}
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-md h-full flex flex-col">
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-4">Review: Relative Velocity [Image of relative velocity examples]</h2>
+          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-4">Review: Relative Velocity</h2>
           
           <div className="space-y-6 text-slate-600 dark:text-slate-400">
             <p className="text-lg">
