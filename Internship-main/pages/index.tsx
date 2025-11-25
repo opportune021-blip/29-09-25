@@ -17,6 +17,7 @@ const getModules = async () => {
     'fluids-0001',
     'force-dynamics-0001',
     'force-dynamics-0002',
+    'Vectors (Prerequisite)',
     'genetics-xi-bio',
     'gravitation-0001',
     'ib-10-chem-mole-concept',
