@@ -5,27 +5,32 @@ import { Interaction, InteractionResponse, TrackedInteraction } from '../../../c
 import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 
-// --- MATH HELPERS ---
+// --- HELPERS ---
 
 const toDegrees = (rad: number) => (rad * 180) / Math.PI;
 
 export default function FindingComponentsSlide() {
   const [localInteractions, setLocalInteractions] = useState<Record<string, InteractionResponse>>({});
   
-  // Vector State (Head position relative to origin)
-  // Origin is at (200, 200) in our 400x400 SVG space
-  const [headPos, setHeadPos] = useState({ x: 100, y: -80 }); // Initial vector: Right 100, Up 80
+  // State: Head position relative to origin (200, 200)
+  const [headPos, setHeadPos] = useState({ x: 100, y: -80 }); // Initial: Right & Up
   const [showValues, setShowValues] = useState(true);
 
-  // Calculations
+  // --- MATH CALCULATIONS ---
+  // In SVG, +y is down. In standard math, +y is up.
   const vx = headPos.x;
-  const vy = -headPos.y; // Invert Y because SVG y-axis is down, but math y-axis is up
+  const vy = -headPos.y; // Invert for math
+  
   const magnitude = Math.sqrt(vx * vx + vy * vy);
   
-  // Angle logic: atan2 returns -PI to PI. We want standard 0-360 positive angles.
+  // Angle for math display (standard position 0-360)
   let angleRad = Math.atan2(vy, vx);
   if (angleRad < 0) angleRad += 2 * Math.PI;
   const angleDeg = toDegrees(angleRad);
+
+  // Quadrant Detection for Theory
+  const isLeft = vx < 0;
+  const isDown = vy < 0;
 
   const handleInteractionComplete = (response: InteractionResponse) => {
     setLocalInteractions(prev => ({ ...prev, [response.interactionId]: response }));
@@ -39,11 +44,7 @@ export default function FindingComponentsSlide() {
     description: 'Interactive visualization of vector decomposition into x and y components.'
   };
 
-  // Drag handler for the vector head
-  const handleDrag = (event: any, info: any) => {
-    // Current SVG center is roughly where we want to base coordinates
-    // But since the drag is relative to the parent div, we update state based on deltas usually
-    // OR easier: use drag constraints and update state onDrag
+  const handleDrag = (_: any, info: any) => {
     setHeadPos(prev => ({
       x: prev.x + info.delta.x,
       y: prev.y + info.delta.y
@@ -51,180 +52,224 @@ export default function FindingComponentsSlide() {
   };
 
   const slideContent = (
-    <div className="w-full p-4 sm:p-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="w-full h-full p-4 sm:p-6 flex flex-col lg:flex-row gap-6 items-stretch">
         
-        {/* LEFT: VISUALIZATION */}
-        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 relative h-[450px] overflow-hidden select-none shadow-inner flex items-center justify-center">
+        {/* ========================================= */}
+        {/* LEFT COLUMN: THEORY & INSIGHTS (40%)     */}
+        {/* ========================================= */}
+        <div className="lg:w-5/12 flex flex-col h-full bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
           
-          {/* Grid Background */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 400">
-            <defs>
-              <pattern id="grid-comp" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1"/>
-              </pattern>
-              <marker id="arrowhead-main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6" />
-              </marker>
-              <marker id="arrowhead-x" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                <polygon points="0 0, 8 3, 0 6" fill="#F97316" /> {/* Orange */}
-              </marker>
-              <marker id="arrowhead-y" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                <polygon points="0 0, 8 3, 0 6" fill="#10B981" /> {/* Emerald */}
-              </marker>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid-comp)" className="text-slate-400" />
-            
-            {/* Axes */}
-            <line x1="200" y1="0" x2="200" y2="400" stroke="currentColor" strokeWidth="2" className="text-slate-300" />
-            <line x1="0" y1="200" x2="400" y2="200" stroke="currentColor" strokeWidth="2" className="text-slate-300" />
-            
-            {/* Coordinate Group translated to Center (200, 200) */}
-            <g transform="translate(200, 200)">
-              
-              {/* Projection Lines (Dashed) */}
-              <line x1={headPos.x} y1={0} x2={headPos.x} y2={headPos.y} stroke="#94a3b8" strokeDasharray="5,5" />
-              <line x1={0} y1={headPos.y} x2={headPos.x} y2={headPos.y} stroke="#94a3b8" strokeDasharray="5,5" />
-
-              {/* X Component Vector */}
-              <line 
-                x1="0" y1="0" 
-                x2={headPos.x} y2="0" 
-                stroke="#F97316" 
-                strokeWidth="4" 
-                markerEnd="url(#arrowhead-x)"
-                opacity={0.8}
-              />
-              
-              {/* Y Component Vector */}
-              <line 
-                x1="0" y1="0" 
-                x2="0" y2={headPos.y} 
-                stroke="#10B981" 
-                strokeWidth="4" 
-                markerEnd="url(#arrowhead-y)"
-                opacity={0.8}
-              />
-
-              {/* Main Vector */}
-              <line 
-                x1="0" y1="0" 
-                x2={headPos.x} y2={headPos.y} 
-                stroke="#3B82F6" 
-                strokeWidth="5" 
-                markerEnd="url(#arrowhead-main)" 
-              />
-              
-              {/* Angle Arc */}
-              <path 
-                d={`M 30 0 A 30 30 0 ${Math.abs(angleDeg) > 180 ? 1 : 0} 0 ${30 * Math.cos(angleRad)} ${-30 * Math.sin(angleRad)}`}
-                fill="none"
-                stroke="#64748b"
-                strokeWidth="2"
-                transform="scale(1, -1)" // Flip Y for arc calc ease
-              />
-              
-              {/* Labels */}
-              {showValues && (
-                <>
-                  <text x={headPos.x / 2} y="20" textAnchor="middle" fill="#F97316" fontWeight="bold" fontSize="14">
-                    <tspan>v</tspan><tspan baselineShift="sub" fontSize="10">x</tspan> = {vx.toFixed(0)}
-                  </text>
-                  <text x="-10" y={headPos.y / 2} textAnchor="end" dominantBaseline="middle" fill="#10B981" fontWeight="bold" fontSize="14">
-                    <tspan>v</tspan><tspan baselineShift="sub" fontSize="10">y</tspan> = {vy.toFixed(0)}
-                  </text>
-                  <text x="40" y="-10" fill="#64748b" fontSize="12">θ</text>
-                </>
-              )}
-
-            </g>
-          </svg>
-
-          {/* Interactive Draggable Head */}
-          {/* We position this div exactly where the vector head is */}
-          <motion.div
-            drag
-            dragMomentum={false}
-            onDrag={handleDrag}
-            className="absolute w-8 h-8 -ml-4 -mt-4 rounded-full bg-blue-500/20 hover:bg-blue-500/40 cursor-pointer flex items-center justify-center border border-blue-400 shadow-lg z-10"
-            style={{ 
-              left: 200 + headPos.x, 
-              top: 200 + headPos.y 
-            }}
-          >
-            <div className="w-3 h-3 bg-blue-600 rounded-full" />
-          </motion.div>
-          
-          <div className="absolute top-4 right-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur p-3 rounded-lg border border-slate-200 dark:border-slate-700 text-xs text-slate-500">
-            Drag the blue dot to change <InlineMath>{`\\vec{v}`}</InlineMath>
-          </div>
-
-        </div>
-
-        {/* RIGHT: THEORY & MATH */}
-        <div className="flex flex-col h-full bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-2">Breaking it Down</h2>
-            <p className="text-slate-600 dark:text-slate-400">
-              Every diagonal vector is just a combination of a horizontal step (<span className="text-orange-500 font-bold">x-component</span>) and a vertical step (<span className="text-emerald-500 font-bold">y-component</span>).
+          {/* Header */}
+          <div className="p-6 border-b border-slate-100 dark:border-slate-700 flex-shrink-0">
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Resolving Vectors</h2>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
+              Breaking a diagonal path into independent steps.
             </p>
           </div>
 
-          <div className="flex-grow space-y-6">
-            <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-lg">
-              <h3 className="font-bold text-slate-700 dark:text-slate-200 mb-2 border-b pb-2">Component Formulas</h3>
-              <div className="grid grid-cols-1 gap-4 text-sm">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 font-bold">cos</div>
-                  <div>
-                    <div className="text-slate-500">Horizontal Component</div>
-                    <BlockMath>{`v_x = |\\vec{v}| \\cos(\\theta)`}</BlockMath>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 font-bold">sin</div>
-                  <div>
-                    <div className="text-slate-500">Vertical Component</div>
-                    <BlockMath>{`v_y = |\\vec{v}| \\sin(\\theta)`}</BlockMath>
-                  </div>
-                </div>
-              </div>
+          {/* Scrollable Theory Content */}
+          <div className="p-6 space-y-6 overflow-y-auto custom-scrollbar flex-grow">
+            
+            {/* 1. The Shadow Analogy */}
+            <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-100 dark:border-indigo-800">
+               <h3 className="font-bold text-indigo-900 dark:text-indigo-200 text-sm mb-2 flex items-center gap-2">
+                 <span>💡</span> The "Shadow" Analogy
+               </h3>
+               <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                 Think of the vector as a stick.
+                 <br/>
+                 The <span className="text-orange-600 font-bold">x-component</span> is its shadow on the floor (Sun overhead).
+                 <br/>
+                 The <span className="text-emerald-600 font-bold">y-component</span> is its shadow on the wall (Sun from the side).
+               </p>
             </div>
 
-            {/* Live Calculation */}
-            <div className="border-t pt-4 border-slate-100 dark:border-slate-700">
-              <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wide mb-3">Live Values</h3>
-              <div className="grid grid-cols-2 gap-4 font-mono text-sm">
-                <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded">
-                  <span className="text-blue-600 font-bold">|v|</span> : {magnitude.toFixed(1)}
-                </div>
-                <div className="p-2 bg-slate-100 dark:bg-slate-700 rounded">
-                  <span className="text-slate-600 dark:text-slate-300 font-bold">θ</span> : {angleDeg.toFixed(1)}°
-                </div>
-                <div className="p-2 bg-orange-50 dark:bg-orange-900/20 rounded border border-orange-200 dark:border-orange-800">
-                  <span className="text-orange-600 font-bold">v<sub className="text-[10px]">x</sub></span> : {vx.toFixed(1)}
-                </div>
-                <div className="p-2 bg-emerald-50 dark:bg-emerald-900/20 rounded border border-emerald-200 dark:border-emerald-800">
-                  <span className="text-emerald-600 font-bold">v<sub className="text-[10px]">y</sub></span> : {vy.toFixed(1)}
-                </div>
-              </div>
+            {/* 2. Formulas */}
+            <div>
+               <h3 className="text-xs font-bold uppercase text-slate-400 tracking-wider mb-3">Mathematical Definition</h3>
+               <div className="grid grid-cols-1 gap-3">
+                  <div className="flex items-center justify-between p-3 rounded bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+                     <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded bg-orange-100 dark:bg-orange-900/50 flex items-center justify-center text-orange-600 font-bold text-xs">cos</div>
+                        <span className="text-sm text-slate-500">Horizontal</span>
+                     </div>
+                     <BlockMath>{`v_x = |\\vec{v}| \\cos \\theta`}</BlockMath>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+                    <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-600 font-bold text-xs">sin</div>
+                        <span className="text-sm text-slate-500">Vertical</span>
+                     </div>
+                     <BlockMath>{`v_y = |\\vec{v}| \\sin \\theta`}</BlockMath>
+                  </div>
+               </div>
             </div>
 
-            <div className="mt-auto pt-4 flex items-center justify-between">
-               <label className="flex items-center gap-2 cursor-pointer select-none">
-                 <input 
-                   type="checkbox" 
-                   checked={showValues} 
-                   onChange={(e) => setShowValues(e.target.checked)}
-                   className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-gray-300"
-                 />
-                 <span className="text-sm text-slate-600 dark:text-slate-400">Show numeric labels</span>
-               </label>
+            {/* 3. Dynamic Sign Convention Insight */}
+            {/* This block highlights based on where the user drags the vector */}
+            <div className={`p-4 rounded-lg border-l-4 transition-colors ${
+                (isLeft || isDown) ? 'bg-amber-50 dark:bg-amber-900/10 border-amber-500' : 'bg-slate-50 dark:bg-slate-900 border-slate-300'
+            }`}>
+               <h3 className="font-bold text-sm mb-1 text-slate-800 dark:text-slate-200">Direction & Signs</h3>
+               {(!isLeft && !isDown) ? (
+                 <p className="text-sm text-slate-600 dark:text-slate-400">
+                   In the first quadrant (up and right), both <InlineMath>v_x</InlineMath> and <InlineMath>v_y</InlineMath> are <strong>positive</strong>.
+                 </p>
+               ) : (
+                 <ul className="text-sm text-slate-600 dark:text-slate-400 list-disc ml-4 space-y-1">
+                    {isLeft && <li><InlineMath>v_x</InlineMath> is <strong>negative</strong> because it points LEFT.</li>}
+                    {isDown && <li><InlineMath>v_y</InlineMath> is <strong>negative</strong> because it points DOWN.</li>}
+                 </ul>
+               )}
             </div>
+
+            {/* 4. Verification */}
+            <div className="pt-2 border-t border-slate-100 dark:border-slate-700">
+               <div className="flex items-center justify-between text-xs text-slate-400">
+                  <span>Pythagorean Check:</span>
+                  <span><InlineMath>{`\\sqrt{(${vx.toFixed(0)})^2 + (${vy.toFixed(0)})^2} \\approx ${magnitude.toFixed(0)}`}</InlineMath></span>
+               </div>
+            </div>
+
           </div>
+          
+          {/* Footer controls */}
+          <div className="p-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 flex justify-end flex-shrink-0">
+             <label className="flex items-center gap-2 cursor-pointer select-none">
+               <input 
+                 type="checkbox" 
+                 checked={showValues} 
+                 onChange={(e) => setShowValues(e.target.checked)}
+                 className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-gray-300"
+               />
+               <span className="text-sm text-slate-600 dark:text-slate-400">Show labels on animation</span>
+             </label>
+          </div>
+
         </div>
 
-      </div>
+
+        {/* ========================================= */}
+        {/* RIGHT COLUMN: INTERACTIVE ANIMATION (60%) */}
+        {/* ========================================= */}
+        <div className="lg:w-7/12 flex flex-col gap-4 h-full">
+            
+            {/* SVG Animation Container */}
+            <div className="flex-grow bg-slate-950 rounded-xl border border-slate-700 relative overflow-hidden select-none shadow-inner flex items-center justify-center min-h-[400px] group">
+              
+              {/* Dark Grid Background */}
+              <div className="absolute inset-0 opacity-20 pointer-events-none" 
+                 style={{ backgroundImage: 'linear-gradient(#334155 1px, transparent 1px), linear-gradient(90deg, #334155 1px, transparent 1px)', backgroundSize: '40px 40px', backgroundPosition: 'center center' }}>
+              </div>
+
+              {/* Axes */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-full h-0.5 bg-slate-700"></div> {/* X Axis */}
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="h-full w-0.5 bg-slate-700"></div> {/* Y Axis */}
+              </div>
+
+              {/* SVG Layer */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 400">
+                <defs>
+                  <marker id="arrowhead-main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6" />
+                  </marker>
+                  <marker id="arrowhead-x" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#F97316" />
+                  </marker>
+                  <marker id="arrowhead-y" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#10B981" />
+                  </marker>
+                </defs>
+                
+                {/* Visual Group (Centered at 200,200) */}
+                <g transform="translate(200, 200)">
+                  
+                  {/* Projection Lines (Dashed) */}
+                  <line x1={headPos.x} y1={0} x2={headPos.x} y2={headPos.y} stroke="#475569" strokeDasharray="5,5" opacity="0.8" />
+                  <line x1={0} y1={headPos.y} x2={headPos.x} y2={headPos.y} stroke="#475569" strokeDasharray="5,5" opacity="0.8" />
+
+                  {/* X Component Vector (Orange) */}
+                  <line 
+                    x1="0" y1="0" x2={headPos.x} y2="0" 
+                    stroke="#F97316" strokeWidth="4" markerEnd="url(#arrowhead-x)" opacity={0.9}
+                  />
+                  
+                  {/* Y Component Vector (Emerald) */}
+                  <line 
+                    x1="0" y1="0" x2="0" y2={headPos.y} 
+                    stroke="#10B981" strokeWidth="4" markerEnd="url(#arrowhead-y)" opacity={0.9}
+                  />
+
+                  {/* Main Vector (Blue) */}
+                  <line 
+                    x1="0" y1="0" x2={headPos.x} y2={headPos.y} 
+                    stroke="#3B82F6" strokeWidth="5" markerEnd="url(#arrowhead-main)" 
+                  />
+                  
+                  {/* Angle Arc */}
+                  <path 
+                    d={`M 40 0 A 40 40 0 ${Math.abs(angleDeg) > 180 ? 1 : 0} 0 ${40 * Math.cos(angleRad)} ${-40 * Math.sin(angleRad)}`}
+                    fill="none" stroke="#94a3b8" strokeWidth="2" opacity="0.5"
+                    transform="scale(1, -1)" 
+                  />
+                  
+                  {/* Labels */}
+                  {showValues && (
+                    <>
+                      <text x={headPos.x / 2} y={headPos.y > 0 ? -15 : 25} textAnchor="middle" fill="#F97316" fontWeight="bold" fontSize="16" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.5)'}}>
+                        <tspan>v</tspan><tspan baselineShift="sub" fontSize="12">x</tspan>
+                      </text>
+                      <text x={headPos.x > 0 ? -20 : 20} y={headPos.y / 2} textAnchor="middle" dominantBaseline="middle" fill="#10B981" fontWeight="bold" fontSize="16" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.5)'}}>
+                        <tspan>v</tspan><tspan baselineShift="sub" fontSize="12">y</tspan>
+                      </text>
+                    </>
+                  )}
+                </g>
+              </svg>
+
+              {/* Draggable Handle (Framer Motion) */}
+              <motion.div
+                drag
+                dragMomentum={false}
+                onDrag={handleDrag}
+                // Center the drag handle on the vector tip
+                style={{ left: 200 + headPos.x, top: 200 + headPos.y, x: '-50%', y: '-50%' }}
+                className="absolute w-12 h-12 rounded-full cursor-move flex items-center justify-center group z-10"
+              >
+                {/* Visual Hit Area */}
+                <div className="w-4 h-4 bg-blue-500 rounded-full ring-4 ring-blue-500/30 group-hover:ring-blue-500/50 transition-all shadow-[0_0_15px_rgba(59,130,246,0.5)] border border-white/50" />
+              </motion.div>
+              
+              <div className="absolute top-4 right-4 text-xs text-slate-300 bg-slate-800/80 px-3 py-1.5 rounded-full backdrop-blur border border-slate-700">
+                 Drag the blue dot
+              </div>
+            </div>
+
+            {/* Quick Live Values Bar (Dark Theme) */}
+            <div className="grid grid-cols-4 gap-2 text-xs sm:text-sm font-mono text-center">
+               <div className="bg-blue-950/50 text-blue-300 p-3 rounded-lg border border-blue-900/50 shadow-sm">
+                  <div className="opacity-70 text-[10px] uppercase mb-1">Magnitude</div>
+                  |v| = {magnitude.toFixed(0)}
+               </div>
+               <div className="bg-slate-800 text-slate-300 p-3 rounded-lg border border-slate-700 shadow-sm">
+                  <div className="opacity-70 text-[10px] uppercase mb-1">Angle</div>
+                  θ = {angleDeg.toFixed(0)}°
+               </div>
+               <div className="bg-orange-950/50 text-orange-300 p-3 rounded-lg border border-orange-900/50 shadow-sm">
+                  <div className="opacity-70 text-[10px] uppercase mb-1">X-Comp</div>
+                  vx = {vx.toFixed(0)}
+               </div>
+               <div className="bg-emerald-950/50 text-emerald-300 p-3 rounded-lg border border-emerald-900/50 shadow-sm">
+                 <div className="opacity-70 text-[10px] uppercase mb-1">Y-Comp</div>
+                  vy = {vy.toFixed(0)}
+               </div>
+            </div>
+
+        </div>
+
     </div>
   );
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import SlideComponentWrapper from '../../../common-components/SlideComponentWrapper';
 import { Interaction, InteractionResponse, TrackedInteraction } from '../../../common-components/concept';
 import { InlineMath } from 'react-katex';
@@ -12,12 +12,11 @@ const toDegrees = (rad: number) => (rad * 180) / Math.PI;
 const getMagnitude = (dx: number, dy: number) => Math.sqrt(dx * dx + dy * dy);
 
 const getAngle = (dx: number, dy: number) => {
-  let angle = Math.atan2(dy, dx); 
-  // Normalize to 0-360 for easier comparison logic if needed, but standard atan2 (-180 to 180) is fine
+  const angle = Math.atan2(dy, dx); 
   return toDegrees(angle);
 };
 
-// Tolerance for "Equality" check (since dragging isn't pixel perfect)
+// Tolerance for "Equality" check
 const MAG_TOLERANCE = 5;
 const ANG_TOLERANCE = 5;
 
@@ -28,28 +27,29 @@ export default function EquivalentVectorsSlide() {
   
   // -- STATE --
   
-  // Reference Vector A (Fixed properties, but we center it visually)
+  // Reference Vector A (Fixed Blue Vector)
   const vecA = { 
-    start: { x: 100, y: 150 }, 
-    end: { x: 200, y: 100 }, // dx = 100, dy = -50
+    start: { x: 80, y: 180 }, 
+    end: { x: 180, y: 120 }, 
     color: "#3B82F6" 
   };
   
-  // Calculated properties of A
+  // Calculate properties of A
   const dxA = vecA.end.x - vecA.start.x;
   const dyA = vecA.end.y - vecA.start.y;
   const magA = getMagnitude(dxA, dyA);
   const angA = getAngle(dxA, dyA);
 
-  // Interactive Vector B
-  // We store Tail Position (pos) and Head Position relative to Tail (vector components)
-  const [bTail, setBTail] = useState({ x: 250, y: 250 });
-  const [bHeadRel, setBHeadRel] = useState({ dx: 50, dy: -80 }); // Initial different state
+  // Interactive Vector B (Red Vector)
+  // bTail: Position of the start point
+  // bHeadRel: Distance from start to end (dx, dy)
+  const [bTail, setBTail] = useState({ x: 200, y: 250 });
+  const [bHeadRel, setBHeadRel] = useState({ dx: 50, dy: -80 }); // Start intentionally wrong
   
   const magB = getMagnitude(bHeadRel.dx, bHeadRel.dy);
   const angB = getAngle(bHeadRel.dx, bHeadRel.dy);
 
-  // -- CHECKS --
+  // -- LOGIC CHECKS --
   const isMagEqual = Math.abs(magA - magB) < MAG_TOLERANCE;
   const isDirEqual = Math.abs(angA - angB) < ANG_TOLERANCE;
   const isEquivalent = isMagEqual && isDirEqual;
@@ -68,7 +68,6 @@ export default function EquivalentVectorsSlide() {
     description: 'Interactive exploration of when two vectors are equal.'
   };
 
-  // Track success when user matches them
   useEffect(() => {
     if (isEquivalent && successCount === 0) {
       setSuccessCount(1);
@@ -80,205 +79,205 @@ export default function EquivalentVectorsSlide() {
     }
   }, [isEquivalent]);
 
-  // -- HANDLERS --
+  // -- EVENT HANDLERS --
 
-  // Dragging the whole vector (Tail)
-  const handleDragTail = (event: any, info: any) => {
-    setBTail({ 
-      x: bTail.x + info.delta.x, 
-      y: bTail.y + info.delta.y 
-    });
+  // 1. Dragging the Tail (Moves the whole vector)
+  const handleDragTail = (_: any, info: any) => {
+    setBTail(prev => ({ 
+      x: prev.x + info.delta.x, 
+      y: prev.y + info.delta.y 
+    }));
   };
 
-  // Dragging the Head (Changing Magnitude/Direction)
-  const handleDragHead = (event: any, info: any) => {
-    setBHeadRel({
-      dx: bHeadRel.dx + info.delta.x,
-      dy: bHeadRel.dy + info.delta.y
-    });
+  // 2. Dragging the Head (Changes properties)
+  const handleDragHead = (_: any, info: any) => {
+    setBHeadRel(prev => ({
+      dx: prev.dx + info.delta.x,
+      dy: prev.dy + info.delta.y
+    }));
   };
 
-  // Snap B to match A button
   const snapToMatch = () => {
     setBHeadRel({ dx: dxA, dy: dyA });
   };
 
-  // Reset B to random
   const resetB = () => {
     setBHeadRel({ dx: 50, dy: -50 });
-    setBTail({ x: 250, y: 250 });
-    setSuccessCount(0); // Allow re-trigger if needed, or just visual reset
+    setBTail({ x: 200, y: 250 });
+    setSuccessCount(0);
   };
 
+  // --- CONTENT RENDER ---
+
   const slideContent = (
-    <div className="w-full p-4 sm:p-8">
-      <div className="max-w-6xl mx-auto flex flex-col gap-8">
+    <div className="w-full h-full p-6 flex flex-col lg:flex-row gap-8 items-stretch">
+      
+      {/* --- LEFT COLUMN: THEORY & CONTEXT (40%) --- */}
+      <div className="lg:w-5/12 flex flex-col justify-center space-y-6">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-2">Are these vectors equal?</h2>
-          <p className="text-slate-600 dark:text-slate-400">
-            Two vectors are <strong>equivalent</strong> (<InlineMath>{`\\vec{A} = \\vec{B}`}</InlineMath>) if and only if they have the <strong>same magnitude</strong> AND the <strong>same direction</strong>.
-            <br/> Their starting position <em>does not matter</em>.
+        {/* Header Section */}
+        <div>
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-3">Equivalent Vectors</h2>
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+            Two vectors are considered <strong>equal</strong> (<InlineMath>{`\\vec{A} = \\vec{B}`}</InlineMath>) if and only if they satisfy two specific conditions.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Condition Cards */}
+        <div className="space-y-4">
+          <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+            <h3 className="font-bold text-slate-800 dark:text-slate-200">1. Same Magnitude</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+              They must have the exact same length.
+            </p>
+          </div>
           
-          {/* Main Interactive Area */}
-          <div className="lg:col-span-2 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 relative h-[400px] overflow-hidden select-none cursor-crosshair shadow-inner">
-            
-            {/* Grid Pattern */}
-            <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" width="100%" height="100%">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1"/>
-                </pattern>
-                <marker id="arrowhead-A" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                  <polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6" />
-                </marker>
-                <marker id="arrowhead-B" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                  <polygon points="0 0, 10 3.5, 0 7" fill={isEquivalent ? "#10B981" : "#EF4444"} />
-                </marker>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
+          <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-l-4 border-red-500 shadow-sm">
+            <h3 className="font-bold text-slate-800 dark:text-slate-200">2. Same Direction</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+              They must point in the exact same way (parallel).
+            </p>
+          </div>
+        </div>
 
-            {/* Hint Text Overlay */}
-            <div className="absolute top-4 left-4 text-xs text-slate-400 pointer-events-none">
-              Drag the <span className="text-red-500 font-bold">Red Dot</span> to change <InlineMath>{`\\vec{B}`}</InlineMath>.<br/>
-              Drag the <span className="text-red-500 font-bold">Line</span> to move <InlineMath>{`\\vec{B}`}</InlineMath>.
+        {/* Key Insight Box */}
+        <div className="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded-lg border border-indigo-200 dark:border-indigo-500/30">
+          <div className="flex items-start gap-3">
+            <span className="text-2xl">💡</span>
+            <div>
+              <h4 className="text-indigo-700 dark:text-indigo-300 font-bold uppercase text-xs tracking-wider mb-1">Crucial Insight</h4>
+              <p className="text-slate-700 dark:text-slate-300 text-sm">
+                <strong>Position does not matter.</strong> You can slide a vector anywhere in space. As long as length and angle remain unchanged, it is the same vector.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* --- RIGHT COLUMN: ANIMATION & STATS (60%) --- */}
+      <div className="lg:w-7/12 flex flex-col gap-4 h-full">
+        
+        {/* TOP RIGHT: ANIMATION AREA */}
+        <div className="flex-grow bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 relative min-h-[350px] overflow-hidden select-none shadow-inner group">
+            
+            {/* 1. CSS Grid Background */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none" 
+                 style={{ backgroundImage: 'radial-gradient(#64748b 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
             </div>
 
+            {/* 2. Hint Overlay */}
+            <div className="absolute top-4 left-4 z-10 pointer-events-none bg-white/80 dark:bg-slate-900/80 backdrop-blur px-3 py-2 rounded border border-slate-200 dark:border-slate-700">
+              <p className="text-xs text-slate-500 font-medium">
+                Drag <span className="text-red-500 font-bold">Dot</span> to change shape.<br/>
+                Drag <span className="text-red-500 font-bold">Line</span> to move position.
+              </p>
+            </div>
+
+            {/* 3. SVG Layer (The Visuals) */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
-              
-              {/* VECTOR A (FIXED) */}
-              <g>
-                <line 
-                  x1={vecA.start.x} y1={vecA.start.y} 
-                  x2={vecA.end.x} y2={vecA.end.y} 
-                  stroke={vecA.color} 
-                  strokeWidth="4" 
-                  markerEnd="url(#arrowhead-A)" 
-                />
-                <text x={(vecA.start.x + vecA.end.x)/2} y={(vecA.start.y + vecA.end.y)/2 - 10} fill={vecA.color} fontWeight="bold" fontSize="16">
-                  <InlineMath>{`\\vec{A}`}</InlineMath>
-                </text>
-              </g>
+              <defs>
+                <marker id="arrowhead-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                  <path d="M2,2 L10,6 L2,10 L2,2" fill="#3B82F6" />
+                </marker>
+                <marker id="arrowhead-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                  <path d="M2,2 L10,6 L2,10 L2,2" fill={isEquivalent ? "#10B981" : "#EF4444"} />
+                </marker>
+              </defs>
 
-              {/* VECTOR B (INTERACTIVE) */}
-              {/* We render the line here, but controls are Framer Motion divs on top */}
-              <g>
-                <line 
-                  x1={bTail.x} y1={bTail.y} 
-                  x2={bTail.x + bHeadRel.dx} y2={bTail.y + bHeadRel.dy} 
-                  stroke={isEquivalent ? "#10B981" : "#EF4444"} 
-                  strokeWidth="4" 
-                  markerEnd="url(#arrowhead-B)" 
-                />
-                <text x={bTail.x + bHeadRel.dx/2} y={bTail.y + bHeadRel.dy/2 - 10} fill={isEquivalent ? "#10B981" : "#EF4444"} fontWeight="bold" fontSize="16">
-                   <InlineMath>{`\\vec{B}`}</InlineMath>
-                </text>
-              </g>
+              {/* Fixed Vector A */}
+              <line 
+                x1={vecA.start.x} y1={vecA.start.y} 
+                x2={vecA.end.x} y2={vecA.end.y} 
+                stroke={vecA.color} strokeWidth="5" markerEnd="url(#arrowhead-blue)" opacity="0.8"
+              />
+              <text x={(vecA.start.x + vecA.end.x)/2 - 10} y={(vecA.start.y + vecA.end.y)/2 - 10} fill={vecA.color} fontWeight="bold">
+                <InlineMath>{`\\vec{A}`}</InlineMath>
+              </text>
 
-              {/* Angle Arcs (Optional polish: showing direction visually) */}
-              {/* Simplified for now to keep code clean */}
+              {/* Dynamic Vector B */}
+              <line 
+                x1={bTail.x} y1={bTail.y} 
+                x2={bTail.x + bHeadRel.dx} y2={bTail.y + bHeadRel.dy} 
+                stroke={isEquivalent ? "#10B981" : "#EF4444"} 
+                strokeWidth="5" markerEnd="url(#arrowhead-red)" 
+              />
+              <text x={bTail.x + bHeadRel.dx/2 + 10} y={bTail.y + bHeadRel.dy/2 + 10} fill={isEquivalent ? "#10B981" : "#EF4444"} fontWeight="bold">
+                 <InlineMath>{`\\vec{B}`}</InlineMath>
+              </text>
             </svg>
 
-            {/* --- INTERACTIVE CONTROLS LAYER (Framer Motion) --- */}
+            {/* 4. Interaction Layer (Framer Motion Handles) */}
             
-            {/* Control Point: TAIL (Moves the whole vector) */}
+            {/* Tail Handle (Move) */}
             <motion.div
               drag
               dragMomentum={false}
               onDrag={handleDragTail}
-              className="absolute w-8 h-8 rounded-full bg-white/0 cursor-move flex items-center justify-center group"
-              style={{ left: bTail.x - 16, top: bTail.y - 16 }}
+              className="absolute w-12 h-12 -ml-6 -mt-6 rounded-full cursor-move flex items-center justify-center hover:bg-red-500/10 transition-colors"
+              style={{ left: bTail.x, top: bTail.y }}
             >
-              <div className={`w-3 h-3 rounded-full ${isEquivalent ? 'bg-green-500' : 'bg-red-500'} group-hover:scale-150 transition-transform`} />
+               {/* Visual dot for tail */}
+               <div className={`w-3 h-3 rounded-full ${isEquivalent ? 'bg-green-500' : 'bg-red-500'}`} />
             </motion.div>
 
-            {/* Control Point: HEAD (Changes vector shape) */}
+            {/* Head Handle (Reshape) */}
             <motion.div
               drag
               dragMomentum={false}
               onDrag={handleDragHead}
-              className="absolute w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 cursor-pointer flex items-center justify-center shadow-sm border border-white/50"
-              style={{ left: (bTail.x + bHeadRel.dx) - 20, top: (bTail.y + bHeadRel.dy) - 20 }}
+              className="absolute w-10 h-10 -ml-5 -mt-5 rounded-full cursor-pointer flex items-center justify-center shadow-lg bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-600 hover:scale-110 transition-transform active:scale-95"
+              style={{ left: bTail.x + bHeadRel.dx, top: bTail.y + bHeadRel.dy }}
             >
-              <div className={`w-4 h-4 rounded-full border-2 border-white ${isEquivalent ? 'bg-green-500' : 'bg-red-500'}`} />
+              <div className={`w-3 h-3 rounded-full ${isEquivalent ? 'bg-green-500' : 'bg-red-500'}`} />
             </motion.div>
+        </div>
 
-          </div>
-
-          {/* Sidebar: Stats & Checks */}
-          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
-            
-            <div>
-              <h3 className="font-bold text-slate-800 dark:text-slate-100 mb-4 border-b pb-2">Properties Comparison</h3>
-              
-              <div className="space-y-4">
-                {/* Magnitude Check */}
-                <div className="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-700/50">
-                  <div>
-                    <div className="text-xs text-slate-500 uppercase tracking-wide">Magnitude (Length)</div>
-                    <div className="font-mono text-sm">
-                      <InlineMath>{`|\\vec{A}| \\approx ${magA.toFixed(1)}`}</InlineMath>
-                    </div>
-                    <div className={`font-mono text-sm font-bold ${isMagEqual ? 'text-green-600' : 'text-red-500'}`}>
-                      <InlineMath>{`|\\vec{B}| \\approx ${magB.toFixed(1)}`}</InlineMath>
-                    </div>
-                  </div>
-                  <div className="text-2xl">{isMagEqual ? '✅' : '❌'}</div>
-                </div>
-
-                {/* Direction Check */}
-                <div className="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-700/50">
-                  <div>
-                    <div className="text-xs text-slate-500 uppercase tracking-wide">Direction (Angle)</div>
-                    <div className="font-mono text-sm">
-                      <InlineMath>{`\\theta_A \\approx ${angA.toFixed(1)}^\\circ`}</InlineMath>
-                    </div>
-                    <div className={`font-mono text-sm font-bold ${isDirEqual ? 'text-green-600' : 'text-red-500'}`}>
-                      <InlineMath>{`\\theta_B \\approx ${angB.toFixed(1)}^\\circ`}</InlineMath>
-                    </div>
-                  </div>
-                  <div className="text-2xl">{isDirEqual ? '✅' : '❌'}</div>
-                </div>
+        {/* BOTTOM RIGHT: STATS BOX */}
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-row items-center justify-between gap-4">
+           
+           {/* Magnitude Stats */}
+           <div className="flex-1 text-center border-r border-slate-200 dark:border-slate-700 pr-4">
+              <div className="text-xs text-slate-500 uppercase font-bold mb-1">Magnitude</div>
+              <div className="font-mono text-sm text-blue-500 mb-1"><InlineMath>{`|\\vec{A}| \\approx ${magA.toFixed(1)}`}</InlineMath></div>
+              <div className={`font-mono text-sm font-bold ${isMagEqual ? 'text-green-500' : 'text-red-500'}`}>
+                <InlineMath>{`|\\vec{B}| \\approx ${magB.toFixed(1)}`}</InlineMath>
               </div>
-            </div>
+           </div>
 
-            <div className="mt-6 text-center">
-              <div className={`p-4 rounded-xl border-2 mb-4 transition-all ${isEquivalent ? 'bg-green-100 border-green-500 text-green-800' : 'bg-slate-100 border-slate-300 text-slate-500'}`}>
-                <div className="font-bold text-lg mb-1">
-                  {isEquivalent ? 'Vectors are Equivalent!' : 'Vectors are Different'}
-                </div>
-                <div className="text-sm opacity-80">
-                  {isEquivalent ? <InlineMath>{`\\vec{A} = \\vec{B}`}</InlineMath> : <InlineMath>{`\\vec{A} \\neq \\vec{B}`}</InlineMath>}
-                </div>
+           {/* Direction Stats */}
+           <div className="flex-1 text-center border-r border-slate-200 dark:border-slate-700 pr-4">
+              <div className="text-xs text-slate-500 uppercase font-bold mb-1">Angle</div>
+              <div className="font-mono text-sm text-blue-500 mb-1"><InlineMath>{`\\theta_A \\approx ${angA.toFixed(0)}^\\circ`}</InlineMath></div>
+              <div className={`font-mono text-sm font-bold ${isDirEqual ? 'text-green-500' : 'text-red-500'}`}>
+                <InlineMath>{`\\theta_B \\approx ${angB.toFixed(0)}^\\circ`}</InlineMath>
               </div>
+           </div>
 
-              {!isEquivalent && (
+           {/* Status / Action */}
+           <div className="flex-1 flex flex-col items-center justify-center pl-2">
+              {isEquivalent ? (
+                <div className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-3 py-1 rounded text-sm font-bold border border-green-200 dark:border-green-500/50">
+                  Matched!
+                </div>
+              ) : (
                 <button 
                   onClick={snapToMatch}
-                  className="text-sm text-blue-600 hover:text-blue-500 underline decoration-dotted"
+                  className="text-xs text-blue-600 hover:text-blue-500 hover:underline"
                 >
-                  Give me a hint (Auto-match)
+                  Auto-match Hint
                 </button>
               )}
+              
               {isEquivalent && (
-                 <button 
-                 onClick={resetB}
-                 className="px-4 py-2 bg-slate-800 text-white rounded-lg text-sm font-bold hover:bg-slate-700"
-               >
-                 Reset & Try Again
-               </button>
+                 <button onClick={resetB} className="text-xs text-slate-400 mt-2 hover:text-slate-600 underline">
+                   Reset
+                 </button>
               )}
-            </div>
-
-          </div>
+           </div>
 
         </div>
+
       </div>
     </div>
   );

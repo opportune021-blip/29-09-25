@@ -5,11 +5,7 @@ import { Interaction, InteractionResponse, TrackedInteraction } from '../../../c
 import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 
-// --- MATH HELPERS ---
-
-// SVG Coordination space: 400x400, Center at 200,200
-// Y is down in SVG, Up in Math. 
-// We will store "Math Coordinates" in state for easier logic, then map to SVG for rendering.
+// --- HELPERS ---
 
 interface VectorState {
   x: number;
@@ -20,7 +16,7 @@ export default function ComparingComponentsSlide() {
   const [localInteractions, setLocalInteractions] = useState<Record<string, InteractionResponse>>({});
   
   // State for Vector A (Blue) and Vector B (Purple)
-  // These are component values (math coordinates)
+  // Coordinates are relative to origin (0,0) in math space
   const [vecA, setVecA] = useState<VectorState>({ x: 50, y: 80 });
   const [vecB, setVecB] = useState<VectorState>({ x: -60, y: 40 });
 
@@ -40,7 +36,7 @@ export default function ComparingComponentsSlide() {
 
   // Drag handler updates math coordinates based on delta
   const handleDragA = (_: any, info: any) => {
-    setVecA(prev => ({ x: prev.x + info.delta.x, y: prev.y - info.delta.y })); // Y inverted delta
+    setVecA(prev => ({ x: prev.x + info.delta.x, y: prev.y - info.delta.y })); // Y inverted for math
   };
 
   const handleDragB = (_: any, info: any) => {
@@ -55,8 +51,8 @@ export default function ComparingComponentsSlide() {
   };
 
   const getStyle = (val1: number, val2: number) => {
-    if (Math.abs(val1 - val2) < 5) return "text-green-600 font-bold";
-    return "text-slate-500";
+    if (Math.abs(val1 - val2) < 5) return "text-green-600 font-bold bg-green-100 px-2 rounded";
+    return "text-slate-400 font-mono";
   };
 
   // Scenarios for "Quick Set" buttons
@@ -66,86 +62,187 @@ export default function ComparingComponentsSlide() {
     } else if (type === 'opposite') {
       setVecB({ x: -vecA.x, y: -vecA.y });
     } else if (type === 'orthogonal') {
-      // Rotate 90 degrees: (x, y) -> (-y, x)
       setVecB({ x: -vecA.y, y: vecA.x });
     }
   };
 
   const slideContent = (
-    <div className="w-full p-4 sm:p-8">
-      <div className="max-w-7xl mx-auto flex flex-col gap-6">
+    <div className="w-full h-full p-4 sm:p-6 flex flex-col lg:flex-row gap-6 items-stretch">
+      
+      {/* ========================================= */}
+      {/* LEFT COLUMN: THEORY & ANALYSIS (45%)      */}
+      {/* ========================================= */}
+      <div className="lg:w-5/12 flex flex-col h-full bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
         
-        {/* Header */}
-        <div className="text-center mb-4">
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Comparing Vector Components</h2>
-          <p className="text-slate-600 dark:text-slate-400">
-            Compare the horizontal ($x$) and vertical ($y$) contributions of two different vectors.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[500px]">
-          
-          {/* LEFT: SVG Visualization */}
-          <div className="lg:col-span-8 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 relative overflow-hidden shadow-inner flex items-center justify-center">
+        {/* Scrollable Content Area */}
+        <div className="p-6 space-y-6 overflow-y-auto custom-scrollbar flex-grow">
             
-            <div className="absolute top-4 left-4 z-10 flex gap-2">
-                 <div className="flex items-center gap-2 bg-white/80 dark:bg-slate-800/80 px-3 py-1 rounded shadow-sm border border-slate-200 dark:border-slate-700">
-                    <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                    <span className="text-xs font-bold text-slate-700 dark:text-slate-300">Vector A</span>
-                 </div>
-                 <div className="flex items-center gap-2 bg-white/80 dark:bg-slate-800/80 px-3 py-1 rounded shadow-sm border border-slate-200 dark:border-slate-700">
-                    <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-                    <span className="text-xs font-bold text-slate-700 dark:text-slate-300">Vector B</span>
-                 </div>
+            {/* Header / Intro Theory */}
+            <div>
+               <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-2">Component Comparison</h2>
+               <p className="text-slate-600 dark:text-slate-400 text-sm">
+                 To compare two vectors, we don't just look at their length. We must compare their <span className="text-orange-500 font-bold">Horizontal (x)</span> and <span className="text-emerald-500 font-bold">Vertical (y)</span> parts separately.
+               </p>
             </div>
 
-            <svg className="w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+            {/* Core Rule Block */}
+            <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-100 dark:border-indigo-800">
+               <h3 className="font-bold text-indigo-900 dark:text-indigo-200 text-sm mb-2">The Rule of Equality</h3>
+               <p className="text-slate-700 dark:text-slate-300 text-sm mb-3">
+                 Two vectors <InlineMath>{`\\vec{A}`}</InlineMath> and <InlineMath>{`\\vec{B}`}</InlineMath> are equal <strong>if and only if</strong>:
+               </p>
+               <div className="text-sm">
+                 <BlockMath>{`A_x = B_x \\quad \\text{AND} \\quad A_y = B_y`}</BlockMath>
+               </div>
+            </div>
+
+            {/* LIVE ANALYSIS TABLE */}
+            <div className="bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                <div className="bg-slate-100 dark:bg-slate-800 p-3 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                   <span className="text-xs font-bold uppercase text-slate-500">Live Analysis</span>
+                   <span className="text-[10px] bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-slate-500">Real-time</span>
+                </div>
+
+                {/* X Comparison Row */}
+                <div className="p-4 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
+                   <div className="text-center w-16">
+                      <div className="text-[10px] font-bold text-blue-500 uppercase mb-1">Ax</div>
+                      <div className="font-mono text-lg text-slate-700 dark:text-slate-300">{Math.round(vecA.x)}</div>
+                   </div>
+                   
+                   <div className={`text-xl ${getStyle(vecA.x, vecB.x)}`}>
+                      {getSymbol(vecA.x, vecB.x)}
+                   </div>
+
+                   <div className="text-center w-16">
+                      <div className="text-[10px] font-bold text-purple-500 uppercase mb-1">Bx</div>
+                      <div className="font-mono text-lg text-slate-700 dark:text-slate-300">{Math.round(vecB.x)}</div>
+                   </div>
+                </div>
+
+                {/* Y Comparison Row */}
+                <div className="p-4 flex items-center justify-between">
+                   <div className="text-center w-16">
+                      <div className="text-[10px] font-bold text-blue-500 uppercase mb-1">Ay</div>
+                      <div className="font-mono text-lg text-slate-700 dark:text-slate-300">{Math.round(vecA.y)}</div>
+                   </div>
+                   
+                   <div className={`text-xl ${getStyle(vecA.y, vecB.y)}`}>
+                      {getSymbol(vecA.y, vecB.y)}
+                   </div>
+
+                   <div className="text-center w-16">
+                      <div className="text-[10px] font-bold text-purple-500 uppercase mb-1">By</div>
+                      <div className="font-mono text-lg text-slate-700 dark:text-slate-300">{Math.round(vecB.y)}</div>
+                   </div>
+                </div>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="space-y-2">
+                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wide">Quick Scenarios</h4>
+                <button 
+                  onClick={() => setScenario('equal')}
+                  className="w-full py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-sm text-left flex justify-between items-center group transition-all"
+                >
+                  <span className="text-slate-600 dark:text-slate-300">Make Equal (<InlineMath>{`\\vec{A} = \\vec{B}`}</InlineMath>)</span>
+                  <span className="text-xs bg-slate-100 dark:bg-slate-600 px-2 py-0.5 rounded text-slate-500 dark:text-slate-300">Set</span>
+                </button>
+                <button 
+                  onClick={() => setScenario('opposite')}
+                  className="w-full py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-sm text-left flex justify-between items-center group transition-all"
+                >
+                  <span className="text-slate-600 dark:text-slate-300">Make Opposite (<InlineMath>{`\\vec{A} = -\\vec{B}`}</InlineMath>)</span>
+                  <span className="text-xs bg-slate-100 dark:bg-slate-600 px-2 py-0.5 rounded text-slate-500 dark:text-slate-300">Set</span>
+                </button>
+            </div>
+
+        </div>
+      </div>
+
+      {/* ========================================= */}
+      {/* RIGHT COLUMN: ANIMATION (55%)             */}
+      {/* ========================================= */}
+      <div className="lg:w-7/12 flex flex-col h-full">
+         
+         <div className="flex-grow bg-slate-950 rounded-xl border border-slate-700 relative overflow-hidden shadow-inner flex items-center justify-center min-h-[450px] group">
+            
+            {/* Dark Grid Background */}
+            <div className="absolute inset-0 opacity-20 pointer-events-none" 
+                 style={{ backgroundImage: 'linear-gradient(#475569 1px, transparent 1px), linear-gradient(90deg, #475569 1px, transparent 1px)', backgroundSize: '40px 40px', backgroundPosition: 'center center' }}>
+            </div>
+
+            {/* Axes */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-full h-px bg-slate-600"></div>
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="h-full w-px bg-slate-600"></div>
+            </div>
+
+            {/* Legend Overlay */}
+            <div className="absolute top-4 left-4 flex gap-3 z-10">
+               <div className="flex items-center gap-2 bg-slate-800/80 backdrop-blur px-3 py-1.5 rounded-full border border-slate-600">
+                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                  <span className="text-xs text-blue-200 font-mono">vec(A)</span>
+               </div>
+               <div className="flex items-center gap-2 bg-slate-800/80 backdrop-blur px-3 py-1.5 rounded-full border border-slate-600">
+                  <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+                  <span className="text-xs text-purple-200 font-mono">vec(B)</span>
+               </div>
+            </div>
+
+            {/* SVG Layer */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" viewBox="0 0 400 400">
               <defs>
-                <pattern id="grid-compare" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1"/>
-                </pattern>
-                <marker id="arrow-a" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                  <polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6" />
+                <marker id="arrow-a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                  <path d="M2,2 L10,6 L2,10 L2,2" fill="#3B82F6" />
                 </marker>
-                <marker id="arrow-b" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                  <polygon points="0 0, 10 3.5, 0 7" fill="#A855F7" />
+                <marker id="arrow-b" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                  <path d="M2,2 L10,6 L2,10 L2,2" fill="#A855F7" />
                 </marker>
               </defs>
-              <rect width="100%" height="100%" fill="url(#grid-compare)" className="text-slate-400" />
-              
-              {/* Axes */}
-              <line x1="200" y1="0" x2="200" y2="400" stroke="currentColor" strokeWidth="2" className="text-slate-300" />
-              <line x1="0" y1="200" x2="400" y2="200" stroke="currentColor" strokeWidth="2" className="text-slate-300" />
-              
+
+              {/* Group Centered at 200, 200 */}
               <g transform="translate(200, 200)">
                 
-                {/* --- VECTOR A --- */}
+                {/* --- VECTOR A (Blue) --- */}
                 {/* Projections */}
-                <line x1={vecA.x} y1={0} x2={vecA.x} y2={-vecA.y} stroke="#3B82F6" strokeDasharray="4,4" opacity="0.4" />
-                <line x1={0} y1={-vecA.y} x2={vecA.x} y2={-vecA.y} stroke="#3B82F6" strokeDasharray="4,4" opacity="0.4" />
+                <line x1={vecA.x} y1={0} x2={vecA.x} y2={-vecA.y} stroke="#3B82F6" strokeDasharray="4,4" opacity="0.3" strokeWidth="1" />
+                <line x1={0} y1={-vecA.y} x2={vecA.x} y2={-vecA.y} stroke="#3B82F6" strokeDasharray="4,4" opacity="0.3" strokeWidth="1" />
+                
                 {/* Arrow */}
                 <line x1="0" y1="0" x2={vecA.x} y2={-vecA.y} stroke="#3B82F6" strokeWidth="4" markerEnd="url(#arrow-a)" />
+                
+                {/* Labels */}
+                <text x={vecA.x + 10} y={-vecA.y - 10} fill="#3B82F6" fontSize="12" fontWeight="bold">A</text>
 
-                {/* --- VECTOR B --- */}
+
+                {/* --- VECTOR B (Purple) --- */}
                 {/* Projections */}
-                <line x1={vecB.x} y1={0} x2={vecB.x} y2={-vecB.y} stroke="#A855F7" strokeDasharray="4,4" opacity="0.4" />
-                <line x1={0} y1={-vecB.y} x2={vecB.x} y2={-vecB.y} stroke="#A855F7" strokeDasharray="4,4" opacity="0.4" />
+                <line x1={vecB.x} y1={0} x2={vecB.x} y2={-vecB.y} stroke="#A855F7" strokeDasharray="4,4" opacity="0.3" strokeWidth="1" />
+                <line x1={0} y1={-vecB.y} x2={vecB.x} y2={-vecB.y} stroke="#A855F7" strokeDasharray="4,4" opacity="0.3" strokeWidth="1" />
+                
                 {/* Arrow */}
                 <line x1="0" y1="0" x2={vecB.x} y2={-vecB.y} stroke="#A855F7" strokeWidth="4" markerEnd="url(#arrow-b)" />
+                
+                {/* Labels */}
+                <text x={vecB.x + 10} y={-vecB.y - 10} fill="#A855F7" fontSize="12" fontWeight="bold">B</text>
 
               </g>
             </svg>
 
-            {/* Draggable Handles (HTML Overlay) */}
+            {/* Draggable Handles (Motion Divs) */}
+            
             {/* Handle A */}
             <motion.div
               drag
               dragMomentum={false}
               onDrag={handleDragA}
-              className="absolute w-10 h-10 rounded-full bg-blue-500/10 hover:bg-blue-500/30 cursor-move border border-blue-400 z-20 flex items-center justify-center"
-              style={{ left: 200 + vecA.x - 20, top: 200 - vecA.y - 20 }}
+              className="absolute w-12 h-12 rounded-full cursor-move flex items-center justify-center group z-20"
+              style={{ left: 200 + vecA.x - 24, top: 200 - vecA.y - 24 }}
             >
-                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                <div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-slate-900 ring-2 ring-blue-500/50 group-hover:scale-110 transition-transform shadow-lg" />
             </motion.div>
 
             {/* Handle B */}
@@ -153,98 +250,20 @@ export default function ComparingComponentsSlide() {
               drag
               dragMomentum={false}
               onDrag={handleDragB}
-              className="absolute w-10 h-10 rounded-full bg-purple-500/10 hover:bg-purple-500/30 cursor-move border border-purple-400 z-20 flex items-center justify-center"
-              style={{ left: 200 + vecB.x - 20, top: 200 - vecB.y - 20 }}
+              className="absolute w-12 h-12 rounded-full cursor-move flex items-center justify-center group z-20"
+              style={{ left: 200 + vecB.x - 24, top: 200 - vecB.y - 24 }}
             >
-                <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                <div className="w-4 h-4 bg-purple-500 rounded-full border-2 border-slate-900 ring-2 ring-purple-500/50 group-hover:scale-110 transition-transform shadow-lg" />
             </motion.div>
 
-          </div>
-
-          {/* RIGHT: Comparison Dashboard */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
-            
-            {/* Logic Table */}
-            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
-                <div className="bg-slate-100 dark:bg-slate-700/50 p-4 border-b border-slate-200 dark:border-slate-700">
-                    <h3 className="font-bold text-slate-800 dark:text-slate-100">Component Analysis</h3>
-                </div>
-                
-                <div className="divide-y divide-slate-100 dark:divide-slate-700">
-                    
-                    {/* X Comparison */}
-                    <div className="p-6 flex items-center justify-between">
-                        <div className="flex flex-col items-center">
-                            <span className="text-xs font-bold text-blue-500 uppercase">A-Horizontal</span>
-                            <span className="text-xl font-mono">{Math.round(vecA.x)}</span>
-                        </div>
-                        
-                        <div className={`text-3xl font-bold px-4 ${getStyle(vecA.x, vecB.x)}`}>
-                            {getSymbol(vecA.x, vecB.x)}
-                        </div>
-
-                        <div className="flex flex-col items-center">
-                            <span className="text-xs font-bold text-purple-500 uppercase">B-Horizontal</span>
-                            <span className="text-xl font-mono">{Math.round(vecB.x)}</span>
-                        </div>
-                    </div>
-                    
-                    {/* Y Comparison */}
-                    <div className="p-6 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50">
-                        <div className="flex flex-col items-center">
-                            <span className="text-xs font-bold text-blue-500 uppercase">A-Vertical</span>
-                            <span className="text-xl font-mono">{Math.round(vecA.y)}</span>
-                        </div>
-                        
-                        <div className={`text-3xl font-bold px-4 ${getStyle(vecA.y, vecB.y)}`}>
-                            {getSymbol(vecA.y, vecB.y)}
-                        </div>
-
-                        <div className="flex flex-col items-center">
-                            <span className="text-xs font-bold text-purple-500 uppercase">B-Vertical</span>
-                            <span className="text-xl font-mono">{Math.round(vecB.y)}</span>
-                        </div>
-                    </div>
-
-                </div>
+            <div className="absolute bottom-4 right-4 text-xs text-slate-500 bg-slate-900/50 px-2 py-1 rounded">
+               Try dragging vectors to overlap
             </div>
 
-            {/* Quick Actions */}
-            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 shadow-sm">
-                <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wide mb-3">Quick Scenarios</h4>
-                <div className="grid grid-cols-1 gap-2">
-                    <button 
-                        onClick={() => setScenario('equal')}
-                        className="w-full py-2 px-4 rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-sm font-medium transition-colors text-left flex justify-between items-center group"
-                    >
-                        <span>Make <InlineMath>{`\\vec{A} = \\vec{B}`}</InlineMath></span>
-                        <span className="opacity-0 group-hover:opacity-100">➜</span>
-                    </button>
-                    <button 
-                        onClick={() => setScenario('opposite')}
-                        className="w-full py-2 px-4 rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-sm font-medium transition-colors text-left flex justify-between items-center group"
-                    >
-                        <span>Make Opposite (<InlineMath>{`\\vec{A} = -\\vec{B}`}</InlineMath>)</span>
-                        <span className="opacity-0 group-hover:opacity-100">➜</span>
-                    </button>
-                    <button 
-                        onClick={() => setScenario('orthogonal')}
-                        className="w-full py-2 px-4 rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-sm font-medium transition-colors text-left flex justify-between items-center group"
-                    >
-                        <span>Make Perpendicular</span>
-                        <span className="opacity-0 group-hover:opacity-100">➜</span>
-                    </button>
-                </div>
-            </div>
+         </div>
 
-            <div className="text-center text-xs text-slate-400 mt-auto">
-                Dragging updates components in real-time.
-            </div>
-
-          </div>
-
-        </div>
       </div>
+
     </div>
   );
 

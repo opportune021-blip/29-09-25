@@ -9,7 +9,6 @@ export default function MagnitudeFromPointsSlide() {
   const [localInteractions, setLocalInteractions] = useState<Record<string, InteractionResponse>>({});
   
   // State: Coordinates of Initial (A) and Terminal (B) points
-  // Using simple integer units (-6 to 6 range typically)
   const [pointA, setPointA] = useState({ x: -3, y: -2 });
   const [pointB, setPointB] = useState({ x: 2, y: 3 });
 
@@ -34,65 +33,20 @@ export default function MagnitudeFromPointsSlide() {
     description: 'Interactive visualization of the distance formula between two points.'
   };
 
-  // Generic Drag Handler for Points (with snapping)
-  const createDragHandler = (setter: React.Dispatch<React.SetStateAction<{x: number, y: number}>>) => {
-    return (_: any, info: any) => {
-      const deltaX = info.delta.x / GRID_SCALE;
-      const deltaY = -info.delta.y / GRID_SCALE; // Invert Y for math coords
-
-      setter(prev => {
-        // We update state smoothly for drag, but usually, we want to snap to integers
-        // For this demo, we won't snap strictly during drag, but we will round values for rendering/math
-        // To make it feel responsive, we'd need a separate "visual" state vs "logic" state.
-        // Simplified approach: Update state based on accumulated delta, clamp to grid.
-        
-        // Actually, let's just use the visual position for logic to keep code simple:
-        // We assume the user drags and we re-calculate.
-        // BETTER UX: Just track the integer position changes.
-        return prev; // We rely on the specialized update below
-      });
-    };
-  };
-  
-  // Actually, standard Framer Motion drag updates visual X/Y, not React state. 
-  // We need to sync them.
-  // Simplified "Snap" Drag Logic:
-  const updatePoint = (point: 'A' | 'B', info: any) => {
-    const pX = info.point.x; // Page coordinates... tricky inside nested divs.
-    // Let's use delta accumulation on the state directly.
-    
-    const dX = info.delta.x;
-    const dY = info.delta.y;
-
-    // We accumulate pixel changes and only update "Unit" state when a threshold is crossed?
-    // No, let's just use the onDragEnd to snap to the nearest integer for clean math.
-    // While dragging, we let the user see the motion.
-  };
-  
-  // FINAL DRAG STRATEGY for clean code:
-  // We use a custom drag handler that snaps the *Result* to the grid on release.
-  // While dragging, we update a "live" value if we want real-time, but for the Formula slide,
-  // distinct integer steps are better.
-  
-  // Let's use the same logic as previous slides: Drag updates state directly based on grid size steps?
-  // No, let's use a cleaner approach:
-  // We render the dots at `coord * scale`.
-  // We listen to `onDrag` to update `coord`.
-  
+  // Logic to update points while dragging
   const onDragPoint = (point: 'A' | 'B', info: any) => {
      const setter = point === 'A' ? setPointA : setPointB;
      
+     // Note: In a real app, using delta accumulation can drift. 
+     // Ideally, you'd use a ref for the start position + info.point.
+     // For this stateless demo, we use a simplified accumulation with clamping.
+     
      setter(prev => {
-        // Calculate new pixel position
-        const currentPixelX = prev.x * GRID_SCALE;
-        const currentPixelY = -prev.y * GRID_SCALE;
+        const dxUnits = info.delta.x / GRID_SCALE;
+        const dyUnits = -info.delta.y / GRID_SCALE; // Invert Y
         
-        const newPixelX = currentPixelX + info.delta.x;
-        const newPixelY = currentPixelY + info.delta.y;
-        
-        // Convert back to grid units
-        let newX = newPixelX / GRID_SCALE;
-        let newY = -newPixelY / GRID_SCALE;
+        let newX = prev.x + dxUnits;
+        let newY = prev.y + dyUnits;
         
         // Clamp to avoid going off screen (-6 to 6)
         newX = Math.max(-6, Math.min(6, newX));
@@ -102,65 +56,111 @@ export default function MagnitudeFromPointsSlide() {
      });
   };
 
+  // Snap to integer on release for clean math
   const onDragEnd = (point: 'A' | 'B') => {
     const setter = point === 'A' ? setPointA : setPointB;
     setter(prev => ({ x: Math.round(prev.x), y: Math.round(prev.y) }));
   };
 
   const slideContent = (
-    <div className="w-full p-4 sm:p-8">
-      <div className="max-w-7xl mx-auto flex flex-col gap-6">
+    <div className="w-full h-full p-4 sm:p-6 flex flex-col lg:flex-row gap-6 items-stretch">
+      
+      {/* ========================================= */}
+      {/* LEFT COLUMN: THEORY & STEPS (40%)         */}
+      {/* ========================================= */}
+      <div className="lg:w-5/12 flex flex-col h-full bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
         
         {/* Header */}
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Distance Formula (Initial & Terminal Points)</h2>
-          <p className="text-slate-600 dark:text-slate-400">
-            If a vector starts at <InlineMath>{`A(x_1, y_1)`}</InlineMath> and ends at <InlineMath>{`B(x_2, y_2)`}</InlineMath>, 
-            we find the components by subtracting coordinates.
-          </p>
+        <div className="p-6 border-b border-slate-100 dark:border-slate-700">
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">The Distance Formula</h2>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
+                Calculating magnitude when given start and end points.
+            </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          
-          {/* LEFT: Graph */}
-          <div className="bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 relative h-[450px] overflow-hidden select-none shadow-inner flex items-center justify-center">
-             
-            {/* Legend Overlay */}
-            <div className="absolute top-4 left-4 z-10 flex flex-col gap-2 pointer-events-none">
-                <div className="flex items-center gap-2 bg-white/90 dark:bg-slate-800/90 px-2 py-1 rounded shadow text-xs">
-                    <div className="w-3 h-3 rounded-full bg-orange-500"></div>
-                    <span className="font-bold text-slate-700 dark:text-slate-300">Initial Point A</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/90 dark:bg-slate-800/90 px-2 py-1 rounded shadow text-xs">
-                    <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                    <span className="font-bold text-slate-700 dark:text-slate-300">Terminal Point B</span>
+        {/* Scrollable Theory */}
+        <div className="p-6 space-y-6 overflow-y-auto custom-scrollbar flex-grow">
+            
+            {/* Core Concept */}
+            <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+                    A vector defined by two points is just the path between them. To find its length (magnitude), we use the distance formula:
+                </p>
+                <div className="text-lg py-2">
+                    <BlockMath>{`|\\vec{v}| = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}`}</BlockMath>
                 </div>
             </div>
 
-            <svg className="w-full h-full" viewBox="0 0 400 400">
+            {/* Step 1 Explanation */}
+            <div>
+                <h3 className="font-bold text-slate-700 dark:text-slate-200 text-sm mb-2 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 flex items-center justify-center text-xs">1</span>
+                    Find the Components
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 pl-8">
+                    Subtract the <strong>Initial Point</strong> (Start) from the <strong>Terminal Point</strong> (End).
+                    <br/>
+                    <span className="text-xs font-mono bg-slate-100 dark:bg-slate-700 px-1 rounded">End - Start</span> gives you the distance traveled in X and Y.
+                </p>
+            </div>
+
+            {/* Step 2 Explanation */}
+            <div>
+                <h3 className="font-bold text-slate-700 dark:text-slate-200 text-sm mb-2 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 flex items-center justify-center text-xs">2</span>
+                    Pythagorean Theorem
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 pl-8">
+                    Once you have the components (the legs of the triangle), square them, add them, and take the root.
+                </p>
+            </div>
+
+        </div>
+      </div>
+
+      {/* ========================================= */}
+      {/* RIGHT COLUMN: VISUALS (60%)               */}
+      {/* ========================================= */}
+      <div className="lg:w-7/12 flex flex-col gap-6 h-full">
+        
+        {/* TOP RIGHT: GRAPH ANIMATION */}
+        <div className="flex-grow bg-slate-950 rounded-xl border border-slate-700 relative overflow-hidden select-none shadow-inner flex items-center justify-center min-h-[350px] group">
+            
+            {/* Legend */}
+            <div className="absolute top-4 left-4 z-10 flex flex-col gap-2 pointer-events-none">
+                <div className="flex items-center gap-2 bg-slate-900/90 backdrop-blur px-2 py-1.5 rounded border border-slate-700 text-xs">
+                    <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                    <span className="font-bold text-slate-300">Initial (A)</span>
+                </div>
+                <div className="flex items-center gap-2 bg-slate-900/90 backdrop-blur px-2 py-1.5 rounded border border-slate-700 text-xs">
+                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                    <span className="font-bold text-slate-300">Terminal (B)</span>
+                </div>
+            </div>
+
+            {/* SVG Graph */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 400">
               <defs>
                 <pattern id="grid-dist" width={GRID_SCALE} height={GRID_SCALE} patternUnits="userSpaceOnUse">
-                  <path d={`M ${GRID_SCALE} 0 L 0 0 0 ${GRID_SCALE}`} fill="none" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1"/>
+                  <path d={`M ${GRID_SCALE} 0 L 0 0 0 ${GRID_SCALE}`} fill="none" stroke="#475569" strokeOpacity="0.3" strokeWidth="1"/>
                 </pattern>
-                <marker id="arrow-dist" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                  <polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6" />
+                <marker id="arrow-dist" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                  <path d="M2,2 L10,6 L2,10 L6,6 L2,2" fill="#3B82F6" />
                 </marker>
               </defs>
-              <rect width="100%" height="100%" fill="url(#grid-dist)" className="text-slate-400" />
+              
+              <rect width="100%" height="100%" fill="url(#grid-dist)" />
               
               {/* Axes */}
-              <line x1={CENTER} y1="0" x2={CENTER} y2="400" stroke="currentColor" strokeWidth="2" className="text-slate-300" />
-              <line x1="0" y1={CENTER} x2="400" y2={CENTER} stroke="currentColor" strokeWidth="2" className="text-slate-300" />
+              <line x1={CENTER} y1="0" x2={CENTER} y2="400" stroke="#64748b" strokeWidth="2" strokeOpacity="0.5" />
+              <line x1="0" y1={CENTER} x2="400" y2={CENTER} stroke="#64748b" strokeWidth="2" strokeOpacity="0.5" />
 
               <g transform={`translate(${CENTER}, ${CENTER})`}>
                 
-                {/* Projection Lines (The Triangle) */}
+                {/* Dashed Triangle Legs */}
                 <path 
                     d={`M ${pointA.x * GRID_SCALE} ${-pointA.y * GRID_SCALE} L ${pointB.x * GRID_SCALE} ${-pointA.y * GRID_SCALE} L ${pointB.x * GRID_SCALE} ${-pointB.y * GRID_SCALE}`}
-                    fill="none"
-                    stroke="#94a3b8"
-                    strokeWidth="2"
-                    strokeDasharray="4,4"
+                    fill="none" stroke="#94a3b8" strokeWidth="2" strokeDasharray="4,4" opacity="0.5"
                 />
 
                 {/* The Vector */}
@@ -171,114 +171,80 @@ export default function MagnitudeFromPointsSlide() {
                   markerEnd="url(#arrow-dist)" 
                 />
 
-                {/* Point A (Orange) */}
-                <circle cx={pointA.x * GRID_SCALE} cy={-pointA.y * GRID_SCALE} r="5" fill="#F97316" />
-                
-                {/* Point B (Blue) */}
-                <circle cx={pointB.x * GRID_SCALE} cy={-pointB.y * GRID_SCALE} r="5" fill="#3B82F6" />
-
                 {/* Labels */}
-                <text x={(pointA.x * GRID_SCALE + pointB.x * GRID_SCALE) / 2} y={-pointA.y * GRID_SCALE + 20} textAnchor="middle" fontSize="12" fill="#64748b" fontWeight="bold">
+                <text x={(pointA.x * GRID_SCALE + pointB.x * GRID_SCALE) / 2} y={-pointA.y * GRID_SCALE + 20} textAnchor="middle" fontSize="12" fill="#94a3b8" fontWeight="bold">
                     <tspan>Δx = {Math.round(dx)}</tspan>
                 </text>
-                <text x={pointB.x * GRID_SCALE + 15} y={(-pointA.y * GRID_SCALE + -pointB.y * GRID_SCALE) / 2} dominantBaseline="middle" fontSize="12" fill="#64748b" fontWeight="bold">
+                <text x={pointB.x * GRID_SCALE + 15} y={(-pointA.y * GRID_SCALE + -pointB.y * GRID_SCALE) / 2} dominantBaseline="middle" fontSize="12" fill="#94a3b8" fontWeight="bold">
                     <tspan>Δy = {Math.round(dy)}</tspan>
                 </text>
               </g>
             </svg>
 
-            {/* Draggable A */}
+            {/* Draggable Handle A (Start) */}
             <motion.div
               drag
               dragMomentum={false}
               onDrag={(_, i) => onDragPoint('A', i)}
               onDragEnd={() => onDragEnd('A')}
-              className="absolute w-10 h-10 -ml-5 -mt-5 rounded-full bg-orange-500/10 hover:bg-orange-500/30 border border-orange-500 cursor-move z-20 flex items-center justify-center"
-              style={{ left: CENTER + pointA.x * GRID_SCALE, top: CENTER - pointA.y * GRID_SCALE }}
+              className="absolute w-12 h-12 rounded-full cursor-move z-20 flex items-center justify-center group"
+              style={{ left: CENTER + pointA.x * GRID_SCALE - 24, top: CENTER - pointA.y * GRID_SCALE - 24 }}
             >
-                <div className="w-2 h-2 bg-orange-500 rounded-full" />
+               <div className="w-4 h-4 bg-orange-500 rounded-full border-2 border-white ring-2 ring-orange-500/30 group-hover:scale-125 transition-transform" />
             </motion.div>
 
-            {/* Draggable B */}
+            {/* Draggable Handle B (End) */}
             <motion.div
               drag
               dragMomentum={false}
               onDrag={(_, i) => onDragPoint('B', i)}
               onDragEnd={() => onDragEnd('B')}
-              className="absolute w-10 h-10 -ml-5 -mt-5 rounded-full bg-blue-500/10 hover:bg-blue-500/30 border border-blue-500 cursor-move z-20 flex items-center justify-center"
-              style={{ left: CENTER + pointB.x * GRID_SCALE, top: CENTER - pointB.y * GRID_SCALE }}
+              className="absolute w-12 h-12 rounded-full cursor-move z-20 flex items-center justify-center group"
+              style={{ left: CENTER + pointB.x * GRID_SCALE - 24, top: CENTER - pointB.y * GRID_SCALE - 24 }}
             >
-                <div className="w-2 h-2 bg-blue-500 rounded-full" />
+               <div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-white ring-2 ring-blue-500/30 group-hover:scale-125 transition-transform" />
             </motion.div>
 
-          </div>
-
-          {/* RIGHT: Math Panel */}
-          <div className="flex flex-col gap-6 h-full">
-            
-            {/* Coordinate Inputs (Read Only or Editable if we added inputs) */}
-            <div className="grid grid-cols-2 gap-4">
-                <div className="bg-orange-50 dark:bg-orange-900/10 p-4 rounded-xl border border-orange-200 dark:border-orange-800 text-center">
-                    <div className="text-xs font-bold text-orange-700 dark:text-orange-300 uppercase mb-1">Initial Point (A)</div>
-                    <div className="text-xl font-mono text-slate-800 dark:text-slate-100">
-                        ({Math.round(pointA.x)}, {Math.round(pointA.y)})
-                    </div>
-                    <div className="text-xs text-slate-400 mt-1">(x₁, y₁)</div>
-                </div>
-
-                <div className="bg-blue-50 dark:bg-blue-900/10 p-4 rounded-xl border border-blue-200 dark:border-blue-800 text-center">
-                    <div className="text-xs font-bold text-blue-700 dark:text-blue-300 uppercase mb-1">Terminal Point (B)</div>
-                    <div className="text-xl font-mono text-slate-800 dark:text-slate-100">
-                        ({Math.round(pointB.x)}, {Math.round(pointB.y)})
-                    </div>
-                    <div className="text-xs text-slate-400 mt-1">(x₂, y₂)</div>
-                </div>
+            <div className="absolute top-4 right-4 text-xs text-slate-400 bg-slate-900/50 px-2 py-1 rounded border border-slate-700">
+               Drag points A & B
             </div>
-
-            {/* Step-by-Step Calculation */}
-            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm flex-grow">
-                <h3 className="font-bold text-slate-800 dark:text-slate-100 mb-4 border-b pb-2">Magnitude Calculation</h3>
-                
-                <div className="space-y-4 text-sm md:text-base">
-                    {/* Step 1: Find Differences */}
-                    <div className="flex flex-col gap-1">
-                        <span className="text-slate-500 text-xs uppercase font-bold">1. Find Components (Subtraction)</span>
-                        <div className="grid grid-cols-1 gap-2 font-mono bg-slate-50 dark:bg-slate-900 p-3 rounded-lg">
-                            <div>
-                                <span className="font-bold">x₂ - x₁</span> = {Math.round(pointB.x)} - ({Math.round(pointA.x)}) = <span className="font-bold text-slate-800 dark:text-white">{Math.round(dx)}</span>
-                            </div>
-                            <div>
-                                <span className="font-bold">y₂ - y₁</span> = {Math.round(pointB.y)} - ({Math.round(pointA.y)}) = <span className="font-bold text-slate-800 dark:text-white">{Math.round(dy)}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Step 2: Distance Formula */}
-                    <div className="flex flex-col gap-1">
-                        <span className="text-slate-500 text-xs uppercase font-bold">2. Apply Formula</span>
-                        <div className="text-center py-2">
-                             <BlockMath>{`|\\vec{v}| = \\sqrt{(\\Delta x)^2 + (\\Delta y)^2}`}</BlockMath>
-                        </div>
-                    </div>
-
-                    {/* Step 3: Result */}
-                    <div className="bg-blue-600 text-white p-4 rounded-lg shadow-lg transform transition-all">
-                        <div className="text-xs opacity-75 uppercase font-bold mb-1">Final Magnitude</div>
-                        <div className="flex items-center justify-between">
-                            <InlineMath>
-                                {`\\sqrt{(${Math.round(dx)})^2 + (${Math.round(dy)})^2}`}
-                            </InlineMath>
-                            <span className="text-2xl font-bold">
-                                = {magnitude.toFixed(2)}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-          </div>
 
         </div>
+
+        {/* BOTTOM RIGHT: CALCULATION PANEL */}
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+            
+            {/* Step 1: Subtraction */}
+            <div className="grid grid-cols-2 gap-4 mb-4">
+               <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded border border-slate-100 dark:border-slate-700">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase mb-1">Delta X (Run)</div>
+                  <div className="font-mono text-sm text-slate-600 dark:text-slate-300">
+                     {Math.round(pointB.x)} - ({Math.round(pointA.x)}) = <span className="font-bold text-orange-600">{Math.round(dx)}</span>
+                  </div>
+               </div>
+               <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded border border-slate-100 dark:border-slate-700">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase mb-1">Delta Y (Rise)</div>
+                  <div className="font-mono text-sm text-slate-600 dark:text-slate-300">
+                     {Math.round(pointB.y)} - ({Math.round(pointA.y)}) = <span className="font-bold text-blue-600">{Math.round(dy)}</span>
+                  </div>
+               </div>
+            </div>
+
+            {/* Step 2: Final Calc */}
+            <div className="bg-blue-600 text-white p-4 rounded-lg shadow-lg flex items-center justify-between">
+               <div>
+                  <div className="text-xs opacity-75 uppercase font-bold mb-1">Resulting Magnitude</div>
+                  <div className="text-lg">
+                     <InlineMath>{`\\sqrt{(${Math.round(dx)})^2 + (${Math.round(dy)})^2}`}</InlineMath>
+                  </div>
+               </div>
+               <div className="text-3xl font-bold">
+                  = {magnitude.toFixed(2)}
+               </div>
+            </div>
+
+        </div>
+
       </div>
     </div>
   );

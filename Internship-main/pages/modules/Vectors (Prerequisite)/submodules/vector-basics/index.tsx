@@ -22,7 +22,7 @@ export const vectorBasicsSlides: Slide[] = [
     id: 'recognizing-vectors'
   },
   {
-    type: 'quiz',
+    type: 'interactive',
     title: 'Recognizing vectors practice',
     component: RecognizingVectorsPracticeSlide,
     id: 'recognizing-vectors-practice'
