@@ -42,14 +42,6 @@ export default function AddSubtractVectorsSlide() {
   };
 
   // Drag Handlers
-  const onDragA = (_: any, info: any) => {
-    // Basic delta update logic
-    setVecA(prev => ({
-        x: Math.round((prev.x * GRID_SCALE + info.delta.x) / GRID_SCALE), // Snap logic simplified
-        y: Math.round((prev.y * GRID_SCALE - info.delta.y) / GRID_SCALE)
-    }));
-  };
-  
   // Custom Smooth Drag Hook equivalent for cleaner UI
   const handleDrag = (setter: any) => (_: any, info: any) => {
     setter((prev: any) => ({
@@ -80,8 +72,8 @@ export default function AddSubtractVectorsSlide() {
           </h2>
           <p className="text-slate-600 dark:text-slate-400">
             {mode === 'add' 
-              ? <span>Combining vectors is like following a path: <InlineMath>\vec{a}</InlineMath> then <InlineMath>\vec{b}</InlineMath>.</span>
-              : <span>Subtraction is just adding the negative: <InlineMath>\vec{a} - \vec{b} = \vec{a} + (-\vec{b})</InlineMath>.</span>
+              ? <span>Combining vectors is like following a path: <InlineMath>{"\\vec{a}"}</InlineMath> then <InlineMath>{"\\vec{b}"}</InlineMath>.</span>
+              : <span>Subtraction is just adding the negative: <InlineMath>{"\\vec{a} - \\vec{b} = \\vec{a} + (-\\vec{b})"}</InlineMath>.</span>
             }
           </p>
         </div>
@@ -97,13 +89,13 @@ export default function AddSubtractVectorsSlide() {
                     onClick={() => setMode('add')}
                     className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${mode === 'add' ? 'bg-blue-600 text-white shadow' : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700'}`}
                 >
-                    Add (<InlineMath>+</InlineMath>)
+                    Add (<InlineMath>{"+"}</InlineMath>)
                 </button>
                 <button
                     onClick={() => setMode('sub')}
                     className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${mode === 'sub' ? 'bg-orange-600 text-white shadow' : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700'}`}
                 >
-                    Subtract (<InlineMath>-</InlineMath>)
+                    Subtract (<InlineMath>{"-"}</InlineMath>)
                 </button>
              </div>
 
@@ -227,7 +219,7 @@ export default function AddSubtractVectorsSlide() {
                 <div className="p-6 space-y-6">
                     {/* Row A */}
                     <div className="flex items-center justify-between font-mono">
-                        <span className="text-blue-600 font-bold text-lg"><InlineMath>\vec{a}</InlineMath></span>
+                        <span className="text-blue-600 font-bold text-lg"><InlineMath>{"\\vec{a}"}</InlineMath></span>
                         <span className="text-slate-600 dark:text-slate-300">=</span>
                         <span className="bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded text-blue-700 dark:text-blue-300">
                             <InlineMath>{`\\langle ${vecA.x.toFixed(1)}, ${vecA.y.toFixed(1)} \\rangle`}</InlineMath>
@@ -243,7 +235,7 @@ export default function AddSubtractVectorsSlide() {
 
                     {/* Row B */}
                     <div className="flex items-center justify-between font-mono">
-                        <span className="text-purple-600 font-bold text-lg"><InlineMath>\vec{b}</InlineMath></span>
+                        <span className="text-purple-600 font-bold text-lg"><InlineMath>{"\\vec{b}"}</InlineMath></span>
                         <span className="text-slate-600 dark:text-slate-300">=</span>
                         <span className="bg-purple-50 dark:bg-purple-900/20 px-3 py-1 rounded text-purple-700 dark:text-purple-300">
                             <InlineMath>{`\\langle ${vecB.x.toFixed(1)}, ${vecB.y.toFixed(1)} \\rangle`}</InlineMath>
@@ -254,7 +246,7 @@ export default function AddSubtractVectorsSlide() {
 
                     {/* Result */}
                     <div className="flex items-center justify-between font-mono bg-emerald-50 dark:bg-emerald-900/20 p-3 rounded-lg border border-emerald-100 dark:border-emerald-800">
-                        <span className="text-emerald-600 font-bold text-lg"><InlineMath>\vec{R}</InlineMath></span>
+                        <span className="text-emerald-600 font-bold text-lg"><InlineMath>{"\\vec{R}"}</InlineMath></span>
                         <span className="text-emerald-800 dark:text-emerald-200">=</span>
                         <span className="font-bold text-emerald-700 dark:text-emerald-300">
                             <InlineMath>{`\\langle ${vecResult.x.toFixed(1)}, ${vecResult.y.toFixed(1)} \\rangle`}</InlineMath>
@@ -274,13 +266,13 @@ export default function AddSubtractVectorsSlide() {
                 </p>
                 <div className="bg-white dark:bg-slate-800 p-3 rounded border border-slate-200 dark:border-slate-700 font-mono text-center">
                     {mode === 'add' 
-                        ? <InlineMath>{`x_R = x_a + x_b`}</InlineMath> 
-                        : <InlineMath>{`x_R = x_a - x_b`}</InlineMath>
+                        ? <InlineMath>{"x_R = x_a + x_b"}</InlineMath> 
+                        : <InlineMath>{"x_R = x_a - x_b"}</InlineMath>
                     }
                     <br/>
                     {mode === 'add' 
-                        ? <InlineMath>{`y_R = y_a + y_b`}</InlineMath> 
-                        : <InlineMath>{`y_R = y_a - y_b`}</InlineMath>
+                        ? <InlineMath>{"y_R = y_a + y_b"}</InlineMath> 
+                        : <InlineMath>{"y_R = y_a - y_b"}</InlineMath>
                     }
                 </div>
             </div>

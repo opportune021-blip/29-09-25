@@ -70,7 +70,7 @@ export default function SubtractEndToEndSlide() {
             The "Tail-to-Tail" Shortcut
           </h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Another way to find <InlineMath>\vec{R} = \vec{a} - \vec{b}</InlineMath> is to place both tails together. 
+            Another way to find <InlineMath>{"\\vec{R} = \\vec{a} - \\vec{b}"}</InlineMath> is to place both tails together. 
             The difference vector connects the two heads... but which way does it point?
           </p>
         </div>
@@ -81,7 +81,7 @@ export default function SubtractEndToEndSlide() {
           <div className="bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 relative h-[450px] overflow-hidden select-none shadow-inner flex items-center justify-center">
             
             <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-800/90 px-3 py-2 rounded shadow text-sm z-10">
-                <div className="font-bold text-slate-700 dark:text-slate-200 mb-1">Goal: <InlineMath>\vec{a} - \vec{b}</InlineMath></div>
+                <div className="font-bold text-slate-700 dark:text-slate-200 mb-1">Goal: <InlineMath>{"\\vec{a} - \\vec{b}"}</InlineMath></div>
                 <div className="text-xs text-slate-500">Connect the heads to find the difference.</div>
             </div>
 
@@ -105,7 +105,7 @@ export default function SubtractEndToEndSlide() {
                     x2={vecA.x * GRID} y2={-vecA.y * GRID} 
                     stroke="#3B82F6" strokeWidth="4" markerEnd="url(#head-a-sub)" 
                 />
-                <text x={vecA.x * GRID + 10} y={-vecA.y * GRID} fill="#3B82F6" fontWeight="bold"><InlineMath>\vec{a}</InlineMath></text>
+                <text x={vecA.x * GRID + 10} y={-vecA.y * GRID} fill="#3B82F6" fontWeight="bold"><InlineMath>{"\\vec{a}"}</InlineMath></text>
 
                 {/* Vector B (Tail-to-Tail) */}
                 <line 
@@ -113,7 +113,7 @@ export default function SubtractEndToEndSlide() {
                     x2={vecB.x * GRID} y2={-vecB.y * GRID} 
                     stroke="#9333EA" strokeWidth="4" markerEnd="url(#head-b-sub)" 
                 />
-                <text x={vecB.x * GRID - 20} y={-vecB.y * GRID - 10} fill="#9333EA" fontWeight="bold"><InlineMath>\vec{b}</InlineMath></text>
+                <text x={vecB.x * GRID - 20} y={-vecB.y * GRID - 10} fill="#9333EA" fontWeight="bold"><InlineMath>{"\\vec{b}"}</InlineMath></text>
 
                 {/* The Resultant Guess */}
                 {guessDirection !== 'none' && (
@@ -143,13 +143,13 @@ export default function SubtractEndToEndSlide() {
                             onClick={() => handleGuess('AtoB')}
                             className="bg-white hover:bg-slate-50 text-slate-700 px-4 py-2 rounded shadow-lg border border-slate-200 font-bold transform hover:scale-105 transition-all"
                         >
-                            Draw from <InlineMath>\vec{a}</InlineMath> to <InlineMath>\vec{b}</InlineMath>
+                            Draw from <InlineMath>{"\\vec{a}"}</InlineMath> to <InlineMath>{"\\vec{b}"}</InlineMath>
                         </button>
                         <button 
                             onClick={() => handleGuess('BtoA')}
                             className="bg-white hover:bg-slate-50 text-slate-700 px-4 py-2 rounded shadow-lg border border-slate-200 font-bold transform hover:scale-105 transition-all"
                         >
-                            Draw from <InlineMath>\vec{b}</InlineMath> to <InlineMath>\vec{a}</InlineMath>
+                            Draw from <InlineMath>{"\\vec{b}"}</InlineMath> to <InlineMath>{"\\vec{a}"}</InlineMath>
                         </button>
                     </div>
                 </div>
@@ -164,7 +164,7 @@ export default function SubtractEndToEndSlide() {
                 {!showValidation ? (
                     <div className="text-center text-slate-500">
                         <div className="text-4xl mb-4">🤔</div>
-                        <p>Which vector represents <InlineMath>\vec{a} - \vec{b}</InlineMath>?</p>
+                        <p>Which vector represents <InlineMath>{"\\vec{a} - \\vec{b}"}</InlineMath>?</p>
                         <p className="text-sm mt-2">Make a choice on the diagram to verify.</p>
                     </div>
                 ) : (
@@ -178,7 +178,7 @@ export default function SubtractEndToEndSlide() {
                                 <div className="text-4xl mb-4">✅</div>
                                 <h3 className="text-xl font-bold text-green-600 mb-2">Correct!</h3>
                                 <p className="text-slate-600 dark:text-slate-300 mb-4">
-                                    <InlineMath>\vec{a} - \vec{b}</InlineMath> points from the head of <strong>B</strong> to the head of <strong>A</strong>.
+                                    <InlineMath>{"\\vec{a} - \\vec{b}"}</InlineMath> points from the head of <strong>B</strong> to the head of <strong>A</strong>.
                                 </p>
                                 <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded text-sm text-green-800 dark:text-green-200 font-mono">
                                     Tip: "Subtracted ends at Start, Subtractor ends at Tail" ... or just remember <strong>"Destination minus Origin"</strong>. 
@@ -190,7 +190,7 @@ export default function SubtractEndToEndSlide() {
                                 <div className="text-4xl mb-4">❌</div>
                                 <h3 className="text-xl font-bold text-red-500 mb-2">Oops!</h3>
                                 <p className="text-slate-600 dark:text-slate-300 mb-4">
-                                    That vector actually represents <InlineMath>\vec{b} - \vec{a}</InlineMath>.
+                                    That vector actually represents <InlineMath>{"\\vec{b} - \\vec{a}"}</InlineMath>.
                                 </p>
                                 <button 
                                     onClick={reset}
@@ -213,10 +213,10 @@ export default function SubtractEndToEndSlide() {
                 >
                     <h4 className="font-bold text-blue-800 dark:text-blue-300 mb-2">Verification</h4>
                     <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                        We can verify this by checking the path. Start at the origin, go along <InlineMath>\vec{b}</InlineMath>, then add our difference vector <InlineMath>(\vec{a}-\vec{b})</InlineMath>. We should end up at <InlineMath>\vec{a}</InlineMath>.
+                        We can verify this by checking the path. Start at the origin, go along <InlineMath>{"\\vec{b}"}</InlineMath>, then add our difference vector <InlineMath>{"(\\vec{a}-\\vec{b})"}</InlineMath>. We should end up at <InlineMath>{"\\vec{a}"}</InlineMath>.
                     </p>
                     <div className="font-mono text-center bg-white dark:bg-slate-800 p-3 rounded border border-blue-200 dark:border-slate-600">
-                        <BlockMath>{`\\vec{b} + (\\vec{a} - \\vec{b}) = \\vec{a}`}</BlockMath>
+                        <BlockMath>{"\\vec{b} + (\\vec{a} - \\vec{b}) = \\vec{a}"}</BlockMath>
                     </div>
                 </motion.div>
             )}

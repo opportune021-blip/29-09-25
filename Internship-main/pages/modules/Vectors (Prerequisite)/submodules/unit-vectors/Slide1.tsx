@@ -43,7 +43,7 @@ export default function UnitVectorsIntroSlide() {
             
             {/* Header */}
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">The Building Blocks: <InlineMath>\hat{i}</InlineMath> and <InlineMath>\hat{j}</InlineMath></h2>
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">The Building Blocks: <InlineMath>{"\\hat{i}"}</InlineMath> and <InlineMath>{"\\hat{j}"}</InlineMath></h2>
               <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 A <strong>unit vector</strong> has a magnitude of exactly 1. We use special unit vectors to describe direction in the x and y axes.
               </p>
@@ -58,7 +58,7 @@ export default function UnitVectorsIntroSlide() {
                 <div className="absolute top-4 right-4 flex flex-col gap-3">
                     <div className="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
                         <div className="flex items-center gap-2 text-orange-600 font-bold mb-1">
-                            <span className="text-lg"><InlineMath>\hat{i}</InlineMath></span>
+                            <span className="text-lg"><InlineMath>{"\\hat{i}"}</InlineMath></span>
                             <span className="text-xs uppercase text-slate-500">"i-hat"</span>
                         </div>
                         <div className="text-xs text-slate-600 dark:text-slate-300">
@@ -68,7 +68,7 @@ export default function UnitVectorsIntroSlide() {
                     </div>
                     <div className="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
                         <div className="flex items-center gap-2 text-emerald-600 font-bold mb-1">
-                            <span className="text-lg"><InlineMath>\hat{j}</InlineMath></span>
+                            <span className="text-lg"><InlineMath>{"\\hat{j}"}</InlineMath></span>
                             <span className="text-xs uppercase text-slate-500">"j-hat"</span>
                         </div>
                         <div className="text-xs text-slate-600 dark:text-slate-300">
@@ -124,14 +124,14 @@ export default function UnitVectorsIntroSlide() {
                         animate={{ x: (xVal * GRID) / 2, y: 20 }} 
                         textAnchor="middle" fill="#F97316" fontWeight="bold" fontSize="14"
                     >
-                        {xVal}<InlineMath>\hat{i}</InlineMath>
+                        {xVal}<InlineMath>{"\\hat{i}"}</InlineMath>
                     </motion.text>
 
                      <motion.text 
                         animate={{ x: xVal * GRID + 20, y: -(yVal * GRID) / 2 }} 
                         dominantBaseline="middle" fill="#10B981" fontWeight="bold" fontSize="14"
                     >
-                        {yVal}<InlineMath>\hat{j}</InlineMath>
+                        {yVal}<InlineMath>{"\\hat{j}"}</InlineMath>
                     </motion.text>
 
                   </g>
@@ -148,19 +148,19 @@ export default function UnitVectorsIntroSlide() {
                     <div className="space-y-4">
                         <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg flex flex-col gap-2">
                              <div className="flex items-center gap-2">
-                                <span className="text-orange-600 font-bold"><InlineMath>\hat{i} = \langle 1, 0 \rangle</InlineMath></span>
+                                <span className="text-orange-600 font-bold"><InlineMath>{"\\hat{i} = \\langle 1, 0 \\rangle"}</InlineMath></span>
                                 <span className="text-sm text-slate-500">Unit vector in x-direction</span>
                              </div>
                              <div className="flex items-center gap-2">
-                                <span className="text-emerald-600 font-bold"><InlineMath>\hat{j} = \langle 0, 1 \rangle</InlineMath></span>
+                                <span className="text-emerald-600 font-bold"><InlineMath>{"\\hat{j} = \\langle 0, 1 \\rangle"}</InlineMath></span>
                                 <span className="text-sm text-slate-500">Unit vector in y-direction</span>
                              </div>
                         </div>
 
                         <div className="text-sm text-slate-600 dark:text-slate-400">
-                            Any vector <InlineMath>\vec{v} = \langle x, y \rangle</InlineMath> can be written as:
+                            Any vector <InlineMath>{"\\vec{v} = \\langle x, y \\rangle"}</InlineMath> can be written as:
                             <div className="my-2 text-center text-lg font-bold text-slate-800 dark:text-white">
-                                <InlineMath>\vec{v} = x\hat{i} + y\hat{j}</InlineMath>
+                                <InlineMath>{"\\vec{v} = x\\hat{i} + y\\hat{j}"}</InlineMath>
                             </div>
                         </div>
                     </div>
@@ -173,7 +173,7 @@ export default function UnitVectorsIntroSlide() {
                     {/* X Control */}
                     <div className="mb-6">
                         <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-orange-600"><InlineMath>x</InlineMath> component</span>
+                            <span className="font-bold text-orange-600"><InlineMath>{"x"}</InlineMath> component</span>
                             <span className="font-mono bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 px-2 rounded">{xVal}</span>
                         </div>
                         <input 
@@ -186,7 +186,7 @@ export default function UnitVectorsIntroSlide() {
                     {/* Y Control */}
                     <div className="mb-6">
                         <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-emerald-600"><InlineMath>y</InlineMath> component</span>
+                            <span className="font-bold text-emerald-600"><InlineMath>{"y"}</InlineMath> component</span>
                             <span className="font-mono bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 px-2 rounded">{yVal}</span>
                         </div>
                         <input 

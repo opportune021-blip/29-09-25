@@ -12,7 +12,7 @@ export const combinedVectorOperationsSlides: Slide[] = [
     id: 'combined-ops'
   },
   {
-    type: 'quiz',
+    type: 'interactive',
     title: 'Vector operations review',
     component: OpsReviewSlide,
     id: 'ops-review'

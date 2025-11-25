@@ -55,16 +55,10 @@ export default function AddSubtractEndToEndSlide() {
   // Drag Handler
   const onDragB = (_: any, info: any) => {
     // Just visual update handled by Framer mostly, but we track point for snap logic
-    // We need the ACTUAL x/y. Framer's onDrag gives delta.
-    // We'll update state onDragEnd or use a ref-based approach for smooth snapping.
-    // For this simple puzzle, checking onDragEnd is sufficient and cleaner.
   };
 
   const onDragEndB = (_: any, info: any) => {
     // Calculate final position based on delta + original
-    // Note: Framer's `info.point` is page relative. `info.offset` is drag distance.
-    // We need to sync our state `bPos` with where it landed.
-    
     const newX = bPos.x + info.offset.x;
     const newY = bPos.y + info.offset.y;
 
@@ -110,13 +104,13 @@ export default function AddSubtractEndToEndSlide() {
                 onClick={() => setMode('add')}
                 className={`px-6 py-2 rounded-full font-bold transition-all ${mode === 'add' ? 'bg-blue-600 text-white shadow-lg scale-105' : 'bg-white text-slate-600 border border-slate-300'}`}
             >
-                Addition (<InlineMath>\vec{a} + \vec{b}</InlineMath>)
+                Addition (<InlineMath>{"\\vec{a} + \\vec{b}"}</InlineMath>)
             </button>
             <button
                 onClick={() => setMode('subtract')}
                 className={`px-6 py-2 rounded-full font-bold transition-all ${mode === 'subtract' ? 'bg-orange-600 text-white shadow-lg scale-105' : 'bg-white text-slate-600 border border-slate-300'}`}
             >
-                Subtraction (<InlineMath>\vec{a} - \vec{b}</InlineMath>)
+                Subtraction (<InlineMath>{"\\vec{a} - \\vec{b}"}</InlineMath>)
             </button>
         </div>
 
@@ -158,7 +152,7 @@ export default function AddSubtractEndToEndSlide() {
                         stroke="#3B82F6" strokeWidth="4" markerEnd="url(#head-a-p)" 
                     />
                     <text x={originA.x + (vecA.x * GRID)/2} y={originA.y - (vecA.y * GRID)/2 - 10} fill="#3B82F6" fontWeight="bold">
-                        <InlineMath>\vec{a}</InlineMath>
+                        <InlineMath>{"\\vec{a}"}</InlineMath>
                     </text>
                 </g>
 
@@ -175,7 +169,7 @@ export default function AddSubtractEndToEndSlide() {
                             stroke="#10B981" strokeWidth="5" markerEnd="url(#head-res-p)" 
                         />
                          <text x={originA.x + (resX * GRID)/2} y={originA.y - (resY * GRID)/2 + 20} fill="#10B981" fontWeight="bold">
-                            <InlineMath>\vec{R}</InlineMath>
+                            <InlineMath>{"\\vec{R}"}</InlineMath>
                         </text>
                     </motion.g>
                 )}
@@ -218,7 +212,7 @@ export default function AddSubtractEndToEndSlide() {
         {/* Footer Info */}
         <div className="flex justify-between items-center text-sm text-slate-500">
             <div>
-                <strong>Tip:</strong> The order of addition doesn't matter (<InlineMath>\vec{a}+\vec{b} = \vec{b}+\vec{a}</InlineMath>), but subtraction order does!
+                <strong>Tip:</strong> The order of addition doesn't matter (<InlineMath>{"\\vec{a}+\\vec{b} = \\vec{b}+\\vec{a}"}</InlineMath>), but subtraction order does!
             </div>
             {isSnapped && (
                 <button 

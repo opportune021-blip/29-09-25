@@ -59,8 +59,8 @@ export default function FindingUnitVectorSlide() {
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Finding a Unit Vector</h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            To find a unit vector <InlineMath>\hat{u}</InlineMath> in the same direction as <InlineMath>\vec{v}</InlineMath>, 
-            we divide <InlineMath>\vec{v}</InlineMath> by its own length (magnitude). This process is called <strong>normalization</strong>.
+            To find a unit vector <InlineMath>{"\\hat{u}"}</InlineMath> in the same direction as <InlineMath>{"\\vec{v}"}</InlineMath>, 
+            we divide <InlineMath>{"\\vec{v}"}</InlineMath> by its own length (magnitude). This process is called <strong>normalization</strong>.
           </p>
         </div>
 
@@ -104,10 +104,10 @@ export default function FindingUnitVectorSlide() {
 
                 {/* Labels */}
                 <text x={vec.x * GRID / 2} y={-vec.y * GRID / 2 - 15} textAnchor="middle" fill="#3B82F6" fontWeight="bold" fontSize="14">
-                    <InlineMath>\vec{v}</InlineMath>
+                    <InlineMath>{"\\vec{v}"}</InlineMath>
                 </text>
                 <text x={unitVec.x * GRID * 1.5} y={-unitVec.y * GRID * 1.5 + 15} textAnchor="middle" fill="#F97316" fontWeight="bold" fontSize="14">
-                    <InlineMath>\hat{u}</InlineMath>
+                    <InlineMath>{"\\hat{u}"}</InlineMath>
                 </text>
 
               </g>
@@ -135,7 +135,7 @@ export default function FindingUnitVectorSlide() {
             
             {/* The Formula */}
             <div className="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl text-center border border-slate-200 dark:border-slate-700">
-                <BlockMath>{`\\hat{u} = \\frac{\\vec{v}}{|\\vec{v}|}`}</BlockMath>
+                <BlockMath>{"\\hat{u} = \\frac{\\vec{v}}{|\\vec{v}|}"}</BlockMath>
             </div>
 
             {/* Steps Container */}
@@ -146,7 +146,7 @@ export default function FindingUnitVectorSlide() {
                     <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
                     <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wide mb-2">Step 1: Find Magnitude</h3>
                     <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                        How long is <InlineMath>\vec{v}</InlineMath>?
+                        How long is <InlineMath>{"\\vec{v}"}</InlineMath>?
                     </div>
                     <div className="font-mono bg-slate-50 dark:bg-slate-900 p-3 rounded text-blue-800 dark:text-blue-200">
                         <BlockMath>{`|\\vec{v}| = \\sqrt{${vec.x.toFixed(1)}^2 + ${vec.y.toFixed(1)}^2} = ${magnitude.toFixed(2)}`}</BlockMath>
@@ -158,7 +158,7 @@ export default function FindingUnitVectorSlide() {
                     <div className="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
                     <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wide mb-2">Step 2: Divide Components</h3>
                     <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                        Scale <InlineMath>\vec{v}</InlineMath> down by {magnitude.toFixed(2)}.
+                        Scale <InlineMath>{"\\vec{v}"}</InlineMath> down by {magnitude.toFixed(2)}.
                     </div>
                     <div className="font-mono bg-slate-50 dark:bg-slate-900 p-3 rounded text-orange-800 dark:text-orange-200 overflow-x-auto">
                         <BlockMath>

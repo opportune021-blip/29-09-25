@@ -59,7 +59,7 @@ export default function CombinedOpsSlide() {
               <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Linear Combinations</h2>
               <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 We can combine scalar multiplication and addition to create any new vector. 
-                The general form is <InlineMath>c_1 \vec{a} + c_2 \vec{b}</InlineMath>.
+                The general form is <InlineMath>{"c_1 \\vec{a} + c_2 \\vec{b}"}</InlineMath>.
               </p>
             </div>
 
@@ -138,10 +138,10 @@ export default function CombinedOpsSlide() {
 
                 <div className="absolute top-4 left-4 flex flex-col gap-2">
                     <div className="text-xs bg-white/90 px-2 py-1 rounded text-slate-500 shadow-sm border">
-                        <span className="text-blue-600 font-bold">Blue:</span> Scaled <InlineMath>\vec{a}</InlineMath>
+                        <span className="text-blue-600 font-bold">Blue:</span> Scaled <InlineMath>{"\\vec{a}"}</InlineMath>
                     </div>
                     <div className="text-xs bg-white/90 px-2 py-1 rounded text-slate-500 shadow-sm border">
-                        <span className="text-purple-600 font-bold">Purple:</span> Scaled <InlineMath>\vec{b}</InlineMath>
+                        <span className="text-purple-600 font-bold">Purple:</span> Scaled <InlineMath>{"\\vec{b}"}</InlineMath>
                     </div>
                 </div>
 
@@ -157,7 +157,7 @@ export default function CombinedOpsSlide() {
                     {/* C1 Control */}
                     <div className="mb-6">
                         <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-blue-600">Scalar <InlineMath>c_1</InlineMath> (for <InlineMath>\vec{a}</InlineMath>)</span>
+                            <span className="font-bold text-blue-600">Scalar <InlineMath>{"c_1"}</InlineMath> (for <InlineMath>{"\\vec{a}"}</InlineMath>)</span>
                             <span className="font-mono bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 rounded">{c1}</span>
                         </div>
                         <input 
@@ -170,7 +170,7 @@ export default function CombinedOpsSlide() {
                     {/* C2 Control */}
                     <div>
                         <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-purple-600">Scalar <InlineMath>c_2</InlineMath> (for <InlineMath>\vec{b}</InlineMath>)</span>
+                            <span className="font-bold text-purple-600">Scalar <InlineMath>{"c_2"}</InlineMath> (for <InlineMath>{"\\vec{b}"}</InlineMath>)</span>
                             <span className="font-mono bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 px-2 rounded">{c2}</span>
                         </div>
                         <input 
@@ -202,16 +202,16 @@ export default function CombinedOpsSlide() {
                 {/* Presets */}
                 <div className="grid grid-cols-2 gap-2">
                     <button onClick={() => { setC1(1); setC2(1); }} className="px-3 py-2 text-xs font-bold bg-white border hover:bg-slate-50 rounded">
-                        Basic Sum (<InlineMath>1, 1</InlineMath>)
+                        Basic Sum (<InlineMath>{"1, 1"}</InlineMath>)
                     </button>
                     <button onClick={() => { setC1(1); setC2(-1); }} className="px-3 py-2 text-xs font-bold bg-white border hover:bg-slate-50 rounded">
-                        Subtraction (<InlineMath>1, -1</InlineMath>)
+                        Subtraction (<InlineMath>{"1, -1"}</InlineMath>)
                     </button>
                     <button onClick={() => { setC1(2); setC2(2); }} className="px-3 py-2 text-xs font-bold bg-white border hover:bg-slate-50 rounded">
-                        Double Sum (<InlineMath>2, 2</InlineMath>)
+                        Double Sum (<InlineMath>{"2, 2"}</InlineMath>)
                     </button>
                     <button onClick={() => { setC1(0); setC2(0); }} className="px-3 py-2 text-xs font-bold bg-white border hover:bg-slate-50 rounded">
-                        Zero Vector (<InlineMath>0, 0</InlineMath>)
+                        Zero Vector (<InlineMath>{"0, 0"}</InlineMath>)
                     </button>
                 </div>
 

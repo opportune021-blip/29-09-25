@@ -19,7 +19,7 @@ const questions: Question[] = [
     id: 1,
     text: (
       <span>
-        If <InlineMath>\vec{v} = \langle 3, -4 \rangle</InlineMath>, what is its magnitude <InlineMath>|\vec{v}|</InlineMath>?
+        If <InlineMath>{"\\vec{v} = \\langle 3, -4 \\rangle"}</InlineMath>, what is its magnitude <InlineMath>{"|\\vec{v}|"}</InlineMath>?
       </span>
     ),
     options: [
@@ -30,7 +30,7 @@ const questions: Question[] = [
     ],
     explanation: (
       <span>
-        Magnitude is <InlineMath>\sqrt{3^2 + (-4)^2} = \sqrt{9 + 16} = \sqrt{25} = 5</InlineMath>. Remember, magnitude is always positive!
+        Magnitude is <InlineMath>{"\\sqrt{3^2 + (-4)^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5"}</InlineMath>. Remember, magnitude is always positive!
       </span>
     )
   },
@@ -49,19 +49,19 @@ const questions: Question[] = [
     id: 3,
     text: (
       <span>
-        Given <InlineMath>\vec{u} = \langle 1, 2 \rangle</InlineMath> and <InlineMath>\vec{v} = \langle 3, 1 \rangle</InlineMath>, calculate <InlineMath>2\vec{u} - \vec{v}</InlineMath>.
+        Given <InlineMath>{"\\vec{u} = \\langle 1, 2 \\rangle"}</InlineMath> and <InlineMath>{"\\vec{v} = \\langle 3, 1 \\rangle"}</InlineMath>, calculate <InlineMath>{"2\\vec{u} - \\vec{v}"}</InlineMath>.
       </span>
     ),
     options: [
-      { label: <InlineMath>\langle -1, 3 \rangle</InlineMath>, isCorrect: true },
-      { label: <InlineMath>\langle 5, 5 \rangle</InlineMath>, isCorrect: false },
-      { label: <InlineMath>\langle -2, 1 \rangle</InlineMath>, isCorrect: false },
-      { label: <InlineMath>\langle 2, 3 \rangle</InlineMath>, isCorrect: false }
+      { label: <InlineMath>{"\\langle -1, 3 \\rangle"}</InlineMath>, isCorrect: true },
+      { label: <InlineMath>{"\\langle 5, 5 \\rangle"}</InlineMath>, isCorrect: false },
+      { label: <InlineMath>{"\\langle -2, 1 \\rangle"}</InlineMath>, isCorrect: false },
+      { label: <InlineMath>{"\\langle 2, 3 \\rangle"}</InlineMath>, isCorrect: false }
     ],
     explanation: (
       <div className="text-left">
-        First, scale <InlineMath>\vec{u}</InlineMath>: <InlineMath>2\langle 1, 2 \rangle = \langle 2, 4 \rangle</InlineMath>.<br/>
-        Then subtract <InlineMath>\vec{v}</InlineMath>: <InlineMath>\langle 2-3, 4-1 \rangle = \langle -1, 3 \rangle</InlineMath>.
+        First, scale <InlineMath>{"\\vec{u}"}</InlineMath>: <InlineMath>{"2\\langle 1, 2 \\rangle = \\langle 2, 4 \\rangle"}</InlineMath>.<br/>
+        Then subtract <InlineMath>{"\\vec{v}"}</InlineMath>: <InlineMath>{"\\langle 2-3, 4-1 \\rangle = \\langle -1, 3 \\rangle"}</InlineMath>.
       </div>
     )
   },
@@ -109,7 +109,7 @@ export default function OpsReviewSlide() {
     id: 'vector-ops-review-quiz',
     conceptId: 'vector-review',
     conceptName: 'Vector Operations Review',
-    type: 'quiz',
+    type: 'learning', // Changed from 'quiz' to 'learning'
     description: 'Comprehensive review of vector basics, arithmetic, and properties.'
   };
 

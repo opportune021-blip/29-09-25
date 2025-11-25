@@ -66,7 +66,7 @@ export default function AddMagDirSlide1() {
               <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">The "Component Method"</h2>
               <p className="text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
                 You cannot simply add magnitudes and angles together. 
-                <br/>To add <InlineMath>\vec{A}</InlineMath> and <InlineMath>\vec{B}</InlineMath>, we must first <strong>resolve</strong> them into x and y components.
+                <br/>To add <InlineMath>{"\\vec{A}"}</InlineMath> and <InlineMath>{"\\vec{B}"}</InlineMath>, we must first <strong>resolve</strong> them into x and y components.
               </p>
             </div>
 
@@ -189,7 +189,7 @@ export default function AddMagDirSlide1() {
                             <tbody className="font-mono">
                                 {/* Row A */}
                                 <tr className="bg-white dark:bg-slate-800 border-b border-slate-100 dark:border-slate-700">
-                                    <td className="p-3 font-bold text-blue-600"><InlineMath>\vec{A}</InlineMath></td>
+                                    <td className="p-3 font-bold text-blue-600"><InlineMath>{"\\vec{A}"}</InlineMath></td>
                                     <td className="p-3 text-center">
                                         <div className="text-xs text-slate-400">{magA} cos({angA}°)</div>
                                         <div className="font-bold text-slate-700 dark:text-slate-200">{ax.toFixed(2)}</div>
@@ -201,7 +201,7 @@ export default function AddMagDirSlide1() {
                                 </tr>
                                 {/* Row B */}
                                 <tr className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-                                    <td className="p-3 font-bold text-purple-600"><InlineMath>\vec{B}</InlineMath></td>
+                                    <td className="p-3 font-bold text-purple-600"><InlineMath>{"\\vec{B}"}</InlineMath></td>
                                     <td className="p-3 text-center">
                                         <div className="text-xs text-slate-400">{magB} cos({angB}°)</div>
                                         <div className="font-bold text-slate-700 dark:text-slate-200">{bx.toFixed(2)}</div>
@@ -213,7 +213,7 @@ export default function AddMagDirSlide1() {
                                 </tr>
                                 {/* Row Result */}
                                 <tr className="bg-emerald-50 dark:bg-emerald-900/20 font-bold text-emerald-800 dark:text-emerald-200 text-lg">
-                                    <td className="p-4"><InlineMath>\vec{R}</InlineMath></td>
+                                    <td className="p-4"><InlineMath>{"\\vec{R}"}</InlineMath></td>
                                     <td className="p-4 text-center">{rx.toFixed(2)}</td>
                                     <td className="p-4 text-center">{ry.toFixed(2)}</td>
                                 </tr>

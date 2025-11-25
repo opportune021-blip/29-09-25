@@ -44,7 +44,7 @@ const questions: Question[] = [
     correctIndex: 0,
     explanation: (
       <span>
-        Vectors are denoted by an arrow <InlineMath>{`\\vec{v}`}</InlineMath> or bold face <InlineMath>{`\\mathbf{v}`}</InlineMath>. Simple italics usually represent the scalar magnitude.
+        Vectors are denoted by an arrow <InlineMath>{"\\vec{v}"}</InlineMath> or bold face <InlineMath>{"\\mathbf{v}"}</InlineMath>. Simple italics usually represent the scalar magnitude.
       </span>
     )
   },
@@ -84,7 +84,7 @@ const questions: Question[] = [
     correctIndex: 1,
     explanation: (
       <span>
-        You ended up exactly where you started. Your net change in position is zero. This is the zero vector <InlineMath>{`\\vec{0}`}</InlineMath>.
+        You ended up exactly where you started. Your net change in position is zero. This is the zero vector <InlineMath>{"\\vec{0}"}</InlineMath>.
       </span>
     )
   }
@@ -112,7 +112,7 @@ export default function RecognizingVectorsPracticeSlide() {
     id: 'recognizing-vectors-practice-quiz',
     conceptId: 'recognizing-vectors-practice',
     conceptName: 'Recognizing Vectors Practice',
-    type: 'learning',
+    type: 'learning', // Ensure this matches your InteractionType definition
     description: 'Assessment on identifying vectors and scalar distinctions.'
   };
 

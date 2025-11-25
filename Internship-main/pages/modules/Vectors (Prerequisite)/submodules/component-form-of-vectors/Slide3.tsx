@@ -19,18 +19,18 @@ const questions: Question[] = [
     id: 1,
     text: (
       <span>
-        Resolve the vector <InlineMath>\vec{v}</InlineMath> with magnitude <InlineMath>10</InlineMath> and direction <InlineMath>60^\circ</InlineMath> (standard position).
+        Resolve the vector <InlineMath>{"\\vec{v}"}</InlineMath> with magnitude <InlineMath>10</InlineMath> and direction <InlineMath>{"60^\\circ"}</InlineMath> (standard position).
       </span>
     ),
     options: [
-      { label: <InlineMath>\langle 5, 8.66 \rangle</InlineMath>, isCorrect: true }, // cos(60)=0.5, sin(60)=0.866
-      { label: <InlineMath>\langle 8.66, 5 \rangle</InlineMath>, isCorrect: false },
-      { label: <InlineMath>\langle 10, 10 \rangle</InlineMath>, isCorrect: false },
-      { label: <InlineMath>\langle 5, 5 \rangle</InlineMath>, isCorrect: false }
+      { label: <InlineMath>{"\\langle 5, 8.66 \\rangle"}</InlineMath>, isCorrect: true }, // cos(60)=0.5, sin(60)=0.866
+      { label: <InlineMath>{"\\langle 8.66, 5 \\rangle"}</InlineMath>, isCorrect: false },
+      { label: <InlineMath>{"\\langle 10, 10 \\rangle"}</InlineMath>, isCorrect: false },
+      { label: <InlineMath>{"\\langle 5, 5 \\rangle"}</InlineMath>, isCorrect: false }
     ],
     explanation: (
       <span>
-        <InlineMath>v_x = 10 \cos(60^\circ) = 5</InlineMath>. <InlineMath>v_y = 10 \sin(60^\circ) \approx 8.66</InlineMath>.
+        <InlineMath>{"v_x = 10 \\cos(60^\\circ) = 5"}</InlineMath>. <InlineMath>{"v_y = 10 \\sin(60^\\circ) \\approx 8.66"}</InlineMath>.
       </span>
     )
   },
@@ -42,14 +42,14 @@ const questions: Question[] = [
       </span>
     ),
     options: [
-      { label: <InlineMath>20 \cos(30^\circ)</InlineMath>, isCorrect: false },
-      { label: <InlineMath>20 \sin(30^\circ)</InlineMath>, isCorrect: true },
-      { label: <InlineMath>20 \tan(30^\circ)</InlineMath>, isCorrect: false },
-      { label: <InlineMath>20 / \sin(30^\circ)</InlineMath>, isCorrect: false }
+      { label: <InlineMath>{"20 \\cos(30^\\circ)"}</InlineMath>, isCorrect: false },
+      { label: <InlineMath>{"20 \\sin(30^\\circ)"}</InlineMath>, isCorrect: true },
+      { label: <InlineMath>{"20 \\tan(30^\\circ)"}</InlineMath>, isCorrect: false },
+      { label: <InlineMath>{"20 / \\sin(30^\\circ)"}</InlineMath>, isCorrect: false }
     ],
     explanation: (
       <span>
-        "East of North" means the angle is adjacent to the vertical (y-axis). The x-component is <strong>opposite</strong> to the angle, so we use Sine. Alternatively, the standard angle is 60°, and <InlineMath>\cos(60^\circ) = \sin(30^\circ)</InlineMath>.
+        "East of North" means the angle is adjacent to the vertical (y-axis). The x-component is <strong>opposite</strong> to the angle, so we use Sine. Alternatively, the standard angle is 60°, and <InlineMath>{"\\cos(60^\\circ) = \\sin(30^\\circ)"}</InlineMath>.
       </span>
     )
   },
@@ -57,7 +57,7 @@ const questions: Question[] = [
     id: 3,
     text: (
       <span>
-        Find the direction angle of <InlineMath>\vec{u} = \langle -3, 3 \rangle</InlineMath>.
+        Find the direction angle of <InlineMath>{"\\vec{u} = \\langle -3, 3 \\rangle"}</InlineMath>.
       </span>
     ),
     options: [
@@ -68,7 +68,7 @@ const questions: Question[] = [
     ],
     explanation: (
       <span>
-        The vector is in Quadrant II (negative x, positive y). <InlineMath>\tan^{-1}(-1) = -45^\circ</InlineMath>. Add 180° to get <InlineMath>135^\circ</InlineMath>.
+        The vector is in Quadrant II (negative x, positive y). <InlineMath>{"\\tan^{-1}(-1) = -45^\\circ"}</InlineMath>. Add 180° to get <InlineMath>{"135^\\circ"}</InlineMath>.
       </span>
     )
   },
@@ -76,14 +76,14 @@ const questions: Question[] = [
     id: 4,
     text: (
       <span>
-        Which vector has the same magnitude as <InlineMath>\langle 3, 4 \rangle</InlineMath> but points in the opposite direction?
+        Which vector has the same magnitude as <InlineMath>{"\\langle 3, 4 \\rangle"}</InlineMath> but points in the opposite direction?
       </span>
     ),
     options: [
-      { label: <InlineMath>\langle 4, 3 \rangle</InlineMath>, isCorrect: false },
-      { label: <InlineMath>\langle 3, -4 \rangle</InlineMath>, isCorrect: false },
-      { label: <InlineMath>\langle -3, -4 \rangle</InlineMath>, isCorrect: true },
-      { label: <InlineMath>\langle -4, -3 \rangle</InlineMath>, isCorrect: false }
+      { label: <InlineMath>{"\\langle 4, 3 \\rangle"}</InlineMath>, isCorrect: false },
+      { label: <InlineMath>{"\\langle 3, -4 \\rangle"}</InlineMath>, isCorrect: false },
+      { label: <InlineMath>{"\\langle -3, -4 \\rangle"}</InlineMath>, isCorrect: true },
+      { label: <InlineMath>{"\\langle -4, -3 \\rangle"}</InlineMath>, isCorrect: false }
     ],
     explanation: "To reverse direction, multiply by scalar -1. The magnitude remains 5, but the components become <-3, -4>."
   }
@@ -105,7 +105,7 @@ export default function ConvertReviewSlide() {
     id: 'convert-review-quiz',
     conceptId: 'vector-conversion-quiz',
     conceptName: 'Vector Conversion Review',
-    type: 'quiz',
+    type: 'learning', // Changed from 'quiz' to 'learning' to satisfy InteractionType
     description: 'Review of converting between component and polar forms.'
   };
 

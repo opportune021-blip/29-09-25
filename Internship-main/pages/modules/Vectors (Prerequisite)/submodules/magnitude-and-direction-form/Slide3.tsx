@@ -19,7 +19,7 @@ const questions: Question[] = [
     id: 1,
     text: (
       <span>
-        Calculate the direction angle <InlineMath>\theta</InlineMath> for the vector <InlineMath>\vec{v} = \langle 1, 1 \rangle</InlineMath>.
+        Calculate the direction angle <InlineMath>{"\\theta"}</InlineMath> for the vector <InlineMath>{"\\vec{v} = \\langle 1, 1 \\rangle"}</InlineMath>.
       </span>
     ),
     options: [
@@ -30,7 +30,7 @@ const questions: Question[] = [
     ],
     explanation: (
       <span>
-        <InlineMath>\tan^{-1}(1/1) = \tan^{-1}(1) = 45^\circ</InlineMath>. Since both components are positive (Quadrant I), no adjustment is needed.
+        <InlineMath>{"\\tan^{-1}(1/1) = \\tan^{-1}(1) = 45^\\circ"}</InlineMath>. Since both components are positive (Quadrant I), no adjustment is needed.
       </span>
     )
   },
@@ -38,7 +38,7 @@ const questions: Question[] = [
     id: 2,
     text: (
       <span>
-        If a vector has components <InlineMath>x = -5</InlineMath> and <InlineMath>y = 5</InlineMath>, which quadrant is it in?
+        If a vector has components <InlineMath>{"x = -5"}</InlineMath> and <InlineMath>{"y = 5"}</InlineMath>, which quadrant is it in?
       </span>
     ),
     options: [
@@ -53,7 +53,7 @@ const questions: Question[] = [
     id: 3,
     text: (
       <span>
-        When finding the direction of a vector in <strong>Quadrant III</strong> (e.g., <InlineMath>\langle -2, -2 \rangle</InlineMath>), what adjustment must be made to the calculator's result?
+        When finding the direction of a vector in <strong>Quadrant III</strong> (e.g., <InlineMath>{"\\langle -2, -2 \\rangle"}</InlineMath>), what adjustment must be made to the calculator's result?
       </span>
     ),
     options: [
@@ -72,10 +72,10 @@ const questions: Question[] = [
       </span>
     ),
     options: [
-      { label: <InlineMath>\langle 0, 10 \rangle</InlineMath>, isCorrect: false },
-      { label: <InlineMath>\langle -10, 0 \rangle</InlineMath>, isCorrect: false },
-      { label: <InlineMath>\langle 0, -10 \rangle</InlineMath>, isCorrect: true },
-      { label: <InlineMath>\langle 10, -10 \rangle</InlineMath>, isCorrect: false }
+      { label: <InlineMath>{"\\langle 0, 10 \\rangle"}</InlineMath>, isCorrect: false },
+      { label: <InlineMath>{"\\langle -10, 0 \\rangle"}</InlineMath>, isCorrect: false },
+      { label: <InlineMath>{"\\langle 0, -10 \\rangle"}</InlineMath>, isCorrect: true },
+      { label: <InlineMath>{"\\langle 10, -10 \\rangle"}</InlineMath>, isCorrect: false }
     ],
     explanation: "270° points straight down (negative y-axis). So x is 0 and y is -10."
   }
@@ -97,7 +97,7 @@ export default function VectorFormsReviewSlide() {
     id: 'vector-forms-review-quiz',
     conceptId: 'vector-forms-review',
     conceptName: 'Vector Forms Review',
-    type: 'learning',
+    type: 'learning', // Ensure type matches InteractionType (usually 'learning' or 'practice')
     description: 'Review of finding direction angles and quadrants.'
   };
 
@@ -251,7 +251,7 @@ export default function VectorFormsReviewSlide() {
                 className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-12 text-center"
             >
                 <div className="text-6xl mb-6">
-                    {score === questions.length ? '🎓' : score > questions.length/2 ? '👍' : '📝'}
+                    {score === questions.length ? '🌟' : score > questions.length/2 ? '👍' : '📚'}
                 </div>
                 <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-2">Review Complete!</h2>
                 <p className="text-slate-500 dark:text-slate-400 mb-8 text-lg">

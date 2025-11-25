@@ -36,10 +36,6 @@ export default function DirFromComp34Slide() {
     trueAngleDeg = calcAngleDeg + 360;
   }
   
-  // Math.atan returns -90 to 90. 
-  // Q3 inputs (-/-) become positive inputs to atan, so it returns Q1 angle. Need +180.
-  // Q4 inputs (+/-) become negative inputs to atan, so it returns negative angle. Need +360 for standard pos.
-
   const slideInteraction: Interaction = {
     id: 'dir-comp-3-4-explore',
     conceptId: 'direction-angle-q3-q4',
@@ -73,8 +69,8 @@ export default function DirFromComp34Slide() {
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Finding Direction (Quadrants III & IV)</h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-             Calculators only return angles between <InlineMath>-90^\circ</InlineMath> and <InlineMath>90^\circ</InlineMath>. 
-             When working in the bottom quadrants, we often need to adjust to find the standard angle <InlineMath>(0^\circ \le \theta < 360^\circ)</InlineMath>.
+             Calculators only return angles between <InlineMath>{"-90^\\circ"}</InlineMath> and <InlineMath>{"90^\\circ"}</InlineMath>. 
+             When working in the bottom quadrants, we often need to adjust to find the standard angle <InlineMath>{"(0^\\circ \\le \\theta < 360^\\circ)"}</InlineMath>.
           </p>
         </div>
 
@@ -157,7 +153,7 @@ export default function DirFromComp34Slide() {
                     </div>
                 </div>
                 <div className="text-xs text-slate-400 mt-2 italic">
-                    Note: <InlineMath>\tan^{-1}</InlineMath> always gives an answer between -90° and 90°.
+                    Note: <InlineMath>{"\\tan^{-1}"}</InlineMath> always gives an answer between -90° and 90°.
                 </div>
             </div>
 

@@ -53,7 +53,7 @@ export default function CompFromMagDirSlide() {
             <div className="text-center">
               <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Resolving Vectors</h2>
               <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                Given a magnitude <InlineMath>|\vec{v}|</InlineMath> and an angle <InlineMath>\theta</InlineMath>, 
+                Given a magnitude <InlineMath>|\vec|</InlineMath> and an angle <InlineMath>\theta</InlineMath>, 
                 we can find the components using SOH CAH TOA.
               </p>
             </div>

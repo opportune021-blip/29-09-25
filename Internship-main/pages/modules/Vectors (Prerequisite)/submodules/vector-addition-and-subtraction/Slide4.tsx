@@ -142,21 +142,21 @@ export default function AddAlgGraphicalSlide() {
                         <tbody className="divide-y divide-slate-100 dark:divide-slate-700 font-mono text-lg">
                             {/* Vec A */}
                             <tr className="group hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors">
-                                <td className="p-4 text-left pl-6 font-bold text-blue-600"><InlineMath>\vec{a}</InlineMath></td>
+                                <td className="p-4 text-left pl-6 font-bold text-blue-600"><InlineMath>{"\\vec{a}"}</InlineMath></td>
                                 <td className="p-4">{vecA.x.toFixed(1)}</td>
                                 <td className="p-4">{vecA.y.toFixed(1)}</td>
                             </tr>
                             {/* Vec B */}
                             <tr className="group hover:bg-purple-50 dark:hover:bg-purple-900/10 transition-colors">
                                 <td className="p-4 text-left pl-6 font-bold text-purple-600">
-                                    <span className="mr-2 text-slate-400 font-normal">+</span> <InlineMath>\vec{b}</InlineMath>
+                                    <span className="mr-2 text-slate-400 font-normal">+</span> <InlineMath>{"\\vec{b}"}</InlineMath>
                                 </td>
                                 <td className="p-4 border-b-2 border-slate-800 dark:border-slate-200">{vecB.x.toFixed(1)}</td>
                                 <td className="p-4 border-b-2 border-slate-800 dark:border-slate-200">{vecB.y.toFixed(1)}</td>
                             </tr>
                             {/* Result */}
                             <tr className="bg-emerald-50 dark:bg-emerald-900/10 font-bold text-emerald-700 dark:text-emerald-300">
-                                <td className="p-4 text-left pl-6"><InlineMath>\vec{R}</InlineMath></td>
+                                <td className="p-4 text-left pl-6"><InlineMath>{"\\vec{R}"}</InlineMath></td>
                                 <td className="p-4">{resX.toFixed(1)}</td>
                                 <td className="p-4">{resY.toFixed(1)}</td>
                             </tr>

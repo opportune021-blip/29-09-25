@@ -59,8 +59,8 @@ export default function ScalingUnitVectorsSlide() {
             <div className="text-center">
               <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Constructing a Vector</h2>
               <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                How do we create a vector with a specific length <InlineMath>k</InlineMath> in a specific direction?
-                <br/>Simple: Take the <strong>unit vector</strong> for that direction and multiply it by <InlineMath>k</InlineMath>.
+                How do we create a vector with a specific length <InlineMath>{"k"}</InlineMath> in a specific direction?
+                <br/>Simple: Take the <strong>unit vector</strong> for that direction and multiply it by <InlineMath>{"k"}</InlineMath>.
               </p>
             </div>
 
@@ -131,7 +131,7 @@ export default function ScalingUnitVectorsSlide() {
                     {/* Label at tip */}
                     <motion.g animate={{ x: vX * GRID, y: -vY * GRID }}>
                         <text x="10" y="0" dominantBaseline="middle" fill="#3B82F6" fontWeight="bold" fontSize="14">
-                            <InlineMath>\vec{v}</InlineMath>
+                            <InlineMath>{"\\vec{v}"}</InlineMath>
                         </text>
                     </motion.g>
 
@@ -163,7 +163,7 @@ export default function ScalingUnitVectorsSlide() {
                     {/* Magnitude Slider */}
                     <div className="mb-6">
                         <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-blue-600">Target Magnitude (<InlineMath>k</InlineMath>)</span>
+                            <span className="font-bold text-blue-600">Target Magnitude (<InlineMath>{"k"}</InlineMath>)</span>
                             <span className="font-mono bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 rounded">{targetMag.toFixed(1)}</span>
                         </div>
                         <input 
@@ -190,7 +190,7 @@ export default function ScalingUnitVectorsSlide() {
                 {/* Calculation breakdown */}
                 <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700 space-y-4">
                     
-                    <h4 className="font-bold text-slate-700 dark:text-slate-300 text-sm uppercase">1. Find Unit Vector (<InlineMath>\hat{u}</InlineMath>)</h4>
+                    <h4 className="font-bold text-slate-700 dark:text-slate-300 text-sm uppercase">1. Find Unit Vector (<InlineMath>{"\\hat{u}"}</InlineMath>)</h4>
                     <div className="font-mono text-sm bg-white dark:bg-slate-800 p-2 rounded border border-orange-200 dark:border-slate-700 text-orange-700 dark:text-orange-300">
                         <BlockMath>{`\\hat{u} = \\langle \\cos(${angle}^\\circ), \\sin(${angle}^\\circ) \\rangle`}</BlockMath>
                         <div className="text-center mt-1 text-xs text-slate-400">
@@ -200,7 +200,7 @@ export default function ScalingUnitVectorsSlide() {
 
                     <div className="flex justify-center text-slate-400 text-xl">⬇</div>
 
-                    <h4 className="font-bold text-slate-700 dark:text-slate-300 text-sm uppercase">2. Scale by <InlineMath>k</InlineMath></h4>
+                    <h4 className="font-bold text-slate-700 dark:text-slate-300 text-sm uppercase">2. Scale by <InlineMath>{"k"}</InlineMath></h4>
                     <div className="font-mono text-sm bg-white dark:bg-slate-800 p-2 rounded border border-blue-200 dark:border-slate-700 text-blue-700 dark:text-blue-300">
                         <BlockMath>{`\\vec{v} = ${targetMag} \\cdot \\hat{u}`}</BlockMath>
                         <div className="text-center mt-1 pt-1 border-t border-slate-100 dark:border-slate-700 font-bold">

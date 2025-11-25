@@ -19,7 +19,7 @@ const questions: Question[] = [
     id: 1,
     text: (
       <span>
-        To add two vectors given in magnitude/direction form (e.g., <InlineMath>10</InlineMath> at <InlineMath>30^\circ</InlineMath> and <InlineMath>20</InlineMath> at <InlineMath>90^\circ</InlineMath>), what is the <strong>first step</strong>?
+        To add two vectors given in magnitude/direction form (e.g., <InlineMath>10</InlineMath> at <InlineMath>{"30^\\circ"}</InlineMath> and <InlineMath>20</InlineMath> at <InlineMath>{"90^\\circ"}</InlineMath>), what is the <strong>first step</strong>?
       </span>
     ),
     options: [
@@ -34,7 +34,7 @@ const questions: Question[] = [
     id: 2,
     text: (
       <span>
-        You have resolved two vectors and found their sums: <InlineMath>R_x = 3</InlineMath> and <InlineMath>R_y = 4</InlineMath>. What is the magnitude of the resultant vector <InlineMath>|\vec{R}|</InlineMath>?
+        You have resolved two vectors and found their sums: <InlineMath>{"R_x = 3"}</InlineMath> and <InlineMath>{"R_y = 4"}</InlineMath>. What is the magnitude of the resultant vector <InlineMath>{"|\\vec{R}|"}</InlineMath>?
       </span>
     ),
     options: [
@@ -45,7 +45,7 @@ const questions: Question[] = [
     ],
     explanation: (
       <span>
-        Use the Pythagorean theorem: <InlineMath>|\vec{R}| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5</InlineMath>.
+        Use the Pythagorean theorem: <InlineMath>{"|\\vec{R}| = \\sqrt{3^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5"}</InlineMath>.
       </span>
     )
   },
@@ -53,7 +53,7 @@ const questions: Question[] = [
     id: 3,
     text: (
       <span>
-        If <InlineMath>R_x = -5</InlineMath> and <InlineMath>R_y = -5</InlineMath>, in which quadrant does the resultant vector lie?
+        If <InlineMath>{"R_x = -5"}</InlineMath> and <InlineMath>{"R_y = -5"}</InlineMath>, in which quadrant does the resultant vector lie?
       </span>
     ),
     options: [
@@ -68,7 +68,7 @@ const questions: Question[] = [
     id: 4,
     text: (
       <span>
-        Calculate the direction angle <InlineMath>\theta</InlineMath> for <InlineMath>\vec{R} = \langle -1, 1 \rangle</InlineMath> (in Quadrant II).
+        Calculate the direction angle <InlineMath>{"\\theta"}</InlineMath> for <InlineMath>{"\\vec{R} = \\langle -1, 1 \\rangle"}</InlineMath> (in Quadrant II).
       </span>
     ),
     options: [
@@ -79,7 +79,7 @@ const questions: Question[] = [
     ],
     explanation: (
       <span>
-        The reference angle is <InlineMath>\tan^{-1}(1/1) = 45^\circ</InlineMath>. In Q2, the angle is <InlineMath>180^\circ - 45^\circ = 135^\circ</InlineMath>.
+        The reference angle is <InlineMath>{"\\tan^{-1}(1/1) = 45^\\circ"}</InlineMath>. In Q2, the angle is <InlineMath>{"180^\\circ - 45^\\circ = 135^\\circ"}</InlineMath>.
       </span>
     )
   }
