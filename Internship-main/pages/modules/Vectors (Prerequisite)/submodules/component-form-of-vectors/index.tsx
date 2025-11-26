@@ -19,7 +19,7 @@ export const componentFormSlides: Slide[] = [
     id: 'comp-from-mag-dir-adv'
   },
   {
-    type: 'quiz',
+    type: 'interactive',
     title: 'Converting between vector components and magnitude & direction review',
     component: ConvertReviewSlide,
     id: 'convert-review'

@@ -2,317 +2,294 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SlideComponentWrapper from '../../../common-components/SlideComponentWrapper';
 import { Interaction, InteractionResponse, TrackedInteraction } from '../../../common-components/concept';
-import { InlineMath } from 'react-katex';
+import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 
-// --- DATA ---
-
-interface Question {
-  id: number;
-  text: string;
-  options: string[];
-  correctIndex: number;
-  explanation: string | React.ReactNode;
-}
-
-const questions: Question[] = [
+// --- QUIZ DATA ---
+const quizQuestions = [
   {
     id: 1,
-    text: "Which of the following measurements describes a Vector quantity?",
-    options: [
-      "10 kg",
-      "50 m/s East",
-      "20 degrees Celsius",
-      "100 Joules"
-    ],
-    correctIndex: 1,
-    explanation: (
-      <span>
-        "50 m/s East" includes both magnitude (50 m/s) and direction (East). The others are mass, temperature, and energy, which are all scalars.
-      </span>
-    )
+    question: (<span>Find the magnitude of <InlineMath>{"\\vec{v} = \\langle 3, 4 \\rangle"}</InlineMath></span>),
+    options: ["5", "7", "25", "12"],
+    correctIndex: 0,
+    explanation: "\\sqrt{3^2 + 4^2} = \\sqrt{9+16} = \\sqrt{25} = 5"
   },
   {
     id: 2,
-    text: "How is a vector variable typically represented in physics notation?",
-    options: [
-      "With a bold font or an arrow on top (e.g., \\vec{v})",
-      "With an absolute value bar (e.g., |v|)",
-      "With a simple italic letter (e.g., v)",
-      "With a subscript (e.g., v_x)"
-    ],
-    correctIndex: 0,
-    explanation: (
-      <span>
-        Vectors are denoted by an arrow <InlineMath>{"\\vec{v}"}</InlineMath> or bold face <InlineMath>{"\\mathbf{v}"}</InlineMath>. Simple italics usually represent the scalar magnitude.
-      </span>
-    )
+    question: (<span>Find the magnitude of <InlineMath>{"\\vec{u} = \\langle -5, 12 \\rangle"}</InlineMath></span>),
+    options: ["7", "13", "17", "-13"],
+    correctIndex: 1,
+    explanation: "\\sqrt{(-5)^2 + 12^2} = \\sqrt{25+144} = \\sqrt{169} = 13"
   },
   {
     id: 3,
-    text: "A car travels 50 km in a straight line to the North. This '50 km North' is called...",
-    options: [
-      "Distance",
-      "Speed",
-      "Displacement",
-      "Acceleration"
-    ],
+    question: (<span>Find magnitude: <InlineMath>{"\\vec{w} = \\langle 0, -8 \\rangle"}</InlineMath></span>),
+    options: ["0", "-8", "8", "64"],
     correctIndex: 2,
-    explanation: "Displacement is the change in position with a specific direction. Distance would just be '50 km'."
+    explanation: "\\sqrt{0^2 + (-8)^2} = \\sqrt{64} = 8. (Length is always positive!)"
   },
   {
     id: 4,
-    text: "Two vectors are considered 'equal' only if:",
-    options: [
-      "They have the same magnitude.",
-      "They have the same direction.",
-      "They start at the same point.",
-      "They have BOTH the same magnitude and direction."
-    ],
-    correctIndex: 3,
-    explanation: "Equality requires both properties to match. Position doesn't matter (vectors can be moved as long as length and angle stay the same)."
-  },
-  {
-    id: 5,
-    text: "If you walk 5 meters forward and then 5 meters backward, what is your total displacement vector?",
-    options: [
-      "10 meters",
-      "Zero vector (\\vec{0})",
-      "5 meters forward",
-      "Infinity"
-    ],
-    correctIndex: 1,
-    explanation: (
-      <span>
-        You ended up exactly where you started. Your net change in position is zero. This is the zero vector <InlineMath>{"\\vec{0}"}</InlineMath>.
-      </span>
-    )
+    question: (<span>Find magnitude: <InlineMath>{"\\vec{r} = \\langle 6, 8 \\rangle"}</InlineMath></span>),
+    options: ["14", "100", "10", "48"],
+    correctIndex: 2,
+    explanation: "\\sqrt{6^2 + 8^2} = \\sqrt{36+64} = \\sqrt{100} = 10"
   }
 ];
 
-// --- COMPONENT ---
-
-export default function RecognizingVectorsPracticeSlide() {
+export default function MagnitudeQuizSlide() {
   const [localInteractions, setLocalInteractions] = useState<Record<string, InteractionResponse>>({});
   
   // Quiz State
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentQ, setCurrentQ] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [score, setScore] = useState(0);
-  const [isCompleted, setIsCompleted] = useState(false);
+  const [quizComplete, setQuizComplete] = useState(false);
 
-  const currentQuestion = questions[currentIndex];
+  const slideInteraction: Interaction = {
+    id: 'magnitude-calculation-quiz',
+    conceptId: 'vector-magnitude-calculation',
+    conceptName: 'Calculating Magnitude',
+    type: 'learning',
+    description: 'Quiz on calculating vector magnitude from components.'
+  };
 
   const handleInteractionComplete = (response: InteractionResponse) => {
     setLocalInteractions(prev => ({ ...prev, [response.interactionId]: response }));
   };
 
-  const slideInteraction: Interaction = {
-    id: 'recognizing-vectors-practice-quiz',
-    conceptId: 'recognizing-vectors-practice',
-    conceptName: 'Recognizing Vectors Practice',
-    type: 'learning', // Ensure this matches your InteractionType definition
-    description: 'Assessment on identifying vectors and scalar distinctions.'
-  };
-
-  const handleOptionSelect = (index: number) => {
+  const handleAnswer = (index: number) => {
     if (isAnswered) return;
     setSelectedOption(index);
-  };
-
-  const handleSubmit = () => {
     setIsAnswered(true);
-    if (selectedOption === currentQuestion.correctIndex) {
-      setScore(prev => prev + 1);
+    
+    if (index === quizQuestions[currentQ].correctIndex) {
+      setScore(s => s + 1);
     }
   };
 
-  const handleNext = () => {
-    if (currentIndex < questions.length - 1) {
-      setCurrentIndex(prev => prev + 1);
+  const nextQuestion = () => {
+    if (currentQ < quizQuestions.length - 1) {
+      setCurrentQ(c => c + 1);
       setSelectedOption(null);
       setIsAnswered(false);
     } else {
-      setIsCompleted(true);
-      // Submit final score
-      const finalScore = score + (selectedOption === currentQuestion.correctIndex ? 1 : 0);
+      setQuizComplete(true);
       handleInteractionComplete({
-        interactionId: 'recognizing-vectors-practice-quiz',
-        value: Math.round((finalScore / questions.length) * 100).toString(),
+        interactionId: 'magnitude-calculation-quiz',
+        value: 'completed',
         timestamp: Date.now()
       });
     }
   };
 
-  const handleRetry = () => {
-    setCurrentIndex(0);
+  const resetQuiz = () => {
+    setCurrentQ(0);
     setScore(0);
-    setSelectedOption(null);
+    setQuizComplete(false);
     setIsAnswered(false);
-    setIsCompleted(false);
+    setSelectedOption(null);
   };
 
   const slideContent = (
-    <div className="w-full p-4 sm:p-8 flex flex-col items-center justify-center min-h-[500px]">
-      <div className="w-full max-w-2xl">
+    <div className="w-full h-full p-4 sm:p-6 flex flex-col lg:flex-row gap-6 items-stretch">
+      
+      {/* ========================================= */}
+      {/* LEFT COLUMN: THEORY (40%)                 */}
+      {/* ========================================= */}
+      <div className="lg:w-5/12 flex flex-col h-full bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
         
-        {/* Progress Header */}
-        <div className="mb-8">
-          <div className="flex justify-between items-end mb-2">
-            <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Practice Quiz</h2>
-            <span className="text-sm font-bold text-slate-500 dark:text-slate-400">
-              {isCompleted ? "Completed" : `Question ${currentIndex + 1} / ${questions.length}`}
-            </span>
-          </div>
-          <div className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-            <motion.div 
-              className="h-full bg-blue-600"
-              initial={{ width: 0 }}
-              animate={{ width: `${((currentIndex + (isCompleted ? 1 : 0)) / questions.length) * 100}%` }}
-              transition={{ duration: 0.5 }}
-            />
-          </div>
+        {/* Header */}
+        <div className="p-6 border-b border-slate-100 dark:border-slate-700">
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Calculating Magnitude</h2>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
+                Finding the length of a vector from its components.
+            </p>
         </div>
 
-        <AnimatePresence mode="wait">
-          {!isCompleted ? (
-            <motion.div
-              key={currentQuestion.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden"
-            >
-              {/* Question Text */}
-              <div className="p-6 border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
-                <h3 className="text-xl font-medium text-slate-800 dark:text-slate-100 leading-relaxed">
-                   {/* Render math if needed in question text */}
-                   {currentQuestion.text.includes("\\") ? <InlineMath>{currentQuestion.text}</InlineMath> : currentQuestion.text}
-                </h3>
-              </div>
-
-              {/* Options List */}
-              <div className="p-6 space-y-3">
-                {currentQuestion.options.map((option, idx) => {
-                  let statusClass = "border-slate-200 dark:border-slate-600 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-slate-50 dark:hover:bg-slate-700";
-                  
-                  if (isAnswered) {
-                    if (idx === currentQuestion.correctIndex) {
-                      statusClass = "border-green-500 bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-200";
-                    } else if (idx === selectedOption) {
-                      statusClass = "border-red-500 bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200";
-                    } else {
-                      statusClass = "opacity-50 border-slate-200 dark:border-slate-700";
-                    }
-                  } else if (selectedOption === idx) {
-                    statusClass = "border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 shadow-md transform scale-[1.01]";
-                  }
-
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => handleOptionSelect(idx)}
-                      disabled={isAnswered}
-                      className={`w-full p-4 text-left rounded-xl border-2 transition-all duration-200 flex items-center justify-between group ${statusClass}`}
-                    >
-                      <span className="text-lg">
-                        {option.includes("\\") ? <InlineMath>{option}</InlineMath> : option}
-                      </span>
-                      {isAnswered && idx === currentQuestion.correctIndex && (
-                        <span className="text-xl">✅</span>
-                      )}
-                      {isAnswered && idx === selectedOption && idx !== currentQuestion.correctIndex && (
-                        <span className="text-xl">❌</span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Feedback Section */}
-              <AnimatePresence>
-                {isAnswered && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="bg-slate-100 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-700"
-                  >
-                    <div className="p-6">
-                      <div className="flex items-start gap-3">
-                        <div className="text-2xl mt-1">💡</div>
-                        <div>
-                          <h4 className="font-bold text-slate-800 dark:text-slate-200 mb-1">Explanation</h4>
-                          <div className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            {currentQuestion.explanation}
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <button
-                        onClick={handleNext}
-                        className="mt-6 w-full py-3 bg-slate-900 dark:bg-blue-600 text-white rounded-xl font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
-                      >
-                        {currentIndex < questions.length - 1 ? 'Next Question ➜' : 'Finish Quiz 🏁'}
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Submit Button (Visible before answering) */}
-              {!isAnswered && (
-                <div className="p-6 pt-0">
-                  <button
-                    onClick={handleSubmit}
-                    disabled={selectedOption === null}
-                    className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-500/30 disabled:opacity-50 disabled:shadow-none hover:bg-blue-500 transition-all transform active:scale-95"
-                  >
-                    Submit Answer
-                  </button>
+        {/* Scrollable Theory */}
+        <div className="p-6 space-y-6 overflow-y-auto custom-scrollbar flex-grow">
+            
+            {/* Formula Card */}
+            <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+                <h3 className="text-xs font-bold uppercase text-slate-400 mb-3 tracking-wider">The Formula</h3>
+                <div className="text-lg font-mono text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-800 p-3 rounded border border-blue-100 dark:border-slate-700 shadow-sm">
+                    <BlockMath>{"|\\vec{v}| = \\sqrt{v_x^2 + v_y^2}"}</BlockMath>
                 </div>
-              )}
+            </div>
 
-            </motion.div>
-          ) : (
-            // Results Card
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-8 text-center"
-            >
-              <div className="w-24 h-24 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center text-5xl mx-auto mb-6">
-                {score === questions.length ? '🏆' : score > questions.length / 2 ? '👍' : '📚'}
-              </div>
-              
-              <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-2">Quiz Complete!</h2>
-              <p className="text-slate-500 dark:text-slate-400 mb-8">
-                You correctly answered <strong className="text-slate-900 dark:text-white">{score}</strong> out of <strong className="text-slate-900 dark:text-white">{questions.length}</strong> questions.
-              </p>
+            {/* Pythagorean Connection */}
+            <div>
+                <h3 className="font-bold text-slate-800 dark:text-slate-100 text-sm mb-2">Pythagorean Theorem 
 
-              <div className="flex gap-4 justify-center">
-                <button
-                  onClick={handleRetry}
-                  className="px-6 py-3 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl font-bold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
-                >
-                  Retry Quiz
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+[Image of pythagorean theorem triangle]
+</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Since the x and y components are perpendicular, they form the legs of a right triangle. The magnitude is the hypotenuse.
+                </p>
+                <div className="mt-4 flex justify-center opacity-80">
+                    {/* Mini Triangle SVG */}
+                    <svg width="120" height="80" viewBox="0 0 120 80" className="overflow-visible">
+                        <path d="M10,70 L110,70 L110,10 Z" fill="none" stroke="#64748b" strokeWidth="2" />
+                        <text x="60" y="78" fontSize="10" textAnchor="middle" fill="#64748b">vx</text>
+                        <text x="115" y="40" fontSize="10" textAnchor="start" fill="#64748b">vy</text>
+                        <text x="50" y="35" fontSize="10" textAnchor="middle" fill="#3B82F6" fontWeight="bold">|v|</text>
+                    </svg>
+                </div>
+            </div>
+
+            {/* Important Note */}
+            <div className="bg-amber-50 dark:bg-amber-900/10 p-4 rounded-lg border border-amber-200 dark:border-amber-800 flex gap-3">
+                <span className="text-xl">💡</span>
+                <div className="text-sm text-amber-900 dark:text-amber-100">
+                    <strong>Always Positive:</strong> Magnitude is a length, so it can never be negative. Squaring negative components makes them positive!
+                </div>
+            </div>
+
+        </div>
       </div>
+
+      {/* ========================================= */}
+      {/* RIGHT COLUMN: QUIZ & KEY POINTS (60%)     */}
+      {/* ========================================= */}
+      <div className="lg:w-7/12 flex flex-col gap-4 h-full">
+        
+        {/* 1. Quiz Container */}
+        <div className="flex-grow bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-inner flex flex-col">
+            
+            <div className="flex justify-between items-center mb-6">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Practice Quiz</span>
+                <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-slate-500">Score: {score}/{quizQuestions.length}</span>
+                    <div className="flex gap-1">
+                        {quizQuestions.map((_, i) => (
+                            <div key={i} className={`w-2 h-2 rounded-full ${i < currentQ ? 'bg-blue-500' : i === currentQ ? 'bg-blue-200 animate-pulse' : 'bg-slate-300'}`} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <AnimatePresence mode="wait">
+                {!quizComplete ? (
+                    <motion.div
+                        key={currentQ}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        className="flex-grow flex flex-col"
+                    >
+                        <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 mb-4 text-center">
+                            <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100">
+                                {quizQuestions[currentQ].question}
+                            </h3>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3 mb-4">
+                            {quizQuestions[currentQ].options.map((opt, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => handleAnswer(idx)}
+                                    disabled={isAnswered}
+                                    className={`p-4 rounded-xl text-base font-bold transition-all ${
+                                        isAnswered 
+                                            ? idx === quizQuestions[currentQ].correctIndex 
+                                                ? "bg-green-500 text-white shadow-lg scale-105"
+                                                : idx === selectedOption 
+                                                    ? "bg-red-500 text-white opacity-50"
+                                                    : "bg-white dark:bg-slate-800 text-slate-400 opacity-50"
+                                            : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-700 hover:border-blue-300 border-2 border-transparent shadow-sm"
+                                    }`}
+                                >
+                                    {opt}
+                                </button>
+                            ))}
+                        </div>
+
+                        {isAnswered && (
+                            <motion.div 
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="mt-auto bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-100 dark:border-blue-800 flex justify-between items-center"
+                            >
+                                <div className="text-sm text-blue-800 dark:text-blue-200">
+                                    <span className="font-bold mr-2">Explanation:</span>
+                                    <InlineMath>{quizQuestions[currentQ].explanation}</InlineMath>
+                                </div>
+                                <button 
+                                    onClick={nextQuestion}
+                                    className="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-colors text-sm"
+                                >
+                                    Next
+                                </button>
+                            </motion.div>
+                        )}
+                    </motion.div>
+                ) : (
+                    <motion.div 
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="flex-grow flex flex-col items-center justify-center text-center"
+                    >
+                        <div className="text-6xl mb-4">🎉</div>
+                        <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-2">Quiz Complete!</h2>
+                        <p className="text-slate-500 mb-8">You scored {score} out of {quizQuestions.length}.</p>
+                        <button 
+                            onClick={resetQuiz}
+                            className="px-8 py-3 bg-slate-800 text-white rounded-full font-bold hover:bg-slate-700 transition-colors"
+                        >
+                            Restart Quiz
+                        </button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+
+        {/* 2. Key Points Section */}
+        <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex-shrink-0">
+            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span>📌</span> Key Takeaways
+            </h4>
+           <ul className="text-sm text-slate-600 dark:text-slate-400 space-y-2"> 
+  <li className="flex items-start gap-2">
+    <span className="text-blue-500 font-bold">•</span>
+    <span><strong>Scalar Quantity:</strong> Magnitude is a pure number (length) with no direction.</span>
+  </li>
+
+  <li className="flex items-start gap-2">
+    <span className="text-blue-500 font-bold">•</span>
+    <span>
+      <strong>Distance Formula:</strong> 
+      It derives directly from 
+      <InlineMath>{"d = \\sqrt{\\Delta x^2 + \\Delta y^2}"}</InlineMath>.
+    </span>
+  </li>
+
+  <li className="flex items-start gap-2">
+    <span className="text-blue-500 font-bold">•</span>
+    <span>
+      <strong>Notation:</strong> 
+      Written as 
+      <InlineMath>{"|\\vec{v}|"}</InlineMath> 
+      or 
+      <InlineMath>{"||\\vec{v}||"}</InlineMath>.
+    </span>
+  </li>
+</ul>
+
+        </div>
+
+      </div>
+
     </div>
   );
 
   return (
     <SlideComponentWrapper
-      slideId="recognizing-vectors-practice"
-      slideTitle="Recognizing vectors practice"
+      slideId="mag-quiz"
+      slideTitle="Vector magnitude from components"
       moduleId="vectors-prerequisite"
-      submoduleId="vector-basics"
+      submoduleId="magnitude-of-vectors"
       interactions={localInteractions}
     >
       <TrackedInteraction interaction={slideInteraction} onInteractionComplete={handleInteractionComplete}>

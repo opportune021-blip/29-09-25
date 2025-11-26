@@ -49,6 +49,189 @@ export default function AddMagDirSlide1() {
     setLocalInteractions(prev => ({ ...prev, [response.interactionId]: response }));
   };
 
+  const slideContent = (
+    <div className="w-full h-full p-4 sm:p-6 flex flex-col lg:flex-row gap-6 items-stretch">
+      
+      {/* ========================================= */}
+      {/* LEFT COLUMN: VISUAL PROOF (40%)           */}
+      {/* ========================================= */}
+      <div className="lg:w-5/12 flex flex-col h-full bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+        
+        {/* Header */}
+        <div className="p-6 border-b border-slate-100 dark:border-slate-700">
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">The "Component Method"</h2>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
+                You cannot simply add magnitudes. You must resolve them first.
+            </p>
+        </div>
+
+        {/* Graph Area */}
+        <div className="flex-grow bg-slate-50 dark:bg-slate-900 relative overflow-hidden select-none shadow-inner flex items-center justify-center min-h-[400px]">
+            
+            <div className="absolute top-4 left-4 z-10 flex flex-col gap-2 pointer-events-none">
+                <div className="flex items-center gap-2 bg-white/90 dark:bg-slate-800/90 px-2 py-1 rounded text-xs shadow-sm border border-blue-200 dark:border-slate-700">
+                     <span className="w-3 h-3 rounded-full bg-blue-500"></span>
+                     <span className="font-bold text-blue-600 dark:text-blue-300">Vector A</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/90 dark:bg-slate-800/90 px-2 py-1 rounded text-xs shadow-sm border border-purple-200 dark:border-slate-700">
+                     <span className="w-3 h-3 rounded-full bg-purple-500"></span>
+                     <span className="font-bold text-purple-600 dark:text-purple-300">Vector B</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/90 dark:bg-slate-800/90 px-2 py-1 rounded text-xs shadow-sm border border-emerald-200 dark:border-slate-700">
+                     <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
+                     <span className="font-bold text-emerald-600 dark:text-emerald-300">Resultant</span>
+                </div>
+            </div>
+
+            <svg className="w-full h-full" viewBox="0 0 500 500">
+              <defs>
+                <pattern id="grid-add-md" width={GRID} height={GRID} patternUnits="userSpaceOnUse">
+                  <path d={`M ${GRID} 0 L 0 0 0 ${GRID}`} fill="none" stroke="#334155" strokeOpacity="0.5" strokeWidth="1"/>
+                </pattern>
+                <marker id="head-a-md" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6" /></marker>
+                <marker id="head-b-md" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#A855F7" /></marker>
+                <marker id="head-res-md" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#10B981" /></marker>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid-add-md)" />
+              
+              {/* Axes */}
+              <line x1={CENTER_X} y1="0" x2={CENTER_X} y2="500" stroke="#475569" strokeWidth="2" />
+              <line x1="0" y1={CENTER_Y} x2="500" y2={CENTER_Y} stroke="#475569" strokeWidth="2" />
+
+              <g transform={`translate(${CENTER_X}, ${CENTER_Y})`}>
+                
+                {/* Vector A */}
+                <line 
+                    x1="0" y1="0" 
+                    x2={ax * GRID} y2={-ay * GRID} 
+                    stroke="#3B82F6" strokeWidth="4" markerEnd="url(#head-a-md)" 
+                />
+                
+                {/* Vector B (Tip-to-Tail) starts at A's head */}
+                <line 
+                    x1={ax * GRID} y1={-ay * GRID} 
+                    x2={(ax + bx) * GRID} y2={-(ay + by) * GRID} 
+                    stroke="#A855F7" strokeWidth="4" markerEnd="url(#head-b-md)" 
+                />
+
+                {/* Resultant */}
+                <line 
+                    x1="0" y1="0" 
+                    x2={rx * GRID} y2={-ry * GRID} 
+                    stroke="#10B981" strokeWidth="5" markerEnd="url(#head-res-md)" 
+                />
+
+              </g>
+            </svg>
+        </div>
+      </div>
+
+      {/* ========================================= */}
+      {/* RIGHT COLUMN: CONTROLS & TABLE (60%)      */}
+      {/* ========================================= */}
+      <div className="lg:w-7/12 flex flex-col gap-6 h-full">
+        
+        {/* Controls Panel */}
+        <div className="grid grid-cols-2 gap-4 bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+            
+            {/* Input A */}
+            <div className="space-y-4 border-r border-slate-100 dark:border-slate-700 pr-4">
+                <div className="font-bold text-blue-600 border-b border-blue-100 dark:border-blue-900 pb-1 mb-2">Vector A</div>
+                <div>
+                    <div className="flex justify-between text-xs text-slate-500 mb-1">
+                        <span>Magnitude</span>
+                        <span className="font-mono">{magA}</span>
+                    </div>
+                    <input type="range" min="1" max="8" value={magA} onChange={(e) => setMagA(Number(e.target.value))} className="w-full accent-blue-600 h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer"/>
+                </div>
+                <div>
+                    <div className="flex justify-between text-xs text-slate-500 mb-1">
+                        <span>Angle</span>
+                        <span className="font-mono">{angA}°</span>
+                    </div>
+                    <input type="range" min="0" max="360" step="15" value={angA} onChange={(e) => setAngA(Number(e.target.value))} className="w-full accent-blue-600 h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer"/>
+                </div>
+            </div>
+
+            {/* Input B */}
+            <div className="space-y-4 pl-2">
+                <div className="font-bold text-purple-600 border-b border-purple-100 dark:border-purple-900 pb-1 mb-2">Vector B</div>
+                <div>
+                    <div className="flex justify-between text-xs text-slate-500 mb-1">
+                        <span>Magnitude</span>
+                        <span className="font-mono">{magB}</span>
+                    </div>
+                    <input type="range" min="1" max="8" value={magB} onChange={(e) => setMagB(Number(e.target.value))} className="w-full accent-purple-600 h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer"/>
+                </div>
+                <div>
+                    <div className="flex justify-between text-xs text-slate-500 mb-1">
+                        <span>Angle</span>
+                        <span className="font-mono">{angB}°</span>
+                    </div>
+                    <input type="range" min="0" max="360" step="15" value={angB} onChange={(e) => setAngB(Number(e.target.value))} className="w-full accent-purple-600 h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer"/>
+                </div>
+            </div>
+        </div>
+
+        {/* Resolution Table */}
+        <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden flex-grow flex flex-col">
+            <div className="bg-slate-100 dark:bg-slate-800 p-3 border-b border-slate-200 dark:border-slate-700 font-bold text-slate-700 dark:text-slate-200 text-center text-sm uppercase tracking-wide">
+                Resolution Table
+            </div>
+            <div className="overflow-x-auto flex-grow flex items-center">
+                <table className="w-full text-sm md:text-base">
+                    <thead>
+                        <tr className="text-slate-500 text-xs uppercase border-b border-slate-200 dark:border-slate-700">
+                            <th className="p-3 text-left pl-6">Vector</th>
+                            <th className="p-3 text-center">x-component <br/><span className="lowercase font-normal opacity-70">(cos)</span></th>
+                            <th className="p-3 text-center">y-component <br/><span className="lowercase font-normal opacity-70">(sin)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody className="font-mono text-slate-700 dark:text-slate-300">
+                        {/* Row A */}
+                        <tr className="bg-white dark:bg-slate-800 border-b border-slate-100 dark:border-slate-700">
+                            <td className="p-3 pl-6 font-bold text-blue-600"><InlineMath>{"\\vec{A}"}</InlineMath></td>
+                            <td className="p-3 text-center">
+                                <div className="text-[10px] text-slate-400">{magA} cos({angA}°)</div>
+                                <div className="font-bold">{ax.toFixed(2)}</div>
+                            </td>
+                            <td className="p-3 text-center">
+                                <div className="text-[10px] text-slate-400">{magA} sin({angA}°)</div>
+                                <div className="font-bold">{ay.toFixed(2)}</div>
+                            </td>
+                        </tr>
+                        {/* Row B */}
+                        <tr className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                            <td className="p-3 pl-6 font-bold text-purple-600"><InlineMath>{"\\vec{B}"}</InlineMath></td>
+                            <td className="p-3 text-center">
+                                <div className="text-[10px] text-slate-400">{magB} cos({angB}°)</div>
+                                <div className="font-bold">{bx.toFixed(2)}</div>
+                            </td>
+                            <td className="p-3 text-center">
+                                <div className="text-[10px] text-slate-400">{magB} sin({angB}°)</div>
+                                <div className="font-bold">{by.toFixed(2)}</div>
+                            </td>
+                        </tr>
+                        {/* Result */}
+                        <tr className="bg-emerald-50 dark:bg-emerald-900/20 font-bold text-emerald-700 dark:text-emerald-300 text-lg">
+                            <td className="p-4 pl-6"><InlineMath>{"\\vec{R}"}</InlineMath></td>
+                            <td className="p-4 text-center">{rx.toFixed(2)}</td>
+                            <td className="p-4 text-center">{ry.toFixed(2)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div className="text-center text-xs text-slate-500">
+            The result vector is <InlineMath>{`\\vec{R} = \\langle ${rx.toFixed(2)}, ${ry.toFixed(2)} \\rangle`}</InlineMath>
+        </div>
+
+      </div>
+
+    </div>
+  );
+
   return (
     <SlideComponentWrapper
       slideId="add-mag-dir-1"
@@ -58,179 +241,7 @@ export default function AddMagDirSlide1() {
       interactions={localInteractions}
     >
       <TrackedInteraction interaction={slideInteraction} onInteractionComplete={handleInteractionComplete}>
-        <div className="w-full p-4 sm:p-8">
-          <div className="max-w-7xl mx-auto flex flex-col gap-8">
-            
-            {/* Header */}
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">The "Component Method"</h2>
-              <p className="text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-                You cannot simply add magnitudes and angles together. 
-                <br/>To add <InlineMath>{"\\vec{A}"}</InlineMath> and <InlineMath>{"\\vec{B}"}</InlineMath>, we must first <strong>resolve</strong> them into x and y components.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              
-              {/* LEFT: Graph (Visual Proof) */}
-              <div className="lg:col-span-5 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 relative h-[500px] overflow-hidden select-none shadow-inner flex items-center justify-center">
-                
-                <div className="absolute top-4 left-4 z-10 bg-white/90 dark:bg-slate-800/90 px-3 py-2 rounded shadow text-xs border border-slate-200 dark:border-slate-700">
-                    <div className="flex items-center gap-2 text-blue-600 font-bold mb-1">
-                        <span className="w-8 h-1 bg-blue-600 rounded"></span> Vector A
-                    </div>
-                    <div className="flex items-center gap-2 text-purple-600 font-bold mb-1">
-                        <span className="w-8 h-1 bg-purple-600 rounded"></span> Vector B
-                    </div>
-                    <div className="flex items-center gap-2 text-emerald-600 font-bold">
-                        <span className="w-8 h-1 bg-emerald-500 rounded"></span> Resultant
-                    </div>
-                </div>
-
-                <svg className="w-full h-full" viewBox="0 0 500 500">
-                  <defs>
-                    <pattern id="grid-add-md" width={GRID} height={GRID} patternUnits="userSpaceOnUse">
-                      <path d={`M ${GRID} 0 L 0 0 0 ${GRID}`} fill="none" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1"/>
-                    </pattern>
-                    <marker id="head-a-md" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3B82F6" /></marker>
-                    <marker id="head-b-md" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#A855F7" /></marker>
-                    <marker id="head-res-md" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#10B981" /></marker>
-                  </defs>
-                  <rect width="100%" height="100%" fill="url(#grid-add-md)" className="text-slate-400" />
-                  
-                  {/* Axes */}
-                  <line x1={CENTER_X} y1="0" x2={CENTER_X} y2="500" stroke="currentColor" strokeWidth="2" className="text-slate-300" />
-                  <line x1="0" y1={CENTER_Y} x2="500" y2={CENTER_Y} stroke="currentColor" strokeWidth="2" className="text-slate-300" />
-
-                  <g transform={`translate(${CENTER_X}, ${CENTER_Y})`}>
-                    
-                    {/* Vector A */}
-                    <line 
-                        x1="0" y1="0" 
-                        x2={ax * GRID} y2={-ay * GRID} 
-                        stroke="#3B82F6" strokeWidth="4" markerEnd="url(#head-a-md)" 
-                    />
-                    
-                    {/* Vector B (Tip-to-Tail) starts at A's head */}
-                    <line 
-                        x1={ax * GRID} y1={-ay * GRID} 
-                        x2={(ax + bx) * GRID} y2={-(ay + by) * GRID} 
-                        stroke="#A855F7" strokeWidth="4" markerEnd="url(#head-b-md)" 
-                    />
-
-                    {/* Resultant */}
-                    <line 
-                        x1="0" y1="0" 
-                        x2={rx * GRID} y2={-ry * GRID} 
-                        stroke="#10B981" strokeWidth="5" markerEnd="url(#head-res-md)" 
-                    />
-
-                    {/* Dashed Components for Visual Aid (Optional, can get cluttered) */}
-                    <path 
-                        d={`M 0 0 L ${rx * GRID} 0 L ${rx * GRID} ${-ry * GRID}`}
-                        fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="4,4" opacity="0.3"
-                    />
-
-                  </g>
-                </svg>
-              </div>
-
-              {/* RIGHT: The Resolution Table */}
-              <div className="lg:col-span-7 flex flex-col gap-6">
-                
-                {/* Inputs */}
-                <div className="grid grid-cols-2 gap-4 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                    
-                    {/* Input A */}
-                    <div className="flex flex-col gap-3 p-2 border-r border-slate-100 dark:border-slate-700">
-                        <div className="font-bold text-blue-600 border-b pb-1">Vector A</div>
-                        <div>
-                            <label className="text-xs text-slate-500 block">Magnitude</label>
-                            <input type="range" min="1" max="8" value={magA} onChange={(e) => setMagA(Number(e.target.value))} className="w-full accent-blue-600"/>
-                            <div className="text-right text-sm font-mono">{magA}</div>
-                        </div>
-                        <div>
-                            <label className="text-xs text-slate-500 block">Angle</label>
-                            <input type="range" min="0" max="360" step="15" value={angA} onChange={(e) => setAngA(Number(e.target.value))} className="w-full accent-blue-600"/>
-                            <div className="text-right text-sm font-mono">{angA}°</div>
-                        </div>
-                    </div>
-
-                    {/* Input B */}
-                    <div className="flex flex-col gap-3 p-2">
-                        <div className="font-bold text-purple-600 border-b pb-1">Vector B</div>
-                        <div>
-                            <label className="text-xs text-slate-500 block">Magnitude</label>
-                            <input type="range" min="1" max="8" value={magB} onChange={(e) => setMagB(Number(e.target.value))} className="w-full accent-purple-600"/>
-                            <div className="text-right text-sm font-mono">{magB}</div>
-                        </div>
-                        <div>
-                            <label className="text-xs text-slate-500 block">Angle</label>
-                            <input type="range" min="0" max="360" step="15" value={angB} onChange={(e) => setAngB(Number(e.target.value))} className="w-full accent-purple-600"/>
-                            <div className="text-right text-sm font-mono">{angB}°</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* TABLE */}
-                <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-                    <div className="bg-slate-100 dark:bg-slate-800 p-3 border-b border-slate-200 dark:border-slate-700 font-bold text-slate-700 dark:text-slate-200 text-center">
-                        Resolution Table
-                    </div>
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-sm md:text-base">
-                            <thead>
-                                <tr className="text-slate-500 text-xs uppercase border-b border-slate-200 dark:border-slate-700">
-                                    <th className="p-3 text-left">Vector</th>
-                                    <th className="p-3 text-center w-1/3">x-component <br/> <span className="normal-case font-normal">(mag · cos θ)</span></th>
-                                    <th className="p-3 text-center w-1/3">y-component <br/> <span className="normal-case font-normal">(mag · sin θ)</span></th>
-                                </tr>
-                            </thead>
-                            <tbody className="font-mono">
-                                {/* Row A */}
-                                <tr className="bg-white dark:bg-slate-800 border-b border-slate-100 dark:border-slate-700">
-                                    <td className="p-3 font-bold text-blue-600"><InlineMath>{"\\vec{A}"}</InlineMath></td>
-                                    <td className="p-3 text-center">
-                                        <div className="text-xs text-slate-400">{magA} cos({angA}°)</div>
-                                        <div className="font-bold text-slate-700 dark:text-slate-200">{ax.toFixed(2)}</div>
-                                    </td>
-                                    <td className="p-3 text-center">
-                                        <div className="text-xs text-slate-400">{magA} sin({angA}°)</div>
-                                        <div className="font-bold text-slate-700 dark:text-slate-200">{ay.toFixed(2)}</div>
-                                    </td>
-                                </tr>
-                                {/* Row B */}
-                                <tr className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-                                    <td className="p-3 font-bold text-purple-600"><InlineMath>{"\\vec{B}"}</InlineMath></td>
-                                    <td className="p-3 text-center">
-                                        <div className="text-xs text-slate-400">{magB} cos({angB}°)</div>
-                                        <div className="font-bold text-slate-700 dark:text-slate-200">{bx.toFixed(2)}</div>
-                                    </td>
-                                    <td className="p-3 text-center">
-                                        <div className="text-xs text-slate-400">{magB} sin({angB}°)</div>
-                                        <div className="font-bold text-slate-700 dark:text-slate-200">{by.toFixed(2)}</div>
-                                    </td>
-                                </tr>
-                                {/* Row Result */}
-                                <tr className="bg-emerald-50 dark:bg-emerald-900/20 font-bold text-emerald-800 dark:text-emerald-200 text-lg">
-                                    <td className="p-4"><InlineMath>{"\\vec{R}"}</InlineMath></td>
-                                    <td className="p-4 text-center">{rx.toFixed(2)}</td>
-                                    <td className="p-4 text-center">{ry.toFixed(2)}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div className="text-center text-sm text-slate-500">
-                    The result vector is <InlineMath>{`\\vec{R} = \\langle ${rx.toFixed(2)}, ${ry.toFixed(2)} \\rangle`}</InlineMath>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
+        {slideContent}
       </TrackedInteraction>
     </SlideComponentWrapper>
   );

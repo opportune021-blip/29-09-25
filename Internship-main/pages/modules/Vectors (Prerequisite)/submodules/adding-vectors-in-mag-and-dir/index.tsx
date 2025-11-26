@@ -19,7 +19,7 @@ export const addingVectorsMagDirSlides: Slide[] = [
     id: 'add-mag-dir-2'
   },
   {
-    type: 'quiz',
+    type: 'interactive',
     title: 'Vector addition & magnitude',
     component: AddMagReviewSlide,
     id: 'add-mag-review'

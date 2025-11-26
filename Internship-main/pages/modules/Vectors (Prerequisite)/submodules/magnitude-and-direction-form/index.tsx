@@ -19,7 +19,7 @@ export const magnitudeDirectionFormSlides: Slide[] = [
     id: 'dir-from-comp-3-4'
   },
   {
-    type: 'quiz',
+    type: 'interactive',
     title: 'Vector forms review',
     component: VectorFormsReviewSlide,
     id: 'vector-forms-review'
