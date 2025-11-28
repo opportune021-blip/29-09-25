@@ -15,6 +15,7 @@ const getModules = async () => {
     'current-electricity-0001',
     'electrostatics-0001',
     'fluids-0001',
+    'Motion in a Plane',
     'force-dynamics-0001',
     'force-dynamics-0002',
     'Vectors (Prerequisite)',
